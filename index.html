@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HICKS Digital Advisory — Automatisation IA pour PME</title>
+<meta name="description" content="J'accompagne les PME dans l'adoption de l'IA pour automatiser ce qui peut l'être — et récupérer du temps sur ce qui compte vraiment. Xavier Bottex, 22 ans d'expérience.">
+<link rel="canonical" href="https://hicks-advisory.fr">
+<link rel="icon" type="image/svg+xml" href="/HICKS_Icone.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hicks-advisory.fr">
+<meta property="og:title" content="HICKS Digital Advisory — Automatisation IA pour PME">
+<meta property="og:description" content="J'accompagne les PME dans l'adoption de l'IA pour automatiser ce qui peut l'être — et récupérer du temps sur ce qui compte vraiment.">
+<meta property="og:image" content="https://hicks-advisory.fr/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ========== TOKENS ========== */
+:root {
+  --navy:       #0F1E3D;
+  --navy-light: #1B2A4E;
+  --navy-dark:  #0A1428;
+  --coral:      #FF6B47;
+  --coral-light:#FF8A6B;
+  --coral-dark: #E85A37;
+  --white:      #FFFFFF;
+  --offwhite:   #F5F6FA;
+  --mid:        #8892A4;
+  --glass-bg:   rgba(27, 42, 78, 0.55);
+  --glass-border: rgba(255, 107, 71, 0.18);
+  --glass-border-subtle: rgba(255,255,255,0.08);
+  --shadow-glass: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  --radius-card: 16px;
+  --radius-btn:  10px;
+  --z-nav: 100;
+  --z-orb: 0;
+  --z-content: 10;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy-dark);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.15; }
+h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 700; letter-spacing: -0.03em; }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; }
+h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 600; }
+p  { line-height: 1.7; color: var(--mid); }
+.label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+.coral { color: var(--coral); }
+.white { color: var(--white); }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ── ORBS ── */
+.orb {
+  position: fixed; border-radius: 50%; filter: blur(90px);
+  pointer-events: none; z-index: var(--z-orb); opacity: 0; transition: opacity 1.2s ease;
+}
+.orb.loaded { opacity: 1; }
+.orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,107,71,0.12) 0%, transparent 70%); top: -100px; right: -150px; }
+.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(15,30,61,0.9) 0%, transparent 70%); bottom: 20%; left: -150px; }
+.orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,107,71,0.07) 0%, transparent 70%); bottom: -100px; right: 10%; }
+
+/* ── GLASS ── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-glass);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: var(--radius-btn);
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  border: none; touch-action: manipulation; min-height: 48px;
+}
+.btn:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+.btn-primary { background: var(--coral); color: var(--white); box-shadow: 0 4px 20px rgba(255,107,71,0.35); }
+.btn-primary:hover { background: var(--coral-light); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,107,71,0.45); }
+.btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.2); }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); transform: translateY(-1px); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-nav);
+  padding: 0; transition: all 0.3s ease;
+}
+nav.scrolled {
+  background: rgba(10, 20, 40, 0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 32px; }
+.logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.logo-mark { width: 40px; height: 40px; flex-shrink: 0; }
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+.logo-name { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.08em; color: var(--white); line-height: 1; }
+.logo-sub { font-family: 'Inter', sans-serif; font-size: 0.6rem; letter-spacing: 0.12em; color: var(--coral); text-transform: uppercase; font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 500; color: var(--mid); transition: color 0.2s ease; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { margin-left: 8px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.25s ease; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,20,40,0.97); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--white); transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--coral); }
+
+/* ── HERO ── */
+.hero { min-height: 100dvh; display: flex; align-items: center; position: relative; padding: 120px 0 80px; overflow: hidden; }
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,107,71,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,71,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  z-index: 1;
+}
+.hero-inner { position: relative; z-index: var(--z-content); display: grid; grid-template-columns: 1fr 420px; gap: 64px; align-items: center; }
+.hero-left { display: flex; flex-direction: column; gap: 28px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; background: rgba(255,107,71,0.12); border: 1px solid rgba(255,107,71,0.25); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--coral); width: fit-content; }
+.hero-badge-dot { width: 6px; height: 6px; background: var(--coral); border-radius: 50%; animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.hero-headline { display: flex; flex-direction: column; gap: 4px; }
+.hero-line-1 { color: var(--white); }
+.hero-line-2 { color: var(--coral); }
+.hero-sub { font-size: 1.05rem; line-height: 1.75; color: var(--mid); max-width: 520px; }
+.hero-sub strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 32px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+.stat-item { display: flex; flex-direction: column; gap: 2px; }
+.stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--white); line-height: 1; }
+.stat-num span { color: var(--coral); }
+.stat-label { font-size: 0.78rem; color: var(--mid); letter-spacing: 0.02em; }
+.hero-card { padding: 36px 32px; display: flex; flex-direction: column; gap: 24px; border-color: var(--glass-border); }
+.hero-card-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--coral); font-family: 'Space Mono', monospace; }
+.hero-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--white); line-height: 1.4; }
+.hero-card-metrics { display: flex; flex-direction: column; gap: 12px; }
+.metric-row { display: flex; align-items: center; gap: 12px; }
+.metric-icon { width: 36px; height: 36px; background: rgba(255,107,71,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.metric-icon svg { width: 16px; height: 16px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.metric-text { display: flex; flex-direction: column; gap: 1px; }
+.metric-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--white); }
+.metric-desc { font-size: 0.78rem; color: var(--mid); }
+.hero-card-divider { height: 1px; background: rgba(255,255,255,0.06); }
+.hero-card-cta { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: rgba(255,107,71,0.1); border: 1px solid rgba(255,107,71,0.2); border-radius: 10px; cursor: pointer; transition: background 0.2s ease; touch-action: manipulation; }
+.hero-card-cta:hover { background: rgba(255,107,71,0.18); }
+.hero-card-cta-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--coral); }
+.hero-card-cta-arrow { color: var(--coral); font-size: 1.1rem; }
+
+/* ── PROOF STRIP ── */
+.proof-strip { padding: 28px 0; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(10,20,40,0.6); backdrop-filter: blur(10px); position: relative; z-index: var(--z-content); }
+.proof-inner { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+.proof-item { display: flex; align-items: center; gap: 10px; padding: 8px 28px; position: relative; }
+.proof-item + .proof-item::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 24px; width: 1px; background: rgba(255,255,255,0.1); }
+.proof-icon { width: 18px; height: 18px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.proof-text { font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.65); letter-spacing: 0.03em; white-space: nowrap; }
+
+/* ── SECTION BASE ── */
+section { position: relative; z-index: var(--z-content); }
+.section-header { display: flex; flex-direction: column; gap: 12px; }
+.section-header.centered { align-items: center; text-align: center; }
+.section-header h2 { color: var(--white); }
+
+/* ── PROBLÈME ── */
+.probleme { padding: 100px 0; }
+.probleme-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 60px; }
+.probleme-left { display: flex; flex-direction: column; gap: 20px; }
+.probleme-item { display: flex; gap: 16px; padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition: border-color 0.25s ease, background 0.25s ease; }
+.probleme-item:hover { border-color: rgba(255,107,71,0.2); background: rgba(255,107,71,0.04); }
+.probleme-num { font-family: 'Space Mono', monospace; font-size: 0.7rem; font-weight: 700; color: var(--coral); width: 28px; height: 28px; border: 1px solid rgba(255,107,71,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.probleme-body { display: flex; flex-direction: column; gap: 4px; }
+.probleme-body h3 { font-size: 1rem; color: var(--white); }
+.probleme-body p { font-size: 0.9rem; }
+.probleme-right { display: flex; flex-direction: column; gap: 16px; }
+.big-quote { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.025em; color: var(--white); }
+.big-quote em { color: var(--coral); font-style: normal; }
+.quote-meta { display: flex; flex-direction: column; gap: 6px; }
+.quote-stat { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; color: var(--mid); }
+.quote-stat::before { content: '→'; color: var(--coral); font-size: 0.9rem; }
+
+/* ── APPROCHE (4 steps) ── */
+.approche { padding: 100px 0; background: linear-gradient(180deg, transparent 0%, rgba(15,30,61,0.3) 50%, transparent 100%); }
+.approche-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+.step-card { padding: 28px 24px; display: flex; flex-direction: column; gap: 14px; transition: transform 0.25s ease, border-color 0.25s ease; cursor: default; }
+.step-card:hover { transform: translateY(-4px); border-color: var(--glass-border); }
+.step-number { font-family: 'Space Mono', monospace; font-size: 2.4rem; font-weight: 700; color: rgba(255,107,71,0.12); line-height: 1; letter-spacing: -0.04em; transition: color 0.25s ease; user-select: none; }
+.step-card:hover .step-number { color: rgba(255,107,71,0.22); }
+.step-icon-wrap { width: 44px; height: 44px; background: rgba(255,107,71,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,107,71,0.2); }
+.step-icon-wrap svg { width: 20px; height: 20px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.step-card h3 { color: var(--white); font-size: 1.05rem; }
+.step-card p { font-size: 0.88rem; line-height: 1.65; }
+.step-tag { margin-top: auto; font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; color: rgba(255,107,71,0.6); text-transform: uppercase; }
+
+/* ── RÉSULTATS ── */
+.resultats { padding: 80px 0; }
+.resultats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; }
+.resultat-card { padding: 28px 24px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; border-color: var(--glass-border-subtle); transition: border-color 0.25s ease, transform 0.25s ease; }
+.resultat-card:hover { border-color: var(--glass-border); transform: translateY(-3px); }
+.resultat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; color: var(--white); line-height: 1; letter-spacing: -0.03em; }
+.resultat-num .accent { color: var(--coral); }
+.resultat-label { font-size: 0.88rem; color: var(--mid); line-height: 1.4; }
+.resultat-bar { width: 100%; height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+.resultat-bar-fill { height: 100%; background: linear-gradient(90deg, var(--coral-dark), var(--coral)); border-radius: 2px; width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+
+/* ── OFFRES (4 formules) ── */
+.offres { padding: 100px 0; }
+.offres-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; align-items: start; }
+.offre-card { padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden; border-color: var(--glass-border-subtle); }
+.offre-card.featured { border-color: rgba(255,107,71,0.4); background: rgba(27,42,78,0.7); }
+.offre-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--coral-dark), var(--coral), var(--coral-light)); }
+.offre-badge { position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--coral); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.08em; color: var(--white); text-transform: uppercase; }
+.offre-step { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; color: rgba(255,107,71,0.7); text-transform: uppercase; }
+.offre-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); }
+.offre-format { font-size: 0.8rem; color: var(--coral); font-family: 'Space Mono', monospace; letter-spacing: 0.05em; margin-top: 4px; }
+.offre-divider { height: 1px; background: rgba(255,255,255,0.06); }
+.offre-features { display: flex; flex-direction: column; gap: 8px; }
+.feature-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+.feature-dot { width: 5px; height: 5px; background: var(--coral); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+.offre-cta { margin-top: auto; }
+.offres-footnote { text-align: center; margin-top: 24px; font-family: 'Space Mono', monospace; font-size: 0.72rem; color: rgba(136,146,164,0.5); letter-spacing: 0.06em; }
+
+/* ── PROFIL ── */
+.profil { padding: 100px 0; }
+.profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+.profil-left { display: flex; flex-direction: column; gap: 24px; }
+.profil-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.profil-stat { padding: 20px; display: flex; flex-direction: column; gap: 4px; border-color: var(--glass-border-subtle); }
+.profil-stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); line-height: 1; letter-spacing: -0.03em; }
+.profil-stat-num .accent { color: var(--coral); }
+.profil-stat-label { font-size: 0.78rem; color: var(--mid); }
+.profil-right { display: flex; flex-direction: column; gap: 20px; }
+.profil-text { font-size: 1rem; line-height: 1.8; color: rgba(136,146,164,0.9); }
+.profil-text strong { color: var(--white); font-weight: 600; }
+.profil-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.badge { padding: 6px 14px; background: rgba(27,42,78,0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); transition: border-color 0.2s, color 0.2s; }
+.badge:hover { border-color: var(--coral); color: var(--coral); }
+
+/* ── CONTACT ── */
+.contact { padding: 100px 0 80px; position: relative; overflow: hidden; }
+.contact-glow { position: absolute; width: 700px; height: 400px; background: radial-gradient(ellipse, rgba(255,107,71,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+.contact-inner { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+.contact-inner h2 { max-width: 620px; }
+.contact-inner p { max-width: 480px; font-size: 1.05rem; }
+.contact-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.contact-info { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: center; padding: 20px 32px; border-radius: 12px; border-color: var(--glass-border-subtle); }
+.contact-info-item { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--mid); }
+.contact-info-item svg { width: 15px; height: 15px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.contact-info-item a { transition: color 0.2s; }
+.contact-info-item a:hover { color: var(--coral); }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; background: rgba(10,20,40,0.8); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.footer-left { display: flex; align-items: center; gap: 12px; }
+.footer-logo { opacity: 0.6; display: flex; align-items: center; gap: 8px; }
+.footer-logo-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; }
+.footer-copy { font-size: 0.78rem; color: rgba(136,146,164,0.5); }
+.footer-right { display: flex; align-items: center; gap: 16px; }
+.footer-link { font-size: 0.78rem; color: rgba(136,146,164,0.5); transition: color 0.2s; }
+.footer-link:hover { color: var(--mid); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .orb { transition: none; }
+  .hero-badge-dot { animation: none; }
+  .resultat-bar-fill { transition: none !important; width: var(--target-width, 75%) !important; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-card { display: none; }
+  .resultats-grid { grid-template-columns: repeat(2, 1fr); }
+  .offres-grid { grid-template-columns: repeat(2, 1fr); }
+  .approche-steps { grid-template-columns: repeat(2, 1fr); }
+  .profil-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+  h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero { padding: 100px 0 60px; }
+  .hero-stats { gap: 20px; }
+  .proof-item { padding: 8px 16px; }
+  .proof-text { font-size: 0.75rem; }
+  .probleme { padding: 72px 0; }
+  .probleme-grid { grid-template-columns: 1fr; gap: 40px; }
+  .approche { padding: 72px 0; }
+  .approche-steps { grid-template-columns: 1fr; }
+  .resultats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .offres { padding: 72px 0; }
+  .offres-grid { grid-template-columns: 1fr; }
+  .profil { padding: 72px 0; }
+  .profil-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact { padding: 72px 0 60px; }
+  .contact-info { flex-direction: column; gap: 12px; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .proof-inner { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 0 16px; }
+  .proof-strip .container { padding: 0; }
+  .resultats-grid { grid-template-columns: 1fr 1fr; }
+  .profil-stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+<div class="orb orb-3" aria-hidden="true"></div>
+
+<a href="#main" style="position:absolute;left:-9999px;top:4px;padding:8px 16px;background:var(--coral);color:#fff;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-weight:600;z-index:9999" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Passer au contenu principal</a>
+
+<!-- ── NAV ── -->
+<nav id="nav" role="navigation" aria-label="Navigation principale">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="HICKS Digital Advisory — Accueil">
+        <svg class="logo-mark" width="40" height="40" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="130" height="130" fill="#0F1E3D" rx="16"/>
+          <line x1="32" y1="32" x2="98" y2="98" stroke="#FF6B47" stroke-width="11" stroke-linecap="round"/>
+          <line x1="98" y1="32" x2="32" y2="98" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+          <circle cx="65" cy="65" r="7" fill="#0F1E3D" stroke="#FF6B47" stroke-width="2"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">HICKS</span>
+          <span class="logo-sub">Digital Advisory</span>
+        </div>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#methode">Méthode</a></li>
+        <li><a href="#offres">Offres</a></li>
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta" aria-label="Prendre contact avec HICKS">Prendre contact</a>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navigation" aria-modal="true">
+  <a href="#methode" onclick="closeMobile()">Méthode</a>
+  <a href="#offres" onclick="closeMobile()">Offres</a>
+  <a href="#profil" onclick="closeMobile()">Profil</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#contact" class="btn btn-primary" onclick="closeMobile()">Prendre contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+
+      <div class="hero-left reveal">
+        <div class="hero-badge" role="status">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          Disponible — Côte d'Azur & Distanciel
+        </div>
+        <div class="hero-headline">
+          <h1 class="hero-line-1" id="hero-title">Vos processus vous coûtent du temps.</h1>
+          <h1 class="hero-line-2">L'IA peut vous le rendre.</h1>
+        </div>
+        <p class="hero-sub">
+          J'accompagne les PME dans l'adoption de l'IA pour <strong>automatiser ce qui peut l'être</strong> — et concentrer votre énergie là où vous créez vraiment de la valeur.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Réserver un appel découverte</a>
+          <a href="#methode" class="btn btn-ghost">Voir la méthode</a>
+        </div>
+        <div class="hero-stats" aria-label="Chiffres clés">
+          <div class="stat-item">
+            <span class="stat-num"><span>22</span> ans</span>
+            <span class="stat-label">d'expérience terrain</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">Public<span> &</span></span>
+            <span class="stat-label">& secteur privé</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num"><span>∞</span></span>
+            <span class="stat-label">temps à regagner</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card glass reveal reveal-delay-2" aria-label="Ce que vous gagnez">
+        <p class="hero-card-label">Ce que vous gagnez</p>
+        <p class="hero-card-title">Un conseiller qui avance avec vous — pas à votre place.</p>
+        <div class="hero-card-metrics">
+          <div class="metric-row">
+            <div class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="metric-text">
+              <span class="metric-title">Temps retrouvé</span>
+              <span class="metric-desc">Processus répétitifs automatisés</span>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="metric-text">
+              <span class="metric-title">Équipes autonomes</span>
+              <span class="metric-desc">Formation et transfert de compétences</span>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="metric-text">
+              <span class="metric-title">Méthode éprouvée</span>
+              <span class="metric-desc">Audit · Co-réalisation · Suivi</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-card-divider"></div>
+        <a href="#contact" class="hero-card-cta" aria-label="Réserver un appel découverte">
+          <span class="hero-card-cta-text">Appel découverte — 30 min gratuit</span>
+          <span class="hero-card-cta-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROOF STRIP ── -->
+<div class="proof-strip" role="complementary" aria-label="Références clés">
+  <div class="container">
+    <div class="proof-inner">
+      <div class="proof-item">
+        <svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span class="proof-text">22 ans d'expérience terrain</span>
+      </div>
+      <div class="proof-item">
+        <svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span class="proof-text">Secteurs public & privé</span>
+      </div>
+      <div class="proof-item">
+        <svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span class="proof-text">Souveraineté numérique</span>
+      </div>
+      <div class="proof-item">
+        <svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span class="proof-text">Enseignant depuis 2001</span>
+      </div>
+      <div class="proof-item">
+        <svg class="proof-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="proof-text">Ex-CTO Monaco Cloud SAM</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROBLÈME ── -->
+<section class="probleme" id="probleme" aria-labelledby="probleme-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="label">Ce qui freine votre croissance</p>
+      <h2 id="probleme-title">Vous n'avez pas un problème de volonté.<br>Vous avez un problème de <span class="coral">méthode</span>.</h2>
+    </div>
+    <div class="probleme-grid">
+      <div class="probleme-left">
+        <div class="probleme-item reveal">
+          <div class="probleme-num" aria-hidden="true">01</div>
+          <div class="probleme-body">
+            <h3>Des processus qui dévorent votre temps</h3>
+            <p>Saisies manuelles, relances, rapports, devis, comptes-rendus — des heures chaque semaine sur des tâches sans valeur ajoutée réelle.</p>
+          </div>
+        </div>
+        <div class="probleme-item reveal reveal-delay-1">
+          <div class="probleme-num" aria-hidden="true">02</div>
+          <div class="probleme-body">
+            <h3>Des outils génériques qui ne s'adaptent pas</h3>
+            <p>ChatGPT, Copilot — vous avez essayé. Mais ces outils ne connaissent pas vos process, vos clients, votre vocabulaire métier. L'intégration n'est jamais faite.</p>
+          </div>
+        </div>
+        <div class="probleme-item reveal reveal-delay-2">
+          <div class="probleme-num" aria-hidden="true">03</div>
+          <div class="probleme-body">
+            <h3>La résistance au changement, le vrai obstacle</h3>
+            <p>Le blocage n'est pas technique. C'est humain. Sans accompagnement, les outils ne sont jamais vraiment adoptés — et l'investissement est perdu.</p>
+          </div>
+        </div>
+      </div>
+      <div class="probleme-right reveal reveal-delay-1">
+        <p class="big-quote">Du temps <em>perdu</em> chaque semaine.<br>Du temps <em>retrouvé</em> pour ce qui compte.</p>
+        <div class="quote-meta">
+          <p class="quote-stat">Des automatisations concrètes, pas des promesses</p>
+          <p class="quote-stat">Des équipes qui adoptent vraiment les outils</p>
+          <p class="quote-stat">Un accompagnement qui respecte votre organisation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MÉTHODE (4 étapes) ── -->
+<section class="approche" id="methode" aria-labelledby="methode-title">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <p class="label">La méthode HICKS</p>
+      <h2 id="methode-title">Quatre étapes. Un seul objectif :<br>vous rendre <span class="coral">autonomes</span>.</h2>
+    </div>
+    <div class="approche-steps">
+
+      <div class="step-card glass reveal">
+        <div class="step-number" aria-hidden="true">01</div>
+        <div class="step-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Audit IA</h3>
+        <p>On cartographie vos processus, identifie les quick wins et les chantiers prioritaires. Vous repartez avec une feuille de route claire.</p>
+        <span class="step-tag">Forfait fixe · Livrable garanti</span>
+      </div>
+
+      <div class="step-card glass reveal reveal-delay-1">
+        <div class="step-number" aria-hidden="true">02</div>
+        <div class="step-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        </div>
+        <h3>Co-réalisation</h3>
+        <p>On construit ensemble les premières automatisations. Votre équipe apprend en faisant — avec moi à côté pour valider chaque étape.</p>
+        <span class="step-tag">Packs d'heures · 10h · 20h · 40h</span>
+      </div>
+
+      <div class="step-card glass reveal reveal-delay-2">
+        <div class="step-number" aria-hidden="true">03</div>
+        <div class="step-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Suivi & expertise</h3>
+        <p>Un accompagnement mensuel pour ajuster, approfondir et lancer de nouveaux chantiers. Je reste disponible à mesure que vous progressez.</p>
+        <span class="step-tag">Retainer · 4h+/mois</span>
+      </div>
+
+      <div class="step-card glass reveal reveal-delay-3">
+        <div class="step-number" aria-hidden="true">04</div>
+        <div class="step-icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Consulting ponctuel</h3>
+        <p>Une question précise, un audit partiel, un second avis stratégique. Intervention ciblée, sans engagement long terme.</p>
+        <span class="step-tag">Tarif horaire · À la demande</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── RÉSULTATS ── -->
+<section class="resultats" id="resultats" aria-labelledby="resultats-title">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <p class="label">Pourquoi HICKS</p>
+      <h2 id="resultats-title">Une expérience construite sur le terrain</h2>
+    </div>
+    <div class="resultats-grid" role="list">
+      <div class="resultat-card glass reveal" role="listitem">
+        <p class="resultat-num"><span class="accent">22</span> ans</p>
+        <p class="resultat-label">d'ingénierie système, réseau, cloud et transformation digitale</p>
+        <div class="resultat-bar"><div class="resultat-bar-fill" style="--target-width:95%" data-width="95"></div></div>
+      </div>
+      <div class="resultat-card glass reveal reveal-delay-1" role="listitem">
+        <p class="resultat-num">Public <span class="accent">&</span> Privé</p>
+        <p class="resultat-label">collectivités, hôpitaux, PME, startups, grand compte — toutes tailles, tous secteurs</p>
+        <div class="resultat-bar"><div class="resultat-bar-fill" style="--target-width:80%" data-width="80"></div></div>
+      </div>
+      <div class="resultat-card glass reveal reveal-delay-2" role="listitem">
+        <p class="resultat-num">Ex<span class="accent">-CTO</span></p>
+        <p class="resultat-label">Monaco Cloud SAM — accompagnement de dizaines d'entreprises vers le cloud</p>
+        <div class="resultat-bar"><div class="resultat-bar-fill" style="--target-width:70%" data-width="70"></div></div>
+      </div>
+      <div class="resultat-card glass reveal reveal-delay-3" role="listitem">
+        <p class="resultat-num"><span class="accent">2001</span></p>
+        <p class="resultat-label">enseignant en IUT, Bachelor et école d'ingénieur — pédagogie au cœur de la méthode</p>
+        <div class="resultat-bar"><div class="resultat-bar-fill" style="--target-width:85%" data-width="85"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFRES ── -->
+<section class="offres" id="offres" aria-labelledby="offres-title">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <p class="label">Formules</p>
+      <h2 id="offres-title">Quatre formules. <span class="coral">Votre rythme.</span></h2>
+      <p style="max-width:540px;text-align:center;margin:0 auto;">Vous commencez par l'audit, vous continuez à votre rythme. Chaque étape est indépendante — aucun engagement forcé.</p>
+    </div>
+    <div class="offres-grid">
+
+      <div class="offre-card glass reveal">
+        <div>
+          <p class="offre-step">Étape 01</p>
+          <p class="offre-title">Audit IA</p>
+          <p class="offre-format">Forfait · Demi-journée ou journée</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Diagnostic complet de vos processus</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Identification des quick wins IA</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Feuille de route personnalisée</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Rapport d'audit livré sous 48h</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Démarrer avec un audit IA">Démarrer par un audit →</a>
+      </div>
+
+      <div class="offre-card glass featured reveal reveal-delay-1">
+        <div class="offre-badge">Recommandé</div>
+        <div>
+          <p class="offre-step">Étape 02</p>
+          <p class="offre-title">Co-réalisation</p>
+          <p class="offre-format">Pack d'heures · 10h / 20h / 40h</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Implémentation des premières automatisations</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Formation aux outils retenus</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Travail en binôme avec vos équipes</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Heures consommables à votre rythme</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary offre-cta" aria-label="Démarrer la co-réalisation">Choisir un pack →</a>
+      </div>
+
+      <div class="offre-card glass reveal reveal-delay-2">
+        <div>
+          <p class="offre-step">Étape 03</p>
+          <p class="offre-title">Suivi & expertise</p>
+          <p class="offre-format">Retainer · 4h+ par mois</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Point mensuel bilan + orientation</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Ajustements et nouvelles automatisations</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Réponses rapides entre les sessions</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Renouvelable mois par mois</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="En savoir plus sur le suivi mensuel">En discuter →</a>
+      </div>
+
+      <div class="offre-card glass reveal reveal-delay-3">
+        <div>
+          <p class="offre-step">Étape 04</p>
+          <p class="offre-title">Consulting ponctuel</p>
+          <p class="offre-format">Tarif horaire · Sans engagement</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Intervention sur un problème ciblé</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Audit partiel ou second avis</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Débrief stratégique ou technique</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Tarif transparent, facturation à l'heure</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Demander une intervention ponctuelle">Prendre contact →</a>
+      </div>
+
+    </div>
+    <p class="offres-footnote">Toutes les formules commencent par un appel découverte de 30 min — gratuit, sans engagement · TVA non applicable — art. 293B du CGI</p>
+  </div>
+</section>
+
+<!-- ── PROFIL ── -->
+<section class="profil" id="profil" aria-labelledby="profil-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="label">Qui intervient</p>
+      <h2 id="profil-title">Xavier Bottex — <span class="coral">22 ans de terrain</span>, au service de votre transformation.</h2>
+    </div>
+    <div class="profil-grid">
+      <div class="profil-left">
+        <div class="profil-stats-grid">
+          <div class="profil-stat glass reveal">
+            <p class="profil-stat-num"><span class="accent">22</span> ans</p>
+            <p class="profil-stat-label">d'ingénierie & conseil</p>
+          </div>
+          <div class="profil-stat glass reveal reveal-delay-1">
+            <p class="profil-stat-num">Ex<span class="accent">-CTO</span></p>
+            <p class="profil-stat-label">Monaco Cloud SAM</p>
+          </div>
+          <div class="profil-stat glass reveal reveal-delay-2">
+            <p class="profil-stat-num"><span class="accent">2001</span></p>
+            <p class="profil-stat-label">Enseignant IUT & école ingé</p>
+          </div>
+          <div class="profil-stat glass reveal reveal-delay-3">
+            <p class="profil-stat-num">06<span class="accent"> Sud</span></p>
+            <p class="profil-stat-label">Côte d'Azur · Monaco</p>
+          </div>
+        </div>
+      </div>
+      <div class="profil-right reveal reveal-delay-1">
+        <p class="profil-text">
+          J'ai passé 22 ans à accompagner des organisations — collectivités, hôpitaux, PME, startups, grand compte — dans leurs transformations numériques. Pas en livrant des solutions clé en main, mais en <strong>embarquant les équipes</strong>, en levant les résistances, en transmettant.
+        </p>
+        <p class="profil-text">
+          Chez Monaco Cloud SAM, j'ai guidé des dizaines d'entreprises vers le cloud souverain. J'ai appris ce que les consultants techniques oublient souvent : <strong>le vrai obstacle, c'est rarement la technologie</strong>. C'est la confiance, la pédagogie, et la compréhension des enjeux métier.
+        </p>
+        <p class="profil-text">
+          Enseignant depuis 2001 en IUT, Bachelor et école d'ingénieur, j'ai développé une capacité de vulgarisation et de transmission que j'applique à chaque mission. Je parle autant à un dirigeant de PME qu'à un DSI de grande structure — <strong>avec la même écoute, la même exigence</strong>.
+        </p>
+        <div class="profil-badges" role="list" aria-label="Compétences">
+          <span class="badge" role="listitem">Transformation digitale</span>
+          <span class="badge" role="listitem">Automatisation IA</span>
+          <span class="badge" role="listitem">Cloud souverain</span>
+          <span class="badge" role="listitem">Architecture SI</span>
+          <span class="badge" role="listitem">Conduite du changement</span>
+          <span class="badge" role="listitem">Pédagogie & formation</span>
+          <span class="badge" role="listitem">DevSecOps</span>
+          <span class="badge" role="listitem">RGPD & conformité</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact" aria-labelledby="contact-title">
+  <div class="contact-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="contact-inner reveal">
+      <p class="label">Parlons-en</p>
+      <h2 id="contact-title">Il y a du temps à regagner<br>dans votre activité.</h2>
+      <p>Un appel de 30 minutes suffit pour savoir si on peut travailler ensemble. Pas de pitch — juste une conversation directe sur vos vrais enjeux.</p>
+      <div class="contact-actions">
+        <a href="tel:+33620398990" class="btn btn-ghost">06 20 39 89 90</a>
+      </div>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" style="width:100%;max-width:520px;margin:24px auto 0;display:flex;flex-direction:column;gap:12px;">
+        <input type="hidden" name="access_key" value="REMPLACER_PAR_CLE_WEB3FORMS">
+        <input type="hidden" name="subject" value="Nouveau contact HICKS Advisory">
+        <input type="hidden" name="from_name" value="HICKS Advisory">
+        <input type="hidden" name="redirect" value="https://hicks-advisory.fr?merci=1">
+        <input type="text" name="name" placeholder="Votre nom" required
+          style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-family:inherit;">
+        <input type="email" name="email" placeholder="Votre email" required
+          style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-family:inherit;">
+        <textarea name="message" placeholder="Votre message" rows="4" required
+          style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-family:inherit;resize:vertical;"></textarea>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+          Envoyer →
+        </button>
+        <div id="form-success" style="display:none;color:#4ade80;text-align:center;padding:12px;">
+          ✅ Message envoyé ! Je vous réponds sous 24h.
+        </div>
+      </form>
+      <script>
+        (function() {
+          var p = new URLSearchParams(window.location.search);
+          if (p.get('merci') === '1') {
+            var s = document.getElementById('form-success');
+            if (s) { s.style.display = 'block'; }
+          }
+        })();
+      </script>
+      <div class="contact-info glass">
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:xavier.bottex@hicks-advisory.fr">xavier.bottex@hicks-advisory.fr</a>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+33620398990">06 20 39 89 90</a>
+        </div>
+        <div class="contact-info-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Saint-Cézaire-sur-Siagne (06) · Déplacement & distanciel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-logo" aria-label="HICKS Digital Advisory">
+          <svg width="24" height="24" viewBox="0 0 130 130" aria-hidden="true">
+            <rect width="130" height="130" fill="#0F1E3D" rx="16"/>
+            <line x1="32" y1="32" x2="98" y2="98" stroke="#FF6B47" stroke-width="11" stroke-linecap="round"/>
+            <line x1="98" y1="32" x2="32" y2="98" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+          </svg>
+          <span class="footer-logo-name">HICKS</span>
+        </div>
+        <span class="footer-copy">© 2026 HICKS Digital Advisory — Xavier Bottex</span>
+      </div>
+      <div class="footer-right">
+        <a href="mailto:xavier.bottex@hicks-advisory.fr" class="footer-link">Contact</a>
+        <a href="#offres" class="footer-link">Offres</a>
+        <a href="#profil" class="footer-link">Profil</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV scroll ── */
+const nav = document.getElementById('nav')
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40)
+}, { passive: true })
+
+/* ── Hamburger ── */
+const hamburger = document.getElementById('hamburger')
+const mobileMenu = document.getElementById('mobile-menu')
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open')
+  hamburger.classList.toggle('open', open)
+  hamburger.setAttribute('aria-expanded', open)
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+function closeMobile() {
+  mobileMenu.classList.remove('open')
+  hamburger.classList.remove('open')
+  hamburger.setAttribute('aria-expanded', 'false')
+  document.body.style.overflow = ''
+}
+
+/* ── Orbs ── */
+document.querySelectorAll('.orb').forEach(o => {
+  requestAnimationFrame(() => o.classList.add('loaded'))
+})
+
+/* ── Scroll reveal ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target) } })
+}, { threshold: 0.12 })
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
+
+/* ── Bar animation ── */
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const fill = e.target.querySelector('.resultat-bar-fill')
+      if (fill) { setTimeout(() => { fill.style.width = fill.dataset.width + '%' }, 200) }
+      barObserver.unobserve(e.target)
+    }
+  })
+}, { threshold: 0.3 })
+document.querySelectorAll('.resultat-card').forEach(el => barObserver.observe(el))
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+  data-cf-beacon='{"token": "REMPLACER_PAR_TOKEN_CF_ANALYTICS"}'></script>
+</body>
+</html>

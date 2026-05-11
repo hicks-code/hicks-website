@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background: #0F1E3D;
+    font-family: 'Space Grotesk', -apple-system, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,107,71,.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,107,71,.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .accent-line {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: #FF6B47;
+  }
+  .content {
+    position: relative; z-index: 1;
+    text-align: center; padding: 60px;
+  }
+  .logo {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; margin-bottom: 40px;
+  }
+  .logo-icon {
+    width: 72px; height: 72px;
+  }
+  .logo-name {
+    font-size: 3rem; font-weight: 700;
+    color: #FFFFFF; letter-spacing: 4px;
+  }
+  .tagline {
+    font-size: 1.6rem; color: rgba(255,255,255,.85);
+    font-weight: 400; line-height: 1.4;
+    max-width: 800px; margin: 0 auto 32px;
+  }
+  .label {
+    display: inline-block;
+    background: rgba(255,107,71,.15);
+    border: 1px solid rgba(255,107,71,.3);
+    color: #FF6B47; font-size: .95rem;
+    padding: 8px 20px; border-radius: 99px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="accent-line"></div>
+  <div class="content">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 130 130">
+        <rect width="130" height="130" fill="#0F1E3D" rx="16"/>
+        <line x1="32" y1="32" x2="98" y2="98" stroke="#FF6B47" stroke-width="11" stroke-linecap="round"/>
+        <line x1="98" y1="32" x2="32" y2="98" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-name">HICKS</span>
+    </div>
+    <p class="tagline">J'accompagne les PME dans l'adoption de l'IA<br>pour automatiser ce qui peut l'être.</p>
+    <span class="label">Digital Advisory · Audit IT · Cloud · IA &amp; Automatisation</span>
+  </div>
+</body>
+</html>
