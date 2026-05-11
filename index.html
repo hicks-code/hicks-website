@@ -798,9 +798,19 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
             btn.textContent = 'Envoi…';
             var data = new FormData(form);
             data.delete('cf-turnstile-response');
-            fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
-              .then(function(r) { return r.json(); })
-              .then(function(res) {
+            var leadPayload = JSON.stringify({
+              name: data.get('name'),
+              email: data.get('email'),
+              message: data.get('message')
+            });
+            var w3f = fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+              .then(function(r) { return r.json(); });
+            var n8n = fetch('https://n8n.hicks-advisory.fr/webhook/hicks-lead', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': '528ed6e7f04af48d12753947e6d109fc48db8ab332645a5703f5f505789d48e7' },
+              body: leadPayload
+            }).catch(function() {});
+            w3f.then(function(res) {
                 if (res.success) {
                   document.getElementById('form-success').style.display = 'block';
                   form.reset();
