@@ -773,7 +773,6 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <input type="hidden" name="access_key" value="677010c2-ceb8-4f9b-b43d-287a6fb13ee2">
         <input type="hidden" name="subject" value="Nouveau contact HICKS Advisory">
         <input type="hidden" name="from_name" value="HICKS Advisory">
-        <input type="hidden" name="redirect" value="https://hicks-advisory.fr?merci=1">
         <input type="text" name="name" placeholder="Votre nom" required
           style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-family:inherit;">
         <input type="email" name="email" placeholder="Votre email" required
@@ -781,7 +780,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <textarea name="message" placeholder="Votre message" rows="4" required
           style="padding:14px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-size:1rem;font-family:inherit;resize:vertical;"></textarea>
         <div class="cf-turnstile" data-sitekey="0x4AAAAAADNLRf_BTIyJENLl" data-theme="dark" style="margin:4px 0;"></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+        <button id="contact-submit" type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
           Envoyer →
         </button>
         <div id="form-success" style="display:none;color:#4ade80;text-align:center;padding:12px;">
@@ -790,11 +789,31 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       </form>
       <script>
         (function() {
-          var p = new URLSearchParams(window.location.search);
-          if (p.get('merci') === '1') {
-            var s = document.getElementById('form-success');
-            if (s) { s.style.display = 'block'; }
-          }
+          var form = document.getElementById('contact-form');
+          if (!form) return;
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('contact-submit');
+            btn.disabled = true;
+            btn.textContent = 'Envoi…';
+            var data = new FormData(form);
+            data.delete('cf-turnstile-response');
+            fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+              .then(function(r) { return r.json(); })
+              .then(function(res) {
+                if (res.success) {
+                  document.getElementById('form-success').style.display = 'block';
+                  form.reset();
+                } else {
+                  btn.disabled = false;
+                  btn.textContent = 'Envoyer →';
+                }
+              })
+              .catch(function() {
+                btn.disabled = false;
+                btn.textContent = 'Envoyer →';
+              });
+          });
         })();
       </script>
       <div class="contact-info glass">
