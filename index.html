@@ -1060,5 +1060,20 @@ document.querySelectorAll('.resultat-card').forEach(el => barObserver.observe(el
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
   data-cf-beacon='{"token": "80d78cbbc0cd4c5aab11f20a18d6142c"}'></script>
+
+<!-- Crisp Chat -->
+<script type="text/javascript">
+  window.$crisp = [];
+  window.CRISP_WEBSITE_ID = "c94780d0-33ab-49a0-85a1-78d9fc47f0cd";
+  window.$crisp.push(["config", "color:theme", ["#FF6B47"]]);
+  window.$crisp.push(["config", "message:text", ["Bonjour 👋 Une question sur l'automatisation IA pour votre activité ? Je suis là."]]);
+  (function () {
+    var d = document;
+    var s = d.createElement("script");
+    s.src = "https://client.crisp.chat/l.js";
+    s.async = 1;
+    d.getElementsByTagName("head")[0].appendChild(s);
+  })();
+</script>
 </body>
 </html>
