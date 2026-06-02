@@ -313,17 +313,44 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 /* ── HERO LOGO GLOW ── */
 .hero-logo-bg {
   position: absolute;
-  right: -40px;
+  right: 4%;
   top: 50%;
   transform: translateY(-50%);
-  width: 520px;
-  opacity: 0.13;
+  width: 420px;
+  opacity: 0.22;
   pointer-events: none;
   z-index: 2;
-  border-radius: 24px;
-  overflow: hidden;
 }
 .hero-logo-bg img { width: 100%; display: block; }
+
+/* ── BRAND FOOTER ── */
+.brand-footer {
+  padding: 72px 0 64px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.brand-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.brand-footer-logo {
+  width: 140px;
+  opacity: 0.75;
+  filter: drop-shadow(0 0 32px rgba(255,107,71,0.35)) drop-shadow(0 0 8px rgba(255,255,255,0.15));
+  transition: opacity 0.3s ease;
+}
+.brand-footer-logo:hover { opacity: 1; }
+.brand-footer-tagline {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(136,146,164,0.55);
+  text-align: center;
+}
 
 /* ── SOLUTIONS (compactes) ── */
 .solutions { padding: 80px 0; }
@@ -468,7 +495,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="hero-logo-bg" aria-hidden="true">
-    <img src="HICKS_Logo_Glow.png" alt="">
+    <img src="HICKS_X_Glow.png" alt="">
   </div>
   <div class="container">
     <div class="hero-inner reveal">
@@ -788,6 +815,16 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   </div>
 </section>
 </main>
+
+<!-- ── BRAND FOOTER ── -->
+<div class="brand-footer" aria-hidden="true">
+  <div class="container">
+    <div class="brand-footer-inner">
+      <img src="HICKS_X_Glow.png" alt="HICKS Digital Advisory" class="brand-footer-logo">
+      <p class="brand-footer-tagline">Digital Advisory · IA &amp; Automatisation</p>
+    </div>
+  </div>
+</div>
 
 <!-- ── FOOTER ── -->
 <footer role="contentinfo">
