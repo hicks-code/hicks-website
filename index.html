@@ -282,7 +282,7 @@ section { position: relative; z-index: var(--z-content); }
 
 /* ── PROFIL ── */
 .profil { padding: 100px 0; }
-.profil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
+.profil-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 60px; max-width: 800px; }
 .profil-left { display: flex; flex-direction: column; gap: 24px; }
 .profil-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .profil-stat { padding: 20px; display: flex; flex-direction: column; gap: 4px; border-color: var(--glass-border-subtle); }
@@ -991,22 +991,6 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       <h2 id="profil-title">Xavier Bottex : <span class="coral">22 ans de terrain</span>, au service de votre transformation.</h2>
     </div>
     <div class="profil-grid">
-      <div class="profil-left">
-        <div class="profil-stats-grid">
-          <div class="profil-stat glass reveal">
-            <p class="profil-stat-num"><span class="accent">22</span> ans</p>
-            <p class="profil-stat-label">d'ingénierie & conseil</p>
-          </div>
-          <div class="profil-stat glass reveal reveal-delay-1">
-            <p class="profil-stat-num"><span class="accent">Monaco</span></p>
-            <p class="profil-stat-label">Cloud souverain</p>
-          </div>
-          <div class="profil-stat glass reveal reveal-delay-2">
-            <p class="profil-stat-num"><span class="accent">2001</span></p>
-            <p class="profil-stat-label">Enseignant IUT & école ingé</p>
-          </div>
-        </div>
-      </div>
       <div class="profil-right reveal reveal-delay-1">
         <p class="profil-text">
           J'ai passé 22 ans à accompagner des organisations (collectivités, hôpitaux, PME, startups, grand compte) dans leurs transformations numériques. Pas en livrant des solutions clé en main, mais en <strong>embarquant les équipes</strong>, en levant les résistances, en transmettant.
