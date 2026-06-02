@@ -183,22 +183,22 @@ section { position: relative; z-index: var(--z-content); }
 .methode-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 1px;
   margin-top: 56px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
 }
 .methode-step {
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border-subtle);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-glass);
+  background: var(--navy-dark);
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: background 0.2s ease;
 }
-.methode-step:hover { transform: translateY(-4px); border-color: var(--glass-border); }
+.methode-step:hover { background: rgba(15,30,61,0.95); }
 .methode-num {
   font-family: 'Space Mono', monospace;
   font-size: 0.68rem;
@@ -425,7 +425,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero-logo-bg { width: 360px; opacity: 0.09; right: -20px; }
-  .methode-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .methode-grid { grid-template-columns: repeat(2, 1fr); }
   .solutions-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .offres-grid { grid-template-columns: repeat(2, 1fr); }
   .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
@@ -441,7 +441,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   .hero-cred-item + .hero-cred-item { padding-left: 0; border-left: none; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
   .hero-logo-bg { display: none; }
   .methode { padding: 72px 0; }
-  .methode-grid { grid-template-columns: 1fr; }
+  .methode-grid { grid-template-columns: repeat(2, 1fr); }
   .solutions-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .offres { padding: 72px 0; }
   .offres-grid { grid-template-columns: 1fr; }
