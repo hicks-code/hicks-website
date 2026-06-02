@@ -95,14 +95,7 @@ p  { line-height: 1.72; color: var(--mid); }
 .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(15,30,61,0.9) 0%, transparent 70%); bottom: 20%; left: -150px; }
 .orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,107,71,0.06) 0%, transparent 70%); bottom: -100px; right: 10%; }
 
-/* ── GLASS ── */
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border-subtle);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-glass);
-}
+/* .glass intentionnellement supprimé — plus utilisé sur le contenu (voir DESIGN.md Glass-Identity Rule) */
 
 /* ── BUTTONS ── */
 .btn {
@@ -167,7 +160,7 @@ nav.scrolled {
 .hero-sub strong { color: rgba(255,255,255,0.82); font-weight: 500; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
 .hero-cred { display: flex; align-items: center; gap: 0; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; flex-wrap: wrap; }
-.hero-cred-item { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(136,146,164,0.7); padding: 4px 20px 4px 0; position: relative; white-space: nowrap; }
+.hero-cred-item { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(136,146,164,0.85); padding: 4px 20px 4px 0; position: relative; white-space: nowrap; }
 .hero-cred-item + .hero-cred-item { padding-left: 20px; border-left: 1px solid rgba(255,255,255,0.1); }
 
 /* ── SECTION BASE ── */
@@ -210,7 +203,7 @@ section { position: relative; z-index: var(--z-content); }
 .methode-icon svg { width: 18px; height: 18px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .methode-step h3 { color: var(--white); font-size: 1rem; }
 .methode-step p { font-size: 0.875rem; line-height: 1.65; }
-.methode-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.5); text-transform: uppercase; margin-top: auto; padding-top: 8px; }
+.methode-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.72); text-transform: uppercase; margin-top: auto; padding-top: 8px; }
 
 /* ── OFFRES ── */
 .offres { padding: 100px 0; }
@@ -229,7 +222,7 @@ section { position: relative; z-index: var(--z-content); }
 .offre-card.featured { background: rgba(255,107,71,0.05); }
 .offre-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--coral-dark), var(--coral), var(--coral-light)); }
 .offre-badge { position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--coral); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.08em; color: var(--white); text-transform: uppercase; }
-.offre-step { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,107,71,0.65); text-transform: uppercase; }
+.offre-step { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,107,71,0.8); text-transform: uppercase; }
 .offre-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); }
 .offre-format { font-size: 0.78rem; color: var(--coral); font-family: 'Space Mono', monospace; letter-spacing: 0.05em; margin-top: 4px; }
 .offre-divider { height: 1px; background: rgba(255,255,255,0.06); }
@@ -237,7 +230,7 @@ section { position: relative; z-index: var(--z-content); }
 .feature-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
 .feature-dot { width: 5px; height: 5px; background: var(--coral); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
 .offre-cta { margin-top: auto; }
-.offres-footnote { text-align: center; margin-top: 24px; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: rgba(136,146,164,0.45); letter-spacing: 0.05em; }
+.offres-footnote { text-align: center; margin-top: 24px; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: rgba(136,146,164,0.65); letter-spacing: 0.05em; }
 
 /* ── PROFIL + CONTACT ── */
 .profil-contact { padding: 100px 0 80px; position: relative; overflow: hidden; }
@@ -400,7 +393,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 }
 .sol-name .x { color: var(--coral); }
 .sol-desc { font-size: 0.8rem; line-height: 1.5; color: var(--mid); margin-top: 2px; }
-.sol-tag { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.45); text-transform: uppercase; margin-top: 6px; }
+.sol-tag { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.72); text-transform: uppercase; margin-top: 6px; }
 .sol-cta-text {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.88rem;
@@ -429,7 +422,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   .solutions-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .offres-grid { grid-template-columns: repeat(2, 1fr); }
   .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
-  .profil-photo-wrap { max-width: 220px; aspect-ratio: 1/1; border-radius: 50%; }
+  .profil-photo-wrap { max-width: 200px; aspect-ratio: 4/5; border-radius: 12px; }
 }
 @media (max-width: 768px) {
   h1 { font-size: clamp(2.2rem, 8vw, 2.9rem); }
@@ -515,8 +508,10 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       </div>
 
       <div class="hero-headline">
-        <h1 class="hero-line-1" id="hero-title">Vos équipes perdent du temps</h1>
-        <h1 class="hero-line-2">sur des tâches que l'IA peut faire.</h1>
+        <h1 id="hero-title">
+          <span class="hero-line-1">Vos équipes perdent du temps</span>
+          <span class="hero-line-2">sur des tâches que l'IA peut faire.</span>
+        </h1>
       </div>
 
       <p class="hero-sub">
@@ -747,9 +742,11 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       <div class="profil-col reveal">
         <div class="profil-photo-wrap" aria-label="Photo de Xavier Bottex">
           <img
-            src="xavier.png"
+            src="xavier.jpg"
             alt="Xavier Bottex, fondateur de HICKS Digital Advisory"
             class="profil-photo"
+            width="600"
+            height="900"
             loading="lazy"
             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <p class="profil-photo-fallback" style="display:none;">XB</p>
