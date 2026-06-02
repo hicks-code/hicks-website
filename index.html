@@ -61,7 +61,9 @@ body {
   color: var(--white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
 }
+p { text-wrap: pretty; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
@@ -73,7 +75,7 @@ h1, h2, h3, h4 {
 h1 { font-size: clamp(2.6rem, 5.5vw, 4.4rem); font-weight: 700; letter-spacing: -0.035em; }
 h2 { font-size: clamp(1.9rem, 3.5vw, 2.9rem); font-weight: 700; letter-spacing: -0.025em; }
 h3 { font-size: clamp(1.05rem, 1.8vw, 1.25rem); font-weight: 600; }
-p  { line-height: 1.72; color: var(--mid); }
+p  { line-height: 1.72; color: var(--mid); text-wrap: pretty; }
 .label {
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
@@ -159,7 +161,7 @@ nav.scrolled {
 .hero-sub { font-size: 1.08rem; line-height: 1.75; color: var(--mid); max-width: 580px; margin-bottom: 36px; }
 .hero-sub strong { color: rgba(255,255,255,0.82); font-weight: 500; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
-.hero-cred { display: flex; align-items: center; gap: 0; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; flex-wrap: wrap; }
+.hero-cred { display: flex; align-items: center; gap: 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; flex-wrap: wrap; }
 .hero-cred-item { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(136,146,164,0.85); padding: 4px 20px 4px 0; position: relative; white-space: nowrap; }
 .hero-cred-item + .hero-cred-item { padding-left: 20px; border-left: 1px solid rgba(255,255,255,0.1); }
 
@@ -310,52 +312,11 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 .footer-left { display: flex; align-items: center; gap: 12px; }
 .footer-logo { opacity: 0.55; display: flex; align-items: center; gap: 8px; }
 .footer-logo-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; }
-.footer-copy { font-size: 0.75rem; color: rgba(136,146,164,0.45); }
+.footer-copy { font-size: 0.75rem; color: rgba(136,146,164,0.65); }
 .footer-right { display: flex; align-items: center; gap: 16px; }
-.footer-link { font-size: 0.75rem; color: rgba(136,146,164,0.45); transition: color 0.2s; }
+.footer-link { font-size: 0.75rem; color: rgba(136,146,164,0.65); transition: color 0.2s; }
 .footer-link:hover { color: var(--mid); }
 
-/* ── HERO LOGO GLOW ── */
-.hero-logo-bg {
-  position: absolute;
-  right: 4%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 420px;
-  opacity: 0.22;
-  pointer-events: none;
-  z-index: 2;
-}
-.hero-logo-bg img { width: 100%; display: block; }
-
-/* ── BRAND FOOTER ── */
-.brand-footer {
-  padding: 72px 0 64px;
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.brand-footer-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-.brand-footer-logo {
-  width: 140px;
-  opacity: 0.75;
-  filter: drop-shadow(0 0 32px rgba(255,107,71,0.35)) drop-shadow(0 0 8px rgba(255,255,255,0.15));
-  transition: opacity 0.3s ease;
-}
-.brand-footer-logo:hover { opacity: 1; }
-.brand-footer-tagline {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(136,146,164,0.55);
-  text-align: center;
-}
 
 /* ── SOLUTIONS (compactes) ── */
 .solutions { padding: 80px 0; }
@@ -653,11 +614,11 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
     <div class="section-header centered reveal">
       <p class="label">Comment ça évolue</p>
       <h2 id="offres-title">De la solution rapide<br>à <span class="coral">l'autonomie totale.</span></h2>
-      <p>Vous commencez par un pack concret. Vous évoluez à votre rythme : customisation sur mesure, puis autonomie si vous le souhaitez. Chaque niveau est indépendant, sans engagement.</p>
+      <p>Commencez par un pack, adaptez selon vos besoins. Chaque niveau est indépendant, sans engagement.</p>
     </div>
     <div class="offres-grid">
 
-      <div class="offre-card glass reveal">
+      <div class="offre-card reveal">
         <div>
           <p class="offre-step">Niveau 01 · Porte d'entrée</p>
           <p class="offre-title">Pack clé en main</p>
@@ -670,10 +631,10 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
           <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>RelanceX · SaisieX · ReceptX · MailX disponibles</li>
           <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>30 jours de support post-livraison</li>
         </ul>
-        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="En discuter">En discuter &rarr;</a>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Choisir une solution">Choisir une solution &rarr;</a>
       </div>
 
-      <div class="offre-card glass featured reveal reveal-delay-1">
+      <div class="offre-card featured reveal reveal-delay-1">
         <div class="offre-badge">Populaire</div>
         <div>
           <p class="offre-step">Niveau 02 · Sur mesure</p>
@@ -690,7 +651,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <a href="#contact" class="btn btn-primary offre-cta" aria-label="Discuter d'une customisation">En discuter &rarr;</a>
       </div>
 
-      <div class="offre-card glass reveal reveal-delay-2">
+      <div class="offre-card reveal reveal-delay-2">
         <div>
           <p class="offre-step">Niveau 03 · Long terme</p>
           <p class="offre-title">Vers l'autonomie</p>
@@ -706,7 +667,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <a href="#contact" class="btn btn-ghost offre-cta" aria-label="En savoir plus sur l'accompagnement autonomie">En discuter &rarr;</a>
       </div>
 
-      <div class="offre-card glass reveal reveal-delay-3">
+      <div class="offre-card reveal reveal-delay-3">
         <div>
           <p class="offre-step">Optionnel · Point de départ</p>
           <p class="offre-title">Audit IA</p>
