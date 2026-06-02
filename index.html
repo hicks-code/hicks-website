@@ -214,9 +214,19 @@ section { position: relative; z-index: var(--z-content); }
 
 /* ── OFFRES ── */
 .offres { padding: 100px 0; }
-.offres-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 56px; align-items: stretch; }
-.offre-card { padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden; border-color: var(--glass-border-subtle); }
-.offre-card.featured { border-color: rgba(255,107,71,0.35); background: rgba(27,42,78,0.72); }
+.offres-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 56px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.offre-card { padding: 32px 28px; display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden; background: var(--navy-dark); transition: background 0.2s ease; }
+.offre-card:hover { background: rgba(15,30,61,0.95); }
+.offre-card.featured { background: rgba(255,107,71,0.05); }
 .offre-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--coral-dark), var(--coral), var(--coral-light)); }
 .offre-badge { position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--coral); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.08em; color: var(--white); text-transform: uppercase; }
 .offre-step { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,107,71,0.65); text-transform: uppercase; }
@@ -359,24 +369,24 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 .solutions-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 1px;
   margin-top: 48px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
 }
 .sol-item {
-  background: var(--glass-bg);
-  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--glass-border-subtle);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-glass);
+  background: var(--navy-dark);
   padding: 26px 22px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease;
 }
-.sol-item:hover { transform: translateY(-3px); border-color: var(--glass-border); }
+.sol-item:hover { background: rgba(15,30,61,0.95); }
 .sol-item.sol-cta {
-  border-color: rgba(255,107,71,0.25);
+  background: rgba(255,107,71,0.04);
   justify-content: center;
   align-items: flex-start;
 }
