@@ -183,20 +183,22 @@ section { position: relative; z-index: var(--z-content); }
 .methode-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 56px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-left: 1px solid rgba(255,255,255,0.08);
 }
 .methode-step {
-  padding: 36px 28px;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-glass);
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: background 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease;
 }
-.methode-step:hover { background: rgba(255,107,71,0.04); }
+.methode-step:hover { transform: translateY(-4px); border-color: var(--glass-border); }
 .methode-num {
   font-family: 'Space Mono', monospace;
   font-size: 0.68rem;
@@ -413,7 +415,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero-logo-bg { width: 360px; opacity: 0.09; right: -20px; }
-  .methode-grid { grid-template-columns: repeat(2, 1fr); }
+  .methode-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .solutions-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .offres-grid { grid-template-columns: repeat(2, 1fr); }
   .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
