@@ -310,6 +310,67 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 .footer-link { font-size: 0.75rem; color: rgba(136,146,164,0.45); transition: color 0.2s; }
 .footer-link:hover { color: var(--mid); }
 
+/* ── HERO LOGO GLOW ── */
+.hero-logo-bg {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 520px;
+  opacity: 0.13;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.hero-logo-bg img { width: 100%; display: block; }
+
+/* ── SOLUTIONS (compactes) ── */
+.solutions { padding: 80px 0; }
+.solutions-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: 48px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.sol-item {
+  background: var(--navy-dark);
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.2s ease;
+}
+.sol-item:hover { background: rgba(15,30,61,0.95); }
+.sol-item.sol-cta {
+  background: rgba(255,107,71,0.04);
+  justify-content: center;
+  align-items: flex-start;
+  border-left: 2px solid rgba(255,107,71,0.2);
+}
+.sol-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.sol-name .x { color: var(--coral); }
+.sol-desc { font-size: 0.8rem; line-height: 1.5; color: var(--mid); margin-top: 2px; }
+.sol-tag { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.45); text-transform: uppercase; margin-top: 6px; }
+.sol-cta-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--coral);
+}
+.sol-cta-sub { font-size: 0.75rem; color: var(--mid); margin-top: 4px; }
+
 /* ── REVEAL ── */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -325,7 +386,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
+  .hero-logo-bg { width: 360px; opacity: 0.09; right: -20px; }
   .methode-grid { grid-template-columns: repeat(2, 1fr); }
+  .solutions-strip { grid-template-columns: repeat(2, 1fr); }
   .offres-grid { grid-template-columns: repeat(2, 1fr); }
   .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
   .profil-photo-wrap { max-width: 220px; aspect-ratio: 1/1; border-radius: 50%; }
@@ -338,8 +401,10 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   .hero { padding: 100px 0 72px; }
   .hero-cred { gap: 12px; flex-direction: column; align-items: flex-start; }
   .hero-cred-item + .hero-cred-item { padding-left: 0; border-left: none; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .hero-logo-bg { display: none; }
   .methode { padding: 72px 0; }
   .methode-grid { grid-template-columns: 1fr; }
+  .solutions-strip { grid-template-columns: repeat(2, 1fr); }
   .offres { padding: 72px 0; }
   .offres-grid { grid-template-columns: 1fr; }
   .profil-contact { padding: 72px 0 60px; }
@@ -378,9 +443,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       </a>
       <ul class="nav-links" role="list">
         <li><a href="#methode">Méthode</a></li>
+        <li><a href="#solutions">Solutions</a></li>
         <li><a href="#offres">Offres</a></li>
-        <li><a href="#profil">Profil</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#profil">Contact</a></li>
       </ul>
       <a href="#contact" class="btn btn-primary nav-cta" aria-label="Prendre contact avec HICKS">Prendre contact</a>
       <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -392,9 +457,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navigation" aria-modal="true">
   <a href="#methode" onclick="closeMobile()">Méthode</a>
+  <a href="#solutions" onclick="closeMobile()">Solutions</a>
   <a href="#offres" onclick="closeMobile()">Offres</a>
-  <a href="#profil" onclick="closeMobile()">Profil</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#profil" onclick="closeMobile()">Contact</a>
   <a href="#contact" class="btn btn-primary" onclick="closeMobile()">Prendre contact</a>
 </div>
 
@@ -402,6 +467,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 <main id="main">
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-logo-bg" aria-hidden="true">
+    <img src="HICKS_Logo_Glow.png" alt="">
+  </div>
   <div class="container">
     <div class="hero-inner reveal">
 
@@ -483,6 +551,66 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <p>Un accompagnement mensuel pour ajuster, optimiser et lancer de nouveaux chantiers. Je reste à vos côtés à mesure que vous progressez.</p>
         <span class="methode-tag">Retainer · 4h+/mois</span>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ── -->
+<section class="solutions" id="solutions" aria-labelledby="solutions-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="label">Solutions clé en main</p>
+      <h2 id="solutions-title">Un problème précis.<br>Une solution <span class="coral">déployée en quelques jours.</span></h2>
+    </div>
+    <div class="solutions-strip" role="list">
+
+      <div class="sol-item reveal" role="listitem">
+        <p class="sol-name">Relance<span class="x">X</span></p>
+        <p class="sol-desc">Ne plus perdre un devis ou une facture dans le silence</p>
+        <span class="sol-tag">Email · SMS · Devis &amp; factures</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-1" role="listitem">
+        <p class="sol-name">Saisie<span class="x">X</span></p>
+        <p class="sol-desc">Arrêter de ressaisir ce qui peut être lu automatiquement</p>
+        <span class="sol-tag">OCR IA · Extraction · Zéro ressaisie</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-2" role="listitem">
+        <p class="sol-name">Recept<span class="x">X</span></p>
+        <p class="sol-desc">Ne plus rater un appel entrant, même hors bureau</p>
+        <span class="sol-tag">Vocal IA · 24h/24 · Agenda automatique</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-3" role="listitem">
+        <p class="sol-name">Mail<span class="x">X</span></p>
+        <p class="sol-desc">Reprendre le contrôle de sa boîte email</p>
+        <span class="sol-tag">O365 · Gmail · Classification IA</span>
+      </div>
+
+      <div class="sol-item reveal" role="listitem">
+        <p class="sol-name">Contact<span class="x">X</span></p>
+        <p class="sol-desc">Ne plus rater un prospect entrant</p>
+        <span class="sol-tag">Formulaire · DM · Notification temps réel</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-1" role="listitem">
+        <p class="sol-name">Reput<span class="x">X</span></p>
+        <p class="sol-desc">Surveiller et soigner sa réputation en ligne</p>
+        <span class="sol-tag">Google · Alerte · Réponse IA validée</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-2" role="listitem">
+        <p class="sol-name">Audit<span class="x">X</span></p>
+        <p class="sol-desc">Identifier où votre temps part vraiment</p>
+        <span class="sol-tag">Diagnostic · Roadmap · 48h</span>
+      </div>
+
+      <a href="#contact" class="sol-item sol-cta reveal reveal-delay-3" role="listitem" aria-label="Discuter d'une solution sur mesure">
+        <p class="sol-cta-text">Votre cas n'est pas dans la liste ?</p>
+        <p class="sol-cta-sub">Discutons-en &rarr;</p>
+      </a>
 
     </div>
   </div>
@@ -583,7 +711,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       <div class="profil-col reveal">
         <div class="profil-photo-wrap" aria-label="Photo de Xavier Bottex">
           <img
-            src="xavier.jpg"
+            src="xavier.png"
             alt="Xavier Bottex, fondateur de HICKS Digital Advisory"
             class="profil-photo"
             loading="lazy"
