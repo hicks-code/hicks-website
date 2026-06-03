@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-02T00:00:00Z",
+  "title": "Design System: HICKS Digital Advisory",
+  "extensions": {
+    "colorMeta": {
+      "command-navy-darkest": { "role": "neutral", "displayName": "Command Navy Darkest", "canonical": "oklch(10% 0.06 252)", "tonalRamp": ["#030710", "#0a1428", "#0f1e3d", "#1b2a4e", "#263a63", "#34507e", "#5272a0", "#8097c0"] },
+      "command-navy": { "role": "neutral", "displayName": "Command Navy", "canonical": "oklch(15% 0.07 252)", "tonalRamp": ["#030710", "#0a1428", "#0f1e3d", "#1b2a4e", "#263a63", "#34507e", "#5272a0", "#8097c0"] },
+      "command-navy-light": { "role": "neutral", "displayName": "Command Navy Light", "canonical": "oklch(20% 0.07 252)", "tonalRamp": ["#060e1e", "#0f1e3d", "#1b2a4e", "#263a63", "#34507e", "#4a6a9a", "#7090bb", "#a0b8d8"] },
+      "activation-coral": { "role": "primary", "displayName": "Activation Coral", "canonical": "oklch(65% 0.18 35)", "tonalRamp": ["#4a0e02", "#7a1f05", "#a83420", "#d4501a", "#e85a37", "#ff6b47", "#ff8a6b", "#ffb09a"] },
+      "activation-coral-light": { "role": "primary", "displayName": "Activation Coral Light", "canonical": "oklch(72% 0.16 35)", "tonalRamp": ["#7a1f05", "#a83420", "#d4501a", "#e85a37", "#ff6b47", "#ff8a6b", "#ffaa91", "#ffcab8"] },
+      "activation-coral-dark": { "role": "primary", "displayName": "Activation Coral Dark", "canonical": "oklch(58% 0.19 35)", "tonalRamp": ["#4a0e02", "#7a1f05", "#a83420", "#c84825", "#e85a37", "#ff6b47", "#ff8a6b", "#ffaa91"] },
+      "console-grey": { "role": "neutral", "displayName": "Console Grey", "canonical": "oklch(60% 0.03 255)", "tonalRamp": ["#1e2430", "#2d3546", "#3e4a5e", "#525f76", "#667489", "#8892a4", "#aab4c6", "#d1d8e5"] },
+      "off-white": { "role": "neutral", "displayName": "Off-White", "canonical": "oklch(97% 0.005 255)", "tonalRamp": ["#4a5260", "#6a7590", "#8892a4", "#b0b9c8", "#d1d8e5", "#e8ecf2", "#f0f3f7", "#f5f6fa"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only. Two lines maximum." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles. text-wrap: balance applied." },
+      "title": { "displayName": "Title", "purpose": "Card headings, product names, UI labels." },
+      "body": { "displayName": "Body", "purpose": "Section prose, card descriptions. Max 65ch." },
+      "label": { "displayName": "Label/Mono", "purpose": "Eyebrows, step numbers, tags, form labels. Metadata only." }
+    },
+    "shadows": [
+      { "name": "glass-identity", "value": "0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06)", "purpose": "Nav bar on scroll and identity glass elements only." },
+      { "name": "btn-primary-rest", "value": "0 4px 20px rgba(255,107,71,0.35)", "purpose": "Primary button at rest." },
+      { "name": "btn-primary-hover", "value": "0 8px 28px rgba(255,107,71,0.45)", "purpose": "Primary button on hover." }
+    ],
+    "motion": [
+      { "name": "ease-reveal", "value": "opacity 0.55s ease, transform 0.55s ease", "purpose": "Scroll reveal: opacity 0→1 + translateY 20px→0." },
+      { "name": "ease-hover", "value": "transform 0.15s ease", "purpose": "Button hover lift (-1px translateY)." },
+      { "name": "ease-state", "value": "0.2s ease", "purpose": "Background/border color transitions on hover states." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "1024px", "notes": "Grid columns reduce: 4→2 for all table grids." },
+      { "name": "mobile", "value": "768px", "notes": "Nav collapses to hamburger. Hero CTAs stack full-width." },
+      { "name": "xs", "value": "480px", "notes": "Container padding reduces to 16px." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action. One per section maximum.",
+      "html": "<button class=\"ds-btn-primary\">Prenons contact</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: #FF6B47; color: #F5F6FA; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; min-height: 48px; box-shadow: 0 4px 20px rgba(255,107,71,0.35); transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease; touch-action: manipulation; } .ds-btn-primary:hover { background: #FF8A6B; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,107,71,0.45); } .ds-btn-primary:focus-visible { outline: 2px solid #FF6B47; outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action. Never competes with primary CTA.",
+      "html": "<button class=\"ds-btn-ghost\">La méthode &rarr;</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; background: transparent; color: #F5F6FA; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.95rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; cursor: pointer; min-height: 48px; transition: transform 0.15s ease, border-color 0.2s ease, color 0.2s ease; touch-action: manipulation; } .ds-btn-ghost:hover { border-color: #FF6B47; color: #FF6B47; transform: translateY(-1px); } .ds-btn-ghost:focus-visible { outline: 2px solid #FF6B47; outline-offset: 3px; }"
+    },
+    {
+      "name": "Table Grid Cell",
+      "kind": "card",
+      "refersTo": "grid-cell",
+      "description": "The signature HICKS content cell. Used in Méthode, Solutions, Offres grids. Flat, no shadow.",
+      "html": "<div class=\"ds-grid-wrap\"><div class=\"ds-grid-cell\"><span class=\"ds-grid-num\">01</span><h3 class=\"ds-grid-title\">Audit IA</h3><p class=\"ds-grid-body\">Cartographie de vos processus et identification des gains rapides.</p><span class=\"ds-grid-tag\">Forfait fixe · Livrable garanti</span></div></div>",
+      "css": ".ds-grid-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; } .ds-grid-cell { background: #0A1428; padding: 28px 24px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s ease; } .ds-grid-cell:hover { background: rgba(15,30,61,0.95); } .ds-grid-num { font-family: 'Space Mono', monospace; font-size: 0.68rem; font-weight: 700; color: #FF6B47; letter-spacing: 0.12em; } .ds-grid-title { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1rem; font-weight: 600; color: #F5F6FA; line-height: 1.15; } .ds-grid-body { font-size: 0.875rem; line-height: 1.65; color: #8892A4; } .ds-grid-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.5); text-transform: uppercase; margin-top: auto; }"
+    },
+    {
+      "name": "Form Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Always with visible label. Placeholder is hint, not label.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-input\">Email</label><input class=\"ds-input\" id=\"ds-input\" type=\"email\" placeholder=\"votre@email.fr\" autocomplete=\"email\"></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 6px; } .ds-label { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); text-transform: uppercase; } .ds-input { padding: 13px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.07); color: #F5F6FA; font-size: 0.95rem; font-family: 'Inter', system-ui, sans-serif; outline: none; transition: border-color 0.2s ease, background 0.2s ease; } .ds-input:focus { border-color: rgba(255,107,71,0.5); background: rgba(255,255,255,0.09); } .ds-input::placeholder { color: rgba(136,146,164,0.4); }"
+    },
+    {
+      "name": "Hero Badge",
+      "kind": "custom",
+      "description": "Availability signal in the hero. Coral pulse dot + Space Mono text.",
+      "html": "<div class=\"ds-hero-badge\"><span class=\"ds-badge-dot\"></span>Disponible · Côte d'Azur &amp; Distanciel</div>",
+      "css": ".ds-hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; background: rgba(255,107,71,0.1); border: 1px solid rgba(255,107,71,0.22); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: #FF6B47; width: fit-content; } .ds-badge-dot { width: 6px; height: 6px; background: #FF6B47; border-radius: 50%; flex-shrink: 0; animation: ds-pulse 2s ease infinite; } @keyframes ds-pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } } @media (prefers-reduced-motion: reduce) { .ds-badge-dot { animation: none; } }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "custom",
+      "description": "Space Mono label above every section headline. Activation Coral, uppercase.",
+      "html": "<p class=\"ds-eyebrow\">La méthode HICKS</p>",
+      "css": ".ds-eyebrow { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #FF6B47; line-height: 1.4; }"
+    },
+    {
+      "name": "Product Name Tag",
+      "kind": "chip",
+      "description": "Product naming pattern: prefix + X suffix in Activation Coral.",
+      "html": "<p class=\"ds-product-name\">Mail<span class=\"ds-product-x\">X</span></p>",
+      "css": ".ds-product-name { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.18rem; font-weight: 700; color: #F5F6FA; letter-spacing: -0.025em; line-height: 1; } .ds-product-x { color: #FF6B47; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Trusted Engineer",
+    "overview": "HICKS is the visual language of someone who has spent 22 years inside systems, not selling them. Every surface communicates controlled precision: a clean grid, a restrained palette, a single accent that fires only when it matters. Nothing decorative survives. What remains is a dark, structured environment that makes a PME director feel they are looking at a dashboard of expertise, not a marketing brochure.\n\nThe Command Navy background is the load-bearing wall. It absorbs 80% of every viewport. Activation Coral is the signal: it appears on CTAs, active labels, and the logo. Used anywhere else, it loses its authority. Console Grey carries secondary text: readable, professional, never dominant.\n\nThis system explicitly rejects the startup hype register. No purple gradients. No glassmorphism grids. No hero-metric templates. No identical card grids. The SaaS-cream-and-violet palette is forbidden.",
+    "keyCharacteristics": [
+      "Dark-dominant (Command Navy as primary surface)",
+      "Activation Coral at maximum 10-15% of any viewport",
+      "Table-grid sections instead of raised cards for content grids",
+      "Space Mono labels as metadata signal, not decoration",
+      "Human presence (photo, narrative bio) anchors identity surfaces",
+      "Glass effects reserved for nav and identity only"
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Activation Coral is used on 10-15% of any given viewport maximum. Every new coral element displaces an existing one. Its rarity is its authority.", "section": "colors" },
+      { "name": "The No-Decoration Rule", "body": "Color conveys function: surface, signal, or text. If a color element does not communicate state, hierarchy, or action, remove it.", "section": "colors" },
+      { "name": "The Mono-as-Metadata Rule", "body": "Space Mono appears on section eyebrows, step numbers, product tags, form labels, the cred strip. It never appears on paragraphs or content longer than one line.", "section": "typography" },
+      { "name": "The Negative-Track Rule", "body": "Display and Headline headings always carry negative letter-spacing (-0.025em to -0.035em). Tight tracking on dark backgrounds prevents letter gaps from reading as noise.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Surfaces are flat at rest. Shadows appear only on glass identity elements (nav, logo). A content card that needs a shadow to feel elevated is not elevated enough by its content.", "section": "elevation" },
+      { "name": "The Glass-Identity Rule", "body": "backdrop-filter: blur() appears only on nav-scrolled state and logo contexts. Never on content grids or pricing sections. Glass on content grids = SaaS cliché.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Command Navy (#0A1428) as the default cell background inside table grids",
+      "Do apply Activation Coral exclusively to interactive affordances: CTAs, active labels, hover accents",
+      "Do use Space Mono for metadata: section eyebrows, step numbers, form labels, product tags",
+      "Do use text-wrap: balance on all headings",
+      "Do include visible <label for> elements on every form field",
+      "Do reserve backdrop-filter: blur() for nav-scrolled state and identity glass only",
+      "Do keep negative letter-spacing on all Display and Headline text",
+      "Do apply prefers-reduced-motion to all reveal animations"
+    ],
+    "donts": [
+      "Don't use SaaS générique violet/blanc (Notion, Webflow template, Linear clone aesthetics)",
+      "Don't use glassmorphism on content grids (Méthode, Solutions, Offres cells)",
+      "Don't build hero-metric templates: big number + small label + gradient accent",
+      "Don't build identical card grids (icon + heading + text, same size, repeated)",
+      "Don't place gradient text (background-clip: text + gradient)",
+      "Don't use side-stripe borders (border-left > 1px as colored accent)",
+      "Don't add Activation Coral beyond 15% of the viewport",
+      "Don't use startup hype copy (ROI, disruption, scale)",
+      "Don't add more than one primary CTA per section",
+      "Don't build banking ultra-corporate visual language (Capgemini, McKinsey Digital)"
+    ]
+  }
+}
