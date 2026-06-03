@@ -1006,6 +1006,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <a href="mailto:xavier.bottex@hicks-advisory.fr" class="footer-link">Contact</a>
         <a href="#offres" class="footer-link">Offres</a>
         <a href="#profil" class="footer-link">Profil</a>
+        <a href="/mentions-legales" class="footer-link">Mentions légales</a>
+        <a href="/politique-de-confidentialite" class="footer-link">Confidentialité</a>
+        <a href="/cgv" class="footer-link">CGV</a>
       </div>
     </div>
   </div>
@@ -1060,5 +1063,31 @@ document.querySelectorAll('.resultat-card').forEach(el => barObserver.observe(el
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
   data-cf-beacon='{"token": "80d78cbbc0cd4c5aab11f20a18d6142c"}'></script>
+
+<!-- ── BANDEAU COOKIES ── -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:999; background:rgba(10,20,40,0.97); border-top:1px solid rgba(255,107,71,0.25); backdrop-filter:blur(12px); padding:16px 24px;">
+  <div style="max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+    <p style="font-size:0.85rem; color:#8892A4; line-height:1.6; margin:0; flex:1; min-width:260px;">
+      Ce site utilise des cookies techniques nécessaires à son fonctionnement (Cloudflare, protection du formulaire) et des analytics anonymes (Cloudflare Web Analytics, sans données personnelles identifiables).
+      <a href="/politique-de-confidentialite" style="color:#FF6B47; text-decoration:underline;">En savoir plus</a>
+    </p>
+    <div style="display:flex; gap:10px; flex-shrink:0;">
+      <button onclick="cookieConsent('accept')" style="background:#FF6B47; color:#fff; border:none; border-radius:8px; padding:9px 20px; font-family:'Space Grotesk',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer;">Accepter</button>
+      <button onclick="cookieConsent('decline')" style="background:transparent; color:#8892A4; border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:9px 20px; font-family:'Space Grotesk',sans-serif; font-size:0.85rem; cursor:pointer;">Refuser</button>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  var consent = localStorage.getItem('hicks_cookie_consent');
+  if (!consent) {
+    document.getElementById('cookie-banner').style.display = 'block';
+  }
+})();
+function cookieConsent(choice) {
+  localStorage.setItem('hicks_cookie_consent', choice);
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
 </body>
 </html>
