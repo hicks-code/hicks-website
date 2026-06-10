@@ -26,7 +26,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -54,7 +53,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 96px; }
 body {
   font-family: 'Inter', sans-serif;
   background: var(--navy-dark);
@@ -286,7 +285,7 @@ section { position: relative; z-index: var(--z-content); }
   border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.07);
   color: var(--white);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: 'Inter', sans-serif;
   transition: border-color 0.2s ease, background 0.2s ease;
   outline: none;
@@ -305,6 +304,8 @@ section { position: relative; z-index: var(--z-content); }
 .contact-info-item a { transition: color 0.2s; }
 .contact-info-item a:hover { color: var(--coral); }
 #form-success { display:none; color: #4ade80; text-align: center; padding: 14px; font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif; }
+#form-error { display:none; color: #fca5a5; text-align: center; padding: 14px; font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif; line-height: 1.6; }
+#form-error a { color: var(--coral); text-decoration: underline; }
 
 /* ── FOOTER ── */
 footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; background: rgba(10,20,40,0.8); }
@@ -734,10 +735,11 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
       <div class="contact-col reveal reveal-delay-1" id="contact">
         <p>Un appel de 30 minutes suffit pour savoir si on peut travailler ensemble. Pas de pitch, juste une conversation directe sur vos vrais enjeux.</p>
 
-        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form" novalidate>
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
           <input type="hidden" name="access_key" value="677010c2-ceb8-4f9b-b43d-287a6fb13ee2">
           <input type="hidden" name="subject" value="Nouveau contact HICKS Advisory">
           <input type="hidden" name="from_name" value="HICKS Advisory">
+          <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
 
           <div class="field">
             <label for="contact-name">Nom</label>
@@ -752,13 +754,14 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
             <textarea id="contact-message" name="message" placeholder="Décrivez votre activité et ce que vous aimeriez automatiser." rows="4" required></textarea>
           </div>
 
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADNLRf_BTIyJENLl" data-theme="dark" style="margin:4px 0;"></div>
-
           <button id="contact-submit" type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
             Envoyer &rarr;
           </button>
-          <div id="form-success">
+          <div id="form-success" role="status">
             Message envoyé. Je vous réponds sous 24h.
+          </div>
+          <div id="form-error" role="alert">
+            L'envoi a échoué. Réessayez, ou écrivez-moi directement : <a href="mailto:xavier.bottex@hicks-advisory.fr">xavier.bottex@hicks-advisory.fr</a>
           </div>
         </form>
 
@@ -850,36 +853,42 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
   if (!form) return
   form.addEventListener('submit', function(e) {
     e.preventDefault()
+    if (!form.reportValidity()) return
     var btn = document.getElementById('contact-submit')
+    var successEl = document.getElementById('form-success')
+    var errorEl = document.getElementById('form-error')
+    successEl.style.display = 'none'
+    errorEl.style.display = 'none'
     btn.disabled = true
     btn.textContent = 'Envoi…'
     var data = new FormData(form)
-    data.delete('cf-turnstile-response')
     var leadPayload = JSON.stringify({
       name: data.get('name'),
       email: data.get('email'),
       message: data.get('message')
     })
-    var w3f = fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
-      .then(function(r) { return r.json() })
+    function showError() {
+      btn.disabled = false
+      btn.textContent = 'Envoyer →'
+      errorEl.style.display = 'block'
+    }
     fetch('https://n8n.hicks-advisory.fr/webhook/hicks-lead', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': '528ed6e7f04af48d12753947e6d109fc48db8ab332645a5703f5f505789d48e7' },
       body: leadPayload
     }).catch(function() {})
-    w3f.then(function(res) {
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      .then(function(r) { return r.json() })
+      .then(function(res) {
         if (res.success) {
-          document.getElementById('form-success').style.display = 'block'
+          successEl.style.display = 'block'
+          btn.style.display = 'none'
           form.reset()
         } else {
-          btn.disabled = false
-          btn.textContent = 'Envoyer →'
+          showError()
         }
       })
-      .catch(function() {
-        btn.disabled = false
-        btn.textContent = 'Envoyer →'
-      })
+      .catch(showError)
   })
 })()
 </script>
