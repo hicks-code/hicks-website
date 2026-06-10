@@ -48,7 +48,6 @@
   --radius-card: 16px;
   --radius-btn:  10px;
   --z-nav: 100;
-  --z-orb: 0;
   --z-content: 10;
 }
 
@@ -86,17 +85,7 @@ p  { line-height: 1.72; color: var(--mid); text-wrap: pretty; }
 .white { color: var(--white); }
 .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
-/* ── ORBS ── */
-.orb {
-  position: fixed; border-radius: 50%; filter: blur(90px);
-  pointer-events: none; z-index: var(--z-orb); opacity: 0; transition: opacity 1.2s ease;
-}
-.orb.loaded { opacity: 1; }
-.orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,107,71,0.10) 0%, transparent 70%); top: -100px; right: -150px; }
-.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(15,30,61,0.9) 0%, transparent 70%); bottom: 20%; left: -150px; }
-.orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,107,71,0.06) 0%, transparent 70%); bottom: -100px; right: 10%; }
-
-/* .glass intentionnellement supprimé — plus utilisé sur le contenu (voir DESIGN.md Glass-Identity Rule) */
+/* .glass et .orb intentionnellement supprimés : plus utilisés (voir DESIGN.md No-Decoration Rule) */
 
 /* ── BUTTONS ── */
 .btn {
@@ -145,15 +134,14 @@ nav.scrolled {
 .hero { min-height: 100dvh; display: flex; align-items: center; position: relative; padding: 120px 0 96px; overflow: hidden; }
 .hero-grid-bg {
   position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(255,107,71,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,71,0.035) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(255,107,71,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,107,71,0.02) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
   z-index: 1;
 }
 .hero-inner { position: relative; z-index: var(--z-content); max-width: 780px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; background: rgba(255,107,71,0.1); border: 1px solid rgba(255,107,71,0.22); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--coral); margin-bottom: 28px; }
-.hero-badge-dot { width: 6px; height: 6px; background: var(--coral); border-radius: 50%; animation: pulse 2s ease infinite; flex-shrink: 0; }
-@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.hero-badge-dot { width: 6px; height: 6px; background: var(--coral); border-radius: 50%; flex-shrink: 0; }
 .hero-headline { margin-bottom: 24px; }
 .hero-line-1 { color: var(--white); display: block; }
 .hero-line-2 { color: var(--coral); display: block; }
@@ -174,37 +162,29 @@ section { position: relative; z-index: var(--z-content); }
 
 /* ── MÉTHODE ── */
 .methode { padding: 100px 0; }
-.methode-grid {
+.methode-flow { margin-top: 56px; display: flex; flex-direction: column; }
+.methode-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  margin-top: 56px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 16px;
-  overflow: hidden;
-}
-.methode-step {
-  background: var(--navy-dark);
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  grid-template-columns: 72px 1fr minmax(180px, auto);
+  gap: 32px;
+  align-items: baseline;
+  padding: 30px 8px;
+  border-top: 1px solid rgba(255,255,255,0.07);
   transition: background 0.2s ease;
 }
-.methode-step:hover { background: rgba(15,30,61,0.95); }
+.methode-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.methode-row:hover { background: rgba(15,30,61,0.45); }
 .methode-num {
   font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--coral);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
 }
-.methode-icon { width: 40px; height: 40px; background: rgba(255,107,71,0.08); border: 1px solid rgba(255,107,71,0.18); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-.methode-icon svg { width: 18px; height: 18px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.methode-step h3 { color: var(--white); font-size: 1rem; }
-.methode-step p { font-size: 0.875rem; line-height: 1.65; }
-.methode-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.72); text-transform: uppercase; margin-top: auto; padding-top: 8px; }
+.methode-row-body { display: flex; flex-direction: column; gap: 8px; }
+.methode-row-body h3 { color: var(--white); font-size: 1.1rem; }
+.methode-row-body p { font-size: 0.92rem; line-height: 1.7; max-width: 58ch; }
+.methode-tag { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.85); text-transform: uppercase; text-align: right; }
 
 /* ── PREUVE ── */
 .preuve { padding: 32px 0; }
@@ -238,8 +218,7 @@ section { position: relative; z-index: var(--z-content); }
 .offre-card:hover { background: rgba(15,30,61,0.95); }
 .offre-card.featured { background: rgba(255,107,71,0.05); }
 .offre-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--coral-dark), var(--coral), var(--coral-light)); }
-.offre-badge { position: absolute; top: 16px; right: 16px; padding: 3px 10px; background: var(--coral); border-radius: 100px; font-family: 'Space Mono', monospace; font-size: 0.56rem; letter-spacing: 0.08em; color: var(--white); text-transform: uppercase; }
-.offre-step { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: rgba(255,107,71,0.8); text-transform: uppercase; }
+.offre-step { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; color: rgba(255,107,71,0.85); text-transform: uppercase; }
 .offre-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); }
 .offre-format { font-size: 0.78rem; color: var(--coral); font-family: 'Space Mono', monospace; letter-spacing: 0.05em; margin-top: 4px; }
 .offre-divider { height: 1px; background: rgba(255,255,255,0.06); }
@@ -247,11 +226,10 @@ section { position: relative; z-index: var(--z-content); }
 .feature-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.72); line-height: 1.55; }
 .feature-dot { width: 5px; height: 5px; background: var(--coral); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
 .offre-cta { margin-top: auto; }
-.offres-footnote { text-align: center; margin-top: 24px; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: rgba(136,146,164,0.65); letter-spacing: 0.05em; }
+.offres-footnote { text-align: center; margin-top: 24px; font-family: 'Space Mono', monospace; font-size: 0.7rem; color: rgba(136,146,164,0.9); letter-spacing: 0.05em; }
 
 /* ── PROFIL + CONTACT ── */
-.profil-contact { padding: 100px 0 80px; position: relative; overflow: hidden; }
-.profil-contact-glow { position: absolute; width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(255,107,71,0.07) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+.profil-contact { padding: 100px 0 80px; position: relative; }
 .profil-contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
@@ -289,7 +267,7 @@ section { position: relative; z-index: var(--z-content); }
 
 /* Contact col */
 .contact-col { display: flex; flex-direction: column; gap: 24px; }
-.contact-col h2 { max-width: 480px; }
+.contact-col h3 { color: var(--white); font-size: 1.3rem; }
 .contact-col > p { font-size: 1rem; max-width: 44ch; }
 .contact-form { display: flex; flex-direction: column; gap: 14px; width: 100%; }
 .field { display: flex; flex-direction: column; gap: 6px; }
@@ -329,9 +307,9 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 .footer-left { display: flex; align-items: center; gap: 12px; }
 .footer-logo { opacity: 0.55; display: flex; align-items: center; gap: 8px; }
 .footer-logo-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; }
-.footer-copy { font-size: 0.75rem; color: rgba(136,146,164,0.65); }
+.footer-copy { font-size: 0.75rem; color: rgba(136,146,164,0.9); }
 .footer-right { display: flex; align-items: center; gap: 16px; }
-.footer-link { font-size: 0.75rem; color: rgba(136,146,164,0.65); transition: color 0.2s; }
+.footer-link { font-size: 0.75rem; color: rgba(136,146,164,0.9); transition: color 0.2s; }
 .footer-link:hover { color: var(--mid); }
 
 
@@ -371,7 +349,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 }
 .sol-name .x { color: var(--coral); }
 .sol-desc { font-size: 0.8rem; line-height: 1.5; color: var(--mid); margin-top: 2px; }
-.sol-tag { font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.72); text-transform: uppercase; margin-top: 6px; }
+.sol-tag { font-family: 'Space Mono', monospace; font-size: 0.66rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.85); text-transform: uppercase; margin-top: 6px; }
 .sol-cta-text {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.88rem;
@@ -389,14 +367,12 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .orb { transition: none; }
-  .hero-badge-dot { animation: none; }
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .hero-logo-bg { width: 360px; opacity: 0.09; right: -20px; }
-  .methode-grid { grid-template-columns: repeat(2, 1fr); }
+  .methode-row { grid-template-columns: 56px 1fr; gap: 20px; }
+  .methode-tag { grid-column: 2; text-align: left; }
   .solutions-strip { grid-template-columns: repeat(2, 1fr); }
   .offres-grid { grid-template-columns: 1fr; }
   .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
@@ -405,14 +381,15 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 @media (max-width: 768px) {
   h1 { font-size: clamp(2.2rem, 8vw, 2.9rem); }
   h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
-  .nav-links, .nav-cta { display: none; }
+  .nav-links { display: none; }
+  .nav-inner { gap: 12px; }
+  .nav-cta { padding: 9px 16px; min-height: 40px; font-size: 0.85rem; margin-left: auto; }
   .hamburger { display: flex; }
   .hero { padding: 100px 0 72px; }
   .hero-cred { gap: 12px; flex-direction: column; align-items: flex-start; }
   .hero-cred-item + .hero-cred-item { padding-left: 0; border-left: none; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
-  .hero-logo-bg { display: none; }
   .methode { padding: 72px 0; }
-  .methode-grid { grid-template-columns: repeat(2, 1fr); }
+  .methode-row { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 4px; }
   .solutions-strip { grid-template-columns: repeat(2, 1fr); }
   .offres { padding: 72px 0; }
   .profil-contact { padding: 72px 0 60px; }
@@ -426,10 +403,6 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 </style>
 </head>
 <body>
-
-<div class="orb orb-1" aria-hidden="true"></div>
-<div class="orb orb-2" aria-hidden="true"></div>
-<div class="orb orb-3" aria-hidden="true"></div>
 
 <a href="#main" style="position:absolute;left:-9999px;top:4px;padding:8px 16px;background:var(--coral);color:#fff;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-weight:600;z-index:9999" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Passer au contenu principal</a>
 
@@ -516,48 +489,44 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   <div class="container">
     <div class="section-header reveal">
       <p class="label">La méthode HICKS</p>
-      <h2 id="methode-title">Quatre étapes. Un seul objectif :<br>vous rendre <span class="coral">autonomes.</span></h2>
+      <h2 id="methode-title">Quatre étapes. Un seul objectif :<br>vous faire <span class="coral">regagner du temps.</span></h2>
     </div>
-    <div class="methode-grid" role="list">
+    <div class="methode-flow" role="list">
 
-      <div class="methode-step reveal" role="listitem">
+      <div class="methode-row reveal" role="listitem">
         <span class="methode-num">01</span>
-        <div class="methode-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="methode-row-body">
+          <h3>Audit</h3>
+          <p>Cartographie de vos processus, identification des blocages, sélection des chantiers rentables. Vous repartez avec un plan d'action concret et priorisé.</p>
         </div>
-        <h3>Audit IA</h3>
-        <p>Cartographie de vos processus, identification des blocages, sélection des solutions adaptées. Vous repartez avec un plan d'action concret et priorisé.</p>
-        <span class="methode-tag">Forfait fixe · Livrable garanti</span>
+        <span class="methode-tag">Une demi-journée · Livrable garanti</span>
       </div>
 
-      <div class="methode-step reveal reveal-delay-1" role="listitem">
+      <div class="methode-row reveal reveal-delay-1" role="listitem">
         <span class="methode-num">02</span>
-        <div class="methode-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <div class="methode-row-body">
+          <h3>Déploiement</h3>
+          <p>Intégration de la solution directement dans votre environnement de travail. Opérationnel en quelques jours, sans compétences techniques côté équipe.</p>
         </div>
-        <h3>Déploiement</h3>
-        <p>Intégration des solutions (RelanceX, SaisieX, ReceptX, MailX...) directement dans votre environnement. Opérationnel en quelques jours, sans compétences techniques.</p>
-        <span class="methode-tag">Clé en main · Mise en production rapide</span>
+        <span class="methode-tag">Clé en main · 5 à 10 jours</span>
       </div>
 
-      <div class="methode-step reveal reveal-delay-2" role="listitem">
+      <div class="methode-row reveal reveal-delay-2" role="listitem">
         <span class="methode-num">03</span>
-        <div class="methode-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+        <div class="methode-row-body">
+          <h3>Ajustement</h3>
+          <p>On affine sur vos vrais cas métier : règles de gestion, cas particuliers, besoins spécifiques. Votre équipe est formée et impliquée à chaque étape.</p>
         </div>
-        <h3>Co-réalisation</h3>
-        <p>Pour les besoins spécifiques à votre activité, on construit ensemble les automatisations sur mesure. Votre équipe monte en compétence à chaque étape.</p>
-        <span class="methode-tag">Packs d'heures · 10h · 20h · 40h</span>
+        <span class="methode-tag">Sur mesure · Avec votre équipe</span>
       </div>
 
-      <div class="methode-step reveal reveal-delay-3" role="listitem">
+      <div class="methode-row reveal reveal-delay-3" role="listitem">
         <span class="methode-num">04</span>
-        <div class="methode-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <div class="methode-row-body">
+          <h3>Supervision</h3>
+          <p>Vos automatisations tournent, je veille dessus. Incidents détectés et traités avant que vous les remarquiez, évolutions au fil de vos besoins.</p>
         </div>
-        <h3>Suivi &amp; expertise</h3>
-        <p>Un accompagnement mensuel pour ajuster, optimiser et lancer de nouveaux chantiers. Je reste à vos côtés à mesure que vous progressez.</p>
-        <span class="methode-tag">Retainer · 4h+/mois</span>
+        <span class="methode-tag">Mensuel · Sans engagement</span>
       </div>
 
     </div>
@@ -698,7 +667,6 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 
 <!-- ── PROFIL + CONTACT ── -->
 <section class="profil-contact" id="profil" aria-labelledby="contact-title">
-  <div class="profil-contact-glow" aria-hidden="true"></div>
   <div class="container">
 
     <div class="section-header reveal">
@@ -741,6 +709,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 
       <!-- Contact -->
       <div class="contact-col reveal reveal-delay-1" id="contact">
+        <h3>Écrivez-moi, je réponds sous 24h</h3>
         <p>Un appel de 30 minutes suffit pour savoir si on peut travailler ensemble. Pas de pitch, juste une conversation directe sur vos vrais enjeux.</p>
 
         <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
@@ -843,11 +812,6 @@ function closeMobile() {
   hamburger.setAttribute('aria-expanded', 'false')
   document.body.style.overflow = ''
 }
-
-/* ── Orbs ── */
-document.querySelectorAll('.orb').forEach(o => {
-  requestAnimationFrame(() => o.classList.add('loaded'))
-})
 
 /* ── Scroll reveal ── */
 const revealObserver = new IntersectionObserver((entries) => {
