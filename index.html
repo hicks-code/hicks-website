@@ -206,11 +206,27 @@ section { position: relative; z-index: var(--z-content); }
 .methode-step p { font-size: 0.875rem; line-height: 1.65; }
 .methode-tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,107,71,0.72); text-transform: uppercase; margin-top: auto; padding-top: 8px; }
 
+/* ── PREUVE ── */
+.preuve { padding: 32px 0; }
+.preuve-inner {
+  border-top: 1px solid rgba(255,107,71,0.18);
+  border-bottom: 1px solid rgba(255,107,71,0.18);
+  background: rgba(255,107,71,0.03);
+  padding: 44px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+.preuve-text { font-size: clamp(1.02rem, 1.6vw, 1.18rem); line-height: 1.75; max-width: 64ch; color: var(--mid); }
+.preuve-text strong { color: rgba(255,255,255,0.88); font-weight: 500; }
+
 /* ── OFFRES ── */
 .offres { padding: 100px 0; }
 .offres-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   margin-top: 56px;
   background: rgba(255,255,255,0.07);
@@ -381,8 +397,8 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
 @media (max-width: 1024px) {
   .hero-logo-bg { width: 360px; opacity: 0.09; right: -20px; }
   .methode-grid { grid-template-columns: repeat(2, 1fr); }
-  .solutions-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .offres-grid { grid-template-columns: repeat(2, 1fr); }
+  .solutions-strip { grid-template-columns: repeat(2, 1fr); }
+  .offres-grid { grid-template-columns: 1fr; }
   .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
   .profil-photo-wrap { max-width: 200px; aspect-ratio: 4/5; border-radius: 12px; }
 }
@@ -397,9 +413,8 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   .hero-logo-bg { display: none; }
   .methode { padding: 72px 0; }
   .methode-grid { grid-template-columns: repeat(2, 1fr); }
-  .solutions-strip { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .solutions-strip { grid-template-columns: repeat(2, 1fr); }
   .offres { padding: 72px 0; }
-  .offres-grid { grid-template-columns: 1fr; }
   .profil-contact { padding: 72px 0 60px; }
   .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
 }
@@ -438,7 +453,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
         <li><a href="#methode">Méthode</a></li>
         <li><a href="#solutions">Solutions</a></li>
         <li><a href="#offres">Offres</a></li>
-        <li><a href="#profil">Contact</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <a href="#contact" class="btn btn-primary nav-cta" aria-label="Prendre contact avec HICKS">Prendre contact</a>
       <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -452,7 +467,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   <a href="#methode" onclick="closeMobile()">Méthode</a>
   <a href="#solutions" onclick="closeMobile()">Solutions</a>
   <a href="#offres" onclick="closeMobile()">Offres</a>
-  <a href="#profil" onclick="closeMobile()">Contact</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
   <a href="#contact" class="btn btn-primary" onclick="closeMobile()">Prendre contact</a>
 </div>
 
@@ -609,82 +624,75 @@ footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 24px 0; backgrou
   </div>
 </section>
 
+<!-- ── PREUVE ── -->
+<section class="preuve" aria-label="Exemple de déploiement récent">
+  <div class="container">
+    <div class="preuve-inner reveal">
+      <p class="label">Déployé récemment</p>
+      <p class="preuve-text">Pour un cabinet de formalités juridiques parisien : une centaine d'emails par jour lus, classés et routés vers la bonne personne de l'équipe, avec alerte immédiate en cas d'urgence ou de client mécontent. <strong>Déployé en quelques jours sur leur Microsoft 365, sans changer leurs outils.</strong></p>
+    </div>
+  </div>
+</section>
+
 <!-- ── OFFRES ── -->
 <section class="offres" id="offres" aria-labelledby="offres-title">
   <div class="container">
     <div class="section-header centered reveal">
-      <p class="label">Comment ça évolue</p>
-      <h2 id="offres-title">De la solution rapide<br>à <span class="coral">l'autonomie totale.</span></h2>
-      <p>Commencez par un pack, adaptez selon vos besoins. Chaque niveau est indépendant, sans engagement.</p>
+      <p class="label">Les offres</p>
+      <h2 id="offres-title">Une solution déployée.<br>Un service qui <span class="coral">veille dessus.</span></h2>
+      <p>On démarre par un audit ou directement par un pack. Chaque automatisation livrée peut ensuite être supervisée en continu.</p>
     </div>
     <div class="offres-grid">
 
       <div class="offre-card reveal">
         <div>
-          <p class="offre-step">Niveau 01 · Porte d'entrée</p>
+          <p class="offre-step">01 · Le point de départ</p>
+          <p class="offre-title">Audit IA</p>
+          <p class="offre-format">Forfait · Une demi-journée</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>On identifie ce qui vous fera vraiment gagner du temps, avant d'investir</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Livrable : rapport priorisé avec 3 à 5 actions concrètes</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Résultat sous 48h</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Démarrer avec un audit">Démarrer par un audit &rarr;</a>
+      </div>
+
+      <div class="offre-card featured reveal reveal-delay-1">
+        <div>
+          <p class="offre-step">02 · La solution</p>
           <p class="offre-title">Pack clé en main</p>
           <p class="offre-format">Prix fixe · Déployé en 5 à 10 jours</p>
         </div>
         <div class="offre-divider"></div>
         <ul class="offre-features" role="list">
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Solution déployée sur votre infrastructure</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Solution déployée sur votre infrastructure, sans changer vos outils</li>
           <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Scope défini, livrable garanti, formation incluse</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>RelanceX · SaisieX · ReceptX · MailX disponibles</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Extensions sur mesure en packs d'heures, selon vos besoins</li>
           <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>30 jours de support post-livraison</li>
         </ul>
-        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Choisir une solution">Choisir une solution &rarr;</a>
-      </div>
-
-      <div class="offre-card featured reveal reveal-delay-1">
-        <div class="offre-badge">Populaire</div>
-        <div>
-          <p class="offre-step">Niveau 02 · Sur mesure</p>
-          <p class="offre-title">Customisation</p>
-          <p class="offre-format">Packs d'heures · 10h / 20h / 40h</p>
-        </div>
-        <div class="offre-divider"></div>
-        <ul class="offre-features" role="list">
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Étendre un pack ou créer une nouvelle automatisation</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Chaque heure : une fonctionnalité ou intégration</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Scoping précis avant démarrage, pas de dérive</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Heures consommables à votre rythme</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary offre-cta" aria-label="Discuter d'une customisation">En discuter &rarr;</a>
+        <a href="#contact" class="btn btn-primary offre-cta" aria-label="Choisir une solution">Choisir une solution &rarr;</a>
       </div>
 
       <div class="offre-card reveal reveal-delay-2">
         <div>
-          <p class="offre-step">Niveau 03 · Long terme</p>
-          <p class="offre-title">Vers l'autonomie</p>
-          <p class="offre-format">Accompagnement mensuel · 4h+/mois</p>
+          <p class="offre-step">03 · La tranquillité</p>
+          <p class="offre-title">Supervision HICKS</p>
+          <p class="offre-format">Mensuel · Sans engagement</p>
         </div>
         <div class="offre-divider"></div>
         <ul class="offre-features" role="list">
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Vos équipes apprennent à créer leurs propres automatisations</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Sessions de formation sur vos vrais cas métier</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>N8N, IA, workflows : vous devenez indépendants</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Renouvelable mois par mois</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Vos automatisations surveillées en continu, incidents détectés avant vous</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Maintenance, ajustements et petites évolutions inclus</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Un interlocuteur unique qui connaît votre système</li>
+          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Renouvelable mois par mois, arrêt quand vous voulez</li>
         </ul>
-        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="En savoir plus sur l'accompagnement autonomie">En discuter &rarr;</a>
-      </div>
-
-      <div class="offre-card reveal reveal-delay-3">
-        <div>
-          <p class="offre-step">Optionnel · Point de départ</p>
-          <p class="offre-title">Audit IA</p>
-          <p class="offre-format">Forfait · Demi-journée</p>
-        </div>
-        <div class="offre-divider"></div>
-        <ul class="offre-features" role="list">
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Ne vous trompez pas de pack : on identifie ce qui vous fera gagner du temps</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Livrable : rapport priorisé avec 3 à 5 actions concrètes</li>
-          <li class="feature-item"><span class="feature-dot" aria-hidden="true"></span>Durée : une demi-journée, résultat sous 48h</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Démarrer avec un audit">Démarrer par un audit &rarr;</a>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="En savoir plus sur la supervision">En discuter &rarr;</a>
       </div>
 
     </div>
-    <p class="offres-footnote">Chaque niveau commence par un appel découverte de 30 min, gratuit, sans engagement · TVA non applicable, art. 293B du CGI</p>
+    <p class="offres-footnote">Chaque offre commence par un appel découverte de 30 min, gratuit, sans engagement · TVA non applicable, art. 293B du CGI</p>
   </div>
 </section>
 
