@@ -154,15 +154,15 @@ nav.scrolled {
 /* hero visual */
 .hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
 .hero-mark-frame {
-  position: relative; width: 100%; max-width: 380px; aspect-ratio: 1; border-radius: 24px;
-  background: linear-gradient(160deg, rgba(27,42,78,0.55), rgba(10,20,40,0.2));
-  border: 1px solid var(--hair); display: flex; align-items: center; justify-content: center; overflow: hidden;
+  position: relative; width: 100%; max-width: 400px; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
 }
 .hero-mark-frame::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(255,107,71,0.16), transparent 60%);
+  content: ''; position: absolute; inset: -6%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,107,71,0.12), transparent 62%);
+  pointer-events: none;
 }
-.hero-mark-svg { position: relative; width: 66%; height: auto; filter: drop-shadow(0 8px 40px rgba(255,107,71,0.28)); }
+.hero-mark-svg { position: relative; width: 88%; height: auto; }
 
 /* ── SECTION BASE ── */
 section { position: relative; z-index: var(--z-content); }
