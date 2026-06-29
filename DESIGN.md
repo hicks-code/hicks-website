@@ -12,33 +12,33 @@ colors:
   off-white: "#F5F6FA"
 typography:
   display:
-    fontFamily: "'Space Grotesk', system-ui, sans-serif"
-    fontSize: "clamp(2.6rem, 5.5vw, 4.4rem)"
-    fontWeight: 700
-    lineHeight: 1.12
-    letterSpacing: "-0.035em"
+    fontFamily: "'Schibsted Grotesk', system-ui, sans-serif"
+    fontSize: "clamp(2rem, 3.6vw, 3.05rem)"
+    fontWeight: 800
+    lineHeight: 1.08
+    letterSpacing: "-0.04em"
   headline:
-    fontFamily: "'Space Grotesk', system-ui, sans-serif"
-    fontSize: "clamp(1.9rem, 3.5vw, 2.9rem)"
+    fontFamily: "'Schibsted Grotesk', system-ui, sans-serif"
+    fontSize: "clamp(1.85rem, 3.4vw, 2.8rem)"
     fontWeight: 700
-    lineHeight: 1.12
-    letterSpacing: "-0.025em"
+    lineHeight: 1.08
+    letterSpacing: "-0.03em"
   title:
-    fontFamily: "'Space Grotesk', system-ui, sans-serif"
-    fontSize: "clamp(1.05rem, 1.8vw, 1.25rem)"
+    fontFamily: "'Schibsted Grotesk', system-ui, sans-serif"
+    fontSize: "clamp(1.05rem, 1.8vw, 1.2rem)"
     fontWeight: 600
     lineHeight: 1.15
   body:
-    fontFamily: "'Inter', system-ui, sans-serif"
+    fontFamily: "'Hanken Grotesk', system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.72
   label:
-    fontFamily: "'Space Mono', monospace"
-    fontSize: "0.7rem"
-    fontWeight: 400
+    fontFamily: "'Schibsted Grotesk', system-ui, sans-serif"
+    fontSize: "0.82rem"
+    fontWeight: 600
     lineHeight: 1.4
-    letterSpacing: "0.18em"
+    letterSpacing: "0.02em"
 rounded:
   pill: "100px"
   card: "16px"
@@ -123,11 +123,13 @@ Two roles, hard separation: Command (dark surfaces, depth) and Signal (coral act
 
 ## 3. Typography: The Engineer's Stack
 
-**Display Font:** Space Grotesk (700 weight, `system-ui` fallback)
-**Body Font:** Inter (400/500/600 weights, `system-ui` fallback)
-**Label/Mono Font:** Space Mono (400/700 weights, `monospace` fallback)
+> Révision 2026-06-29 (anti-slop). L'ancien stack Space Grotesk + Space Mono + Inter sur navy sombre, jugé "anti-slop" à l'origine, est devenu en 2026 le centre de gravité exact de la landing "tech générée par IA" (retour externe : "ça fait réalisé par Claude"). Stack remplacé pour redonner une voix sur-mesure.
 
-**Character:** Space Grotesk at heavy weight reads as confident, not aggressive. Its geometric structure without the reflex clichés of Inter or DM Sans. Inter at 400 on dark backgrounds at line-height 1.72 is the default professional reading experience. Space Mono carries metadata: it signals "this is a system label, not prose."
+**Display Font:** Schibsted Grotesk (700/800 weights, `system-ui` fallback)
+**Body Font:** Hanken Grotesk (400/500/600 weights, `system-ui` fallback)
+**UI/Label Font:** Schibsted Grotesk (500/600 weights). Plus de police monospace.
+
+**Character:** Schibsted Grotesk en 800 a une présence éditoriale confiante, distincte du look Space Grotesk surexploité par les générateurs IA. Hanken Grotesk en corps est humaniste, chaleureux, plus lisible qu'Inter sans en avoir le côté passe-partout. Le monospace (Space Mono) est banni : c'était la principale signature "AI-tech template" du site.
 
 ### Hierarchy
 - **Display** (700, `clamp(2.6rem, 5.5vw, 4.4rem)`, line-height 1.12, tracking -0.035em): Hero headlines only. Two lines maximum. First line white, second line Activation Coral when contrasting a problem/solution.
@@ -137,7 +139,9 @@ Two roles, hard separation: Command (dark surfaces, depth) and Signal (coral act
 - **Label** (Space Mono 400, `0.7rem`, `letter-spacing: 0.18em`, `text-transform: uppercase`, color Activation Coral): Section eyebrows only. Never body-level quantities of Space Mono: it becomes costume.
 
 ### Named Rules
-**The Mono-as-Metadata Rule.** Space Mono appears on: section eyebrows, step numbers, product tags, nav brand sub-label, form field labels, the cred strip. It never appears on paragraphs, card bodies, or content longer than one line. Space Mono signals "classified data", not "design personality."
+**The Eyebrow-Restraint Rule (anti-slop 2026-06-29).** Maximum 1 eyebrow (petit label au-dessus d'un titre de section) pour 3 sections. Un eyebrow sur chaque section = signature "généré par IA". Le titre seul suffit le plus souvent. Plus de numérotation de section ("01 · ...", "Stage 1") ni de labels mono-corail répétés. Le point médian "·" est rationné à 1 par ligne maximum.
+
+**The No-Mono Rule (remplace l'ancienne Mono-as-Metadata).** Plus de police monospace nulle part. Les métadonnées (cadences, tags produits, labels de champ) sont en Schibsted Grotesk poids 500/600. Le mono était le tell "AI-tech" principal.
 
 **The Negative-Track Rule.** Display and Headline headings always carry negative letter-spacing (-0.025em to -0.035em). This is structural, not stylistic: tight tracking on dark backgrounds prevents the gaps between letters from reading as noise.
 
@@ -219,7 +223,8 @@ Visible labels. No placeholder-only fields.
 - **Don't** use glassmorphism on content grids (Méthode, Solutions, Offres cells). Glass = identity layer only.
 - **Don't** build hero-metric templates: big number + small label + gradient accent = SaaS cliché, explicitly forbidden.
 - **Don't** build identical card grids (icon + heading + text, same size, repeated). Use the table grid instead.
-- **Don't** use Space Grotesk + identical card grids together — that combination is the stated anti-reference in PRODUCT.md.
+- **Don't** réintroduire Space Grotesk, Space Mono ou Inter : c'est précisément le stack qui faisait "généré par IA" (cf révision section 3). Display = Schibsted Grotesk, corps = Hanken Grotesk.
+- **Don't** mettre un eyebrow sur chaque section, ni numéroter les sections, ni les flèches sur tous les boutons, ni les points décoratifs corail devant chaque item. Ce sont des "AI tells".
 - **Don't** place gradient text (`background-clip: text` + gradient). Emphasis through weight or solid color only.
 - **Don't** use side-stripe borders (`border-left` greater than 1px as a colored accent). Full borders, background tints, or nothing.
 - **Don't** add Activation Coral beyond 15% of the viewport. Every additional coral instance dilutes the one that matters.
