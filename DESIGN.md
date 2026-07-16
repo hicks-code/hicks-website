@@ -167,7 +167,7 @@ This system is **flat-by-default with one purposeful glass exception**. Depth is
 Tactile and direct. One primary action per section maximum.
 
 - **Shape:** Gently rounded (10px radius). Avoids the pill softness of startup CTAs and the sharp corners of enterprise tools.
-- **Primary (`btn-primary`):** Activation Coral (`#FF6B47`) background, Off-White text, Space Grotesk 600, padding `13px 28px`. Box-shadow: `0 4px 20px rgba(255,107,71,0.35)` at rest. On hover: coral-light, `-1px` translateY, expanded shadow.
+- **Primary (`btn-primary`):** Activation Coral (`#FF6B47`) background, Off-White text, Schibsted Grotesk 600, padding `13px 28px`. **Flat, no glow** (per the Flat-by-Default Rule): no box-shadow at rest. On hover: coral-light background, `-1px` translateY only. No coral halo, ever.
 - **Ghost (`btn-ghost`):** Transparent background, `1px solid rgba(255,255,255,0.2)` border, Off-White text. On hover: border becomes Activation Coral, text becomes Activation Coral, no fill.
 - **Focus:** `2px solid var(--coral), outline-offset: 3px`. Never remove focus ring.
 - **Minimum height:** 48px for touch targets.
