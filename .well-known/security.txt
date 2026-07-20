@@ -1,0 +1,7 @@
+# security.txt pour hicks-advisory.fr (RFC 9116)
+# Contact en cas de découverte d'une faille de sécurité.
+
+Contact: mailto:xavier.bottex@hicks-advisory.fr
+Expires: 2027-07-17T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://hicks-advisory.fr/.well-known/security.txt
