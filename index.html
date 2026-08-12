@@ -204,12 +204,13 @@
 
   /* prix */
   .price-sec{background:var(--navy-dark); color:#fff; position:relative; overflow:hidden}
-  .price-sec::before{content:""; position:absolute; inset:0; pointer-events:none;
-    background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-    background-size:52px 52px;
-    -webkit-mask-image:radial-gradient(circle at 50% 120%, #000, transparent 68%);
-    mask-image:radial-gradient(circle at 50% 120%, #000, transparent 68%)}
-  .price-sec::after{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(680px 320px at 50% -12%, rgba(255,107,71,.16), transparent 60%)}
+  .price-sec::before{content:""; position:absolute; inset:-25%; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(440px 280px at 28% 32%, rgba(255,107,71,.16), transparent 60%),
+      radial-gradient(520px 340px at 74% 68%, rgba(31,55,110,.55), transparent 62%);
+    animation:aurora 18s ease-in-out infinite alternate}
+  @keyframes aurora{from{transform:translate3d(-2%,-1%,0) scale(1)} to{transform:translate3d(3%,2%,0) scale(1.1)}}
+  @media(prefers-reduced-motion:reduce){ .price-sec::before{animation:none} }
   .price-sec .wrap{max-width:900px; text-align:center; padding:96px 24px; position:relative; z-index:1}
   .price-sec h2{font-size:40px; font-weight:700}
   .price-sec p{color:#C7D0E4; font-size:19px; margin-top:22px; max-width:60ch; margin-inline:auto}
