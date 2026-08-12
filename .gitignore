@@ -5,3 +5,8 @@
 .env
 .env.*
 !.env.example
+
+# fichiers de travail, jamais publies
+Photo1.jpg
+*.bak-*
+*.bak
