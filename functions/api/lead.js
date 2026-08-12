@@ -21,7 +21,7 @@ const ORIGINES_AUTORISEES = [
 ];
 const TAILLE_MAX = 8 * 1024;
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   // 1. l'appel doit venir du site, pas d'un script tiers
   const origine = request.headers.get('Origin');
   if (origine && !ORIGINES_AUTORISEES.includes(origine)) {
@@ -55,15 +55,18 @@ export async function onRequestPost({ request, env }) {
     return new Response(null, { status: 400 });
   }
 
-  try {
-    const reponse = await fetch(N8N_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': secret },
-      body: JSON.stringify(charge),
-      signal: AbortSignal.timeout(8000),
-    });
-    return new Response(null, { status: reponse.ok ? 204 : 502 });
-  } catch {
-    return new Response(null, { status: 504 });
-  }
+  // Le workflow n8n qualifie le lead par IA avant de repondre : mesure reelle
+  // 9,2 s pour le seul appel au modele, plus Telegram et le CRM. Le navigateur
+  // n'a aucun besoin de ce resultat, on ne le fait donc pas attendre.
+  const envoi = fetch(N8N_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': secret },
+    body: JSON.stringify(charge),
+    signal: AbortSignal.timeout(60000),
+  }).catch(() => {});
+
+  // waitUntil laisse la requete s'achever apres la reponse, sans bloquer
+  if (typeof waitUntil === 'function') waitUntil(envoi);
+
+  return new Response(null, { status: 202 });
 }
