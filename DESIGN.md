@@ -2,14 +2,15 @@
 name: HICKS Digital Advisory
 description: Système visuel d'une landing page de conseil en automatisation IA pour PME
 colors:
-  command-navy-darkest: "#0A1428"
-  command-navy: "#0F1E3D"
-  command-navy-light: "#1B2A4E"
-  activation-coral: "#FF6B47"
-  activation-coral-light: "#FF8A6B"
-  activation-coral-dark: "#E85A37"
-  console-grey: "#8892A4"
-  off-white: "#F5F6FA"
+  # Palette Emerald, en production depuis le 2026-08-12
+  emerald-deep: "#04382A"      # aplats profonds, pied de page
+  emerald: "#064E3B"           # fond sombre, et texte sur fond clair
+  emerald-soft: "#0A5B45"      # cartes sur fond sombre
+  champagne: "#F8E7C9"         # ACCENT SUR FOND SOMBRE UNIQUEMENT
+  gold: "#A8823C"              # ACCENT SUR FOND CLAIR (le champagne y est a 1,2:1)
+  console-green: "#5B6B63"
+  off-white: "#FEFDF9"
+  paper: "#FCF7EE"
 typography:
   display:
     fontFamily: "'Schibsted Grotesk', system-ui, sans-serif"
@@ -51,23 +52,23 @@ spacing:
   container-x: "24px"
 components:
   button-primary:
-    backgroundColor: "{colors.activation-coral}"
-    textColor: "{colors.off-white}"
+    backgroundColor: "{colors.champagne}"
+    textColor: "#053B2C"
     rounded: "{rounded.btn}"
     padding: "13px 28px"
     typography: "{typography.title}"
   button-primary-hover:
-    backgroundColor: "{colors.activation-coral-light}"
+    backgroundColor: "#EBD5AE"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.off-white}"
     rounded: "{rounded.btn}"
     padding: "13px 28px"
   button-ghost-hover:
-    textColor: "{colors.activation-coral}"
+    textColor: "{colors.gold}"
   grid-cell:
-    backgroundColor: "{colors.command-navy-darkest}"
-    textColor: "{colors.console-grey}"
+    backgroundColor: "{colors.emerald-deep}"
+    textColor: "{colors.console-green}"
     padding: "{spacing.card-internal}"
   grid-cell-hover:
     backgroundColor: "#0a1428"
@@ -88,13 +89,13 @@ components:
 
 HICKS is the visual language of someone who has spent 22 years inside systems, not selling them. Every surface communicates controlled precision: a clean grid, a restrained palette, a single accent that fires only when it matters. Nothing decorative survives. What remains is a dark, structured environment that makes a PME director feel they are looking at a dashboard of expertise, not a marketing brochure.
 
-The Command Navy background is the load-bearing wall. It absorbs 80% of every viewport. Activation Coral is the signal: it appears on CTAs, active labels, and the logo. Used anywhere else, it loses its authority. Console Grey carries secondary text: readable, professional, never dominant.
+The Emerald Ink background is the load-bearing wall. It absorbs 80% of every viewport. Signal Champagne is the signal: it appears on CTAs, active labels, and the logo. Used anywhere else, it loses its authority. Console Green carries secondary text: readable, professional, never dominant.
 
 This system explicitly rejects the startup hype register. No purple gradients. No "AI-generated" glassmorphism grids. No hero-metric templates (big number, small label, gradient accent). No identical card grids with icon-heading-text repeated endlessly. The SaaS-cream-and-violet palette is forbidden. The ultra-corporate navy of McKinsey Digital is also forbidden: this is a human expert's toolkit, not a global consulting firm's brand.
 
 **Key Characteristics:**
-- Dark-dominant (Command Navy as the primary surface, not a background color)
-- Activation Coral used at maximum 10-15% of any viewport — its rarity is its authority
+- Dark-dominant (Emerald Ink as the primary surface, not a background color)
+- Signal Champagne used at maximum 10-15% of any viewport — its rarity is its authority
 - Table-grid sections (1px separator, flat cells) instead of raised cards for content grids
 - Space Mono labels signal metadata and classification: not decoration, information
 - Human presence (photo, narrative bio) anchors every identity surface
@@ -102,22 +103,31 @@ This system explicitly rejects the startup hype register. No purple gradients. N
 
 ## 2. Colors: The Command & Signal Palette
 
-Two roles, hard separation: Command (dark surfaces, depth) and Signal (coral action, coral-only).
+Two roles, hard separation: Command (dark surfaces, depth) and Signal (champagne action on dark, gold action on light).
 
 ### Primary
-- **Activation Coral** (`#FF6B47`): The sole signal color. Every CTA, every active label, every hover accent, the logo's orange arm. Appears on interactive affordances and structural emphasis. Never decorative. If Coral appears somewhere the user does not need to act or notice, remove it.
-- **Activation Coral Light** (`#FF8A6B`): Hover state of coral elements only. Not used as a standalone surface color.
-- **Activation Coral Dark** (`#E85A37`): Active/pressed state and gradient start for the featured-card top bar.
+- **Signal Champagne** (`#F8E7C9`): The sole signal color. Every CTA, every active label, every hover accent, the logo's champagne flux. Appears on interactive affordances and structural emphasis. Never decorative. If the accent appears somewhere the user does not need to act or notice, remove it.
+- **Champagne Hover** (`#EBD5AE`): Hover state of accent elements only. Not used as a standalone surface color.
+- **Gold** (`#A8823C`): Active/pressed state and gradient start for the featured-card top bar.
 
 ### Neutral
-- **Command Navy Darkest** (`#0A1428`): Page background and default grid cell background. The floor everything sits on.
-- **Command Navy** (`#0F1E3D`): Elevated surfaces, nav logo background, logo mark fill.
-- **Command Navy Light** (`#1B2A4E`): Glass card background (rgba 55% opacity), hover state reference. Used only in identity glass (nav scrolled, logo).
-- **Console Grey** (`#8892A4`): All body copy and secondary text. Never used for headings. Line-height 1.72 on dark background compensates for the reduced perceived weight.
+- **Deep Emerald** (`#04382A`): Page background and default grid cell background. The floor everything sits on.
+- **Emerald Ink** (`#064E3B`): Elevated surfaces, nav logo background, logo mark fill.
+- **Emerald Soft** (`#0A5B45`): Glass card background (rgba 55% opacity), hover state reference. Used only in identity glass (nav scrolled, logo).
+- **Console Green** (`#8892A4`): All body copy and secondary text. Never used for headings. Line-height 1.72 on dark background compensates for the reduced perceived weight.
 - **Off-White** (`#F5F6FA`): Headings and all high-contrast text. Never pure `#fff` on dark backgrounds (tint toward the brand hue).
 
 ### Named Rules
-**The One Signal Rule.** Activation Coral is used on 10-15% of any given viewport maximum. Every new coral element displaces an existing one. Its rarity is its authority.
+### La règle des deux accents (2026-08-12)
+
+Il n'y a pas un accent mais **deux, contextuels**, et les confondre casse la page.
+
+- **Signal Champagne `#F8E7C9`** : accent sur fond sombre uniquement. Sur blanc il tombe à 1,2:1, donc invisible.
+- **Gold `#A8823C`** : accent sur fond clair. 3,5:1 sur blanc, il passe le seuil des éléments graphiques.
+
+Le coral de l'ancienne charte était lisible sur les deux fonds, ce qui autorisait un token unique. Ce n'est plus vrai. Tout support repris de l'ancienne charte doit être relu sur ses fonds clairs.
+
+**The One Signal Rule.** Signal Champagne is used on 10-15% of any given viewport maximum. Every new accent element displaces an existing one. Its rarity is its authority.
 
 **The No-Decoration Rule.** Color conveys function: surface, signal, or text. If a color element does not communicate state, hierarchy, or action, remove it.
 
@@ -132,11 +142,11 @@ Two roles, hard separation: Command (dark surfaces, depth) and Signal (coral act
 **Character:** Schibsted Grotesk en 800 a une présence éditoriale confiante, distincte du look Space Grotesk surexploité par les générateurs IA. Hanken Grotesk en corps est humaniste, chaleureux, plus lisible qu'Inter sans en avoir le côté passe-partout. Le monospace (Space Mono) est banni : c'était la principale signature "AI-tech template" du site.
 
 ### Hierarchy
-- **Display** (700, `clamp(2.6rem, 5.5vw, 4.4rem)`, line-height 1.12, tracking -0.035em): Hero headlines only. Two lines maximum. First line white, second line Activation Coral when contrasting a problem/solution.
+- **Display** (700, `clamp(2.6rem, 5.5vw, 4.4rem)`, line-height 1.12, tracking -0.035em): Hero headlines only. Two lines maximum. First line white, second line Signal Champagne when contrasting a problem/solution.
 - **Headline** (700, `clamp(1.9rem, 3.5vw, 2.9rem)`, line-height 1.12, tracking -0.025em): Section titles. `text-wrap: balance` applied. Never more than two lines.
 - **Title** (600, `clamp(1.05rem, 1.8vw, 1.25rem)`, line-height 1.15): Card headings, product names, UI labels that are not metadata.
-- **Body** (Inter 400, `1rem`, line-height 1.72, color Console Grey `#8892A4`): Section prose, card descriptions. Max line-length 65ch. `strong` bumps to Inter 500, color `rgba(255,255,255,0.82)`.
-- **Label** (Space Mono 400, `0.7rem`, `letter-spacing: 0.18em`, `text-transform: uppercase`, color Activation Coral): Section eyebrows only. Never body-level quantities of Space Mono: it becomes costume.
+- **Body** (Inter 400, `1rem`, line-height 1.72, color Console Green `#8892A4`): Section prose, card descriptions. Max line-length 65ch. `strong` bumps to Inter 500, color `rgba(255,255,255,0.82)`.
+- **Label** (Space Mono 400, `0.7rem`, `letter-spacing: 0.18em`, `text-transform: uppercase`, color Signal Champagne): Section eyebrows only. Never body-level quantities of Space Mono: it becomes costume.
 
 ### Named Rules
 **The Eyebrow-Restraint Rule (anti-slop 2026-06-29).** Maximum 1 eyebrow (petit label au-dessus d'un titre de section) pour 3 sections. Un eyebrow sur chaque section = signature "généré par IA". Le titre seul suffit le plus souvent. Plus de numérotation de section ("01 · ...", "Stage 1") ni de labels mono-corail répétés. Le point médian "·" est rationné à 1 par ligne maximum.
@@ -167,8 +177,8 @@ This system is **flat-by-default with one purposeful glass exception**. Depth is
 Tactile and direct. One primary action per section maximum.
 
 - **Shape:** Gently rounded (10px radius). Avoids the pill softness of startup CTAs and the sharp corners of enterprise tools.
-- **Primary (`btn-primary`):** Activation Coral (`#FF6B47`) background, Off-White text, Schibsted Grotesk 600, padding `13px 28px`. **Flat, no glow** (per the Flat-by-Default Rule): no box-shadow at rest. On hover: coral-light background, `-1px` translateY only. No coral halo, ever.
-- **Ghost (`btn-ghost`):** Transparent background, `1px solid rgba(255,255,255,0.2)` border, Off-White text. On hover: border becomes Activation Coral, text becomes Activation Coral, no fill.
+- **Primary (`btn-primary`):** Signal Champagne (`#F8E7C9`) background, Off-White text, Schibsted Grotesk 600, padding `13px 28px`. **Flat, no glow** (per the Flat-by-Default Rule): no box-shadow at rest. On hover: coral-light background, `-1px` translateY only. No coral halo, ever.
+- **Ghost (`btn-ghost`):** Transparent background, `1px solid rgba(255,255,255,0.2)` border, Off-White text. On hover: border becomes Signal Champagne, text becomes Signal Champagne, no fill.
 - **Focus:** `2px solid var(--coral), outline-offset: 3px`. Never remove focus ring.
 - **Minimum height:** 48px for touch targets.
 
@@ -176,7 +186,7 @@ Tactile and direct. One primary action per section maximum.
 The visual DNA of the content sections. Used for Méthode, Solutions, Offres.
 
 - **Container:** `border: 1px solid rgba(255,255,255,0.07)`, `border-radius: 16px`, `overflow: hidden`. Cells separated by 1px gaps (set via `gap: 1px` on the grid, `background` on the container bleeds through).
-- **Cell at rest:** `background: #0A1428` (Command Navy Darkest), padding `28px 24px`.
+- **Cell at rest:** `background: #0A1428` (Deep Emerald), padding `28px 24px`.
 - **Cell hover:** `background: rgba(15,30,61,0.95)` (barely perceptible shift). No lift, no shadow.
 - **Featured cell** (Offres only): `background: rgba(255,107,71,0.05)` + 2px coral gradient top bar.
 - **Desktop:** 4 columns. Tablet: 2 columns. Mobile: 2 columns (solutions) or 1 column (offres).
@@ -190,7 +200,7 @@ Visible labels. No placeholder-only fields.
 - **Textarea:** Same treatment, `resize: vertical`, min-height `120px`.
 
 ### Navigation
-- **Default state:** Transparent background, no border. Logo + nav links (Console Grey, 0.9rem Space Grotesk 500) + primary CTA button.
+- **Default state:** Transparent background, no border. Logo + nav links (Console Green, 0.9rem Space Grotesk 500) + primary CTA button.
 - **Scrolled state (`.scrolled`):** `background: rgba(10,20,40,0.88)`, `backdrop-filter: blur(20px)`, `border-bottom: 1px solid rgba(255,255,255,0.06)`. The only in-page glass usage.
 - **Mobile:** Links hidden, hamburger button (3 spans, 22px wide, 2px thick). Mobile menu is full-screen navy overlay with large Space Grotesk links.
 
@@ -201,15 +211,15 @@ Visible labels. No placeholder-only fields.
 
 ### Badges / Tags
 - Background: `rgba(27,42,78,0.8)`, `border: 1px solid rgba(255,255,255,0.09)`, `border-radius: 100px`.
-- Space Mono 0.65rem, Console Grey text.
-- Hover: border and text shift to Activation Coral.
+- Space Mono 0.65rem, Console Green text.
+- Hover: border and text shift to Signal Champagne.
 - Compact skill tags and product stack labels.
 
 ## 6. Do's and Don'ts
 
 ### Do
-- **Do** use the Command Navy (`#0A1428`) as the default cell background inside table grids. The 1px separator is the only visual structure needed.
-- **Do** apply Activation Coral exclusively to interactive affordances: CTAs, active labels, hover accents, the logo. One signal, one role.
+- **Do** use the Emerald Ink (`#04382A`) as the default cell background inside table grids. The 1px separator is the only visual structure needed.
+- **Do** apply Signal Champagne exclusively to interactive affordances: CTAs, active labels, hover accents, the logo. One signal, one role.
 - **Do** use Space Mono for metadata: section eyebrows, step numbers, form labels, product tags. Stop there.
 - **Do** use `text-wrap: balance` on all headings (h1, h2, h3) to prevent ragged two-word orphan lines.
 - **Do** include visible `<label for>` elements on every form field. Placeholder-only fields fail mobile accessibility.
@@ -227,7 +237,7 @@ Visible labels. No placeholder-only fields.
 - **Don't** mettre un eyebrow sur chaque section, ni numéroter les sections, ni les flèches sur tous les boutons, ni les points décoratifs corail devant chaque item. Ce sont des "AI tells".
 - **Don't** place gradient text (`background-clip: text` + gradient). Emphasis through weight or solid color only.
 - **Don't** use side-stripe borders (`border-left` greater than 1px as a colored accent). Full borders, background tints, or nothing.
-- **Don't** add Activation Coral beyond 15% of the viewport. Every additional coral instance dilutes the one that matters.
+- **Don't** add Signal Champagne beyond 15% of the viewport. Every additional coral instance dilutes the one that matters.
 - **Don't** use startup hype copy (ROI, disruption, scale, "10x your productivity"). The PRODUCT.md principle: "the tone does not sell: it reassures and proves."
 - **Don't** add more than one primary CTA per section. One decision point per fold.
 - **Don't** build banking ultra-corporate visual language (Capgemini, McKinsey Digital). This system is a human expert's toolkit, not a global firm's brand.

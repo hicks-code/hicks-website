@@ -27,7 +27,7 @@
 <style>
   :root{
     --deep:#064E3B; --deep-2:#04382A; --deep-soft:#0A5B45; --deep-card:#0A5B45; --acc:#F8E7C9; --acc-dark:#A8823C; --acc-hover:#EBD5AE;
-    --paper:#FCF7EE; --white:#ffffff; --border:#E4DFD1; --ink:#064E3B;
+    --paper:#FCF7EE; --white:#FEFDF9; --border:#E4DFD1; --ink:#064E3B;
     --muted:#5B6B63; --muted-2:#68726C;
     --r:14px; --wrap:1180px;
     --display:'Schibsted Grotesk',-apple-system,system-ui,sans-serif;
@@ -103,8 +103,8 @@
   @media(prefers-reduced-motion:reduce){ .hero h1,.hero .sub,.hero .cta-row,.hero .proofcard{animation:none} }
   .proofcard{background:linear-gradient(180deg,#0A5B45,#064E3B); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:26px}
   .proofcard .tag{font-family:var(--display); font-size:12.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--acc)}
-  .proofcard .big{font-family:var(--display); font-weight:700; font-size:60px; line-height:1; margin:14px 0 6px; color:#fff}
-  .proofcard .lab{color:#BFD8CD; font-size:15.5px}
+  .proofcard .big{font-family:var(--display); font-weight:700; font-size:38px; line-height:1.05; margin:14px 0 4px; color:#fff; letter-spacing:-.02em}
+  .proofcard .lab{color:#D6E8E0; font-size:16px; line-height:1.5}
   .proofcard .fine{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.12); color:#A9C4B8; font-size:14px}
   @media(max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:34px; padding:56px 0} .hero h1{font-size:38px} }
 
@@ -180,9 +180,9 @@
   .ck-syn .c1{color:var(--acc-dark); font-weight:700}
   .ck-syn .c2{color:#1E9E5A; font-weight:700}
   .ck-syn .c3{color:var(--deep); font-weight:700}
-  .ck-sec{margin:16px 22px 0; font-family:var(--display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding-left:9px}
-  .ck-sec.coral{color:var(--acc-dark); border-left:3px solid var(--acc-dark)}
-  .ck-sec.green{color:#1E9E5A; border-left:3px solid #1E9E5A}
+  .ck-sec{margin:16px 22px 0; font-family:var(--display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:5px 10px; border-radius:6px; display:inline-block}
+  .ck-sec.coral{color:var(--acc-dark); background:rgba(168,130,60,.10)}
+  .ck-sec.green{color:#146B42; background:rgba(20,107,66,.09)}
   .ck-list{padding:4px 22px}
   .ck-list.last{padding-bottom:20px}
   .ck-row{display:flex; gap:11px; padding:8px 0; font-size:13px; align-items:flex-start}
@@ -206,8 +206,6 @@
   /* prix */
   .price-sec{background:var(--deep-2); color:#fff; position:relative; overflow:hidden}
   .price-sec::after{content:""; position:absolute; right:-120px; top:-110px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(216,180,120,.18), transparent 62%); pointer-events:none; z-index:0}
-  #price-particles{position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none}
-  @media(prefers-reduced-motion:reduce){ #price-particles{display:none} }
   .price-sec .wrap{max-width:900px; text-align:center; padding:96px 24px; position:relative; z-index:1}
   .price-sec h2{font-size:40px; font-weight:700}
   .price-sec p{color:#BFD8CD; font-size:19px; margin-top:22px; max-width:60ch; margin-inline:auto}
@@ -279,9 +277,8 @@
   @keyframes gridraw{to{stroke-dashoffset:0; opacity:.6}}
 
   /* domain icons */
-  .tile .ic{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(216,180,120,.10); border:1px solid rgba(216,180,120,.24); margin-bottom:4px}
-  .tile.lead .ic{background:rgba(216,180,120,.16); border-color:rgba(216,180,120,.32)}
-  .tile .ic svg{width:20px; height:20px; fill:none; stroke:var(--acc-dark); stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+  .tile .ic{width:24px; height:24px; display:flex; align-items:flex-start; margin-bottom:2px}
+  .tile .ic svg{width:22px; height:22px; fill:none; stroke:var(--acc-dark); stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
   .tile.lead .ic svg{stroke:var(--acc)}
 
   /* urgent pulse (justified: real semantic state) */
@@ -307,11 +304,10 @@
   <div class="wrap nav-in">
     <a class="brand" href="#" aria-label="HICKS Advisory, accueil">
       <svg viewBox="0 0 130 130" role="img" aria-hidden="true">
-        <rect width="130" height="130" fill="#04382A" rx="20"/>
-        <line x1="30" y1="30" x2="100" y2="100" stroke="#F8E7C9" stroke-width="13" stroke-linecap="round"/>
-        <line x1="100" y1="30" x2="80" y2="50" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/>
-        <line x1="50" y1="80" x2="30" y2="100" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/>
-        <circle cx="65" cy="65" r="8.5" fill="#04382A" stroke="#FFFFFF" stroke-width="3.5"/>
+        <line x1="30" y1="30" x2="100" y2="100" stroke="#A8823C" stroke-width="14" stroke-linecap="round"/>
+        <line x1="100" y1="30" x2="79" y2="51" stroke="#064E3B" stroke-width="14" stroke-linecap="round"/>
+        <line x1="51" y1="79" x2="30" y2="100" stroke="#064E3B" stroke-width="14" stroke-linecap="round"/>
+        <circle cx="65" cy="65" r="9" fill="var(--paper)" stroke="#064E3B" stroke-width="4"/>
       </svg>
       HICKS Advisory
     </a>
@@ -555,7 +551,6 @@
 
 <!-- PRIX -->
 <section class="price-sec">
-  <canvas id="price-particles" aria-hidden="true"></canvas>
   <div class="wrap reveal">
     <h2>Un prix fixe, pas un compteur qui tourne.</h2>
     <p>La régie facture des journées. Ici, <span class="accent">vous connaissez le prix d'avance</span>, et il est attaché à un résultat défini avec vous. Si le résultat n'est pas au rendez-vous, on ne passe pas à la suite. <span class="accent">C'est moi qui porte le risque de livraison, pas vous.</span></p>
@@ -750,7 +745,6 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   if(reduce) return
   var dpr = Math.min(window.devicePixelRatio || 1, 2)
-  var MAXV = 0.55
   function initField(canvasId){
     var cv = document.getElementById(canvasId)
     if(!cv) return
@@ -759,10 +753,12 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
     function spawn(){
       return {
         x: Math.random()*W, y: Math.random()*H,
-        vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5,
-        r: 0.7 + Math.random()*1.8,
-        a: Math.random()*0.35, amax: 0.14 + Math.random()*0.4,
-        coral: Math.random() < 0.38
+        v: 0.16 + Math.random()*0.20,
+        ph: Math.random()*6.283,
+        amp: 0.10 + Math.random()*0.22,
+        r: 0.6 + Math.random()*1.0,
+        a: 0, amax: 0.09 + Math.random()*0.13,
+        acc: Math.random() < 0.08
       }
     }
     function resize(){
@@ -770,7 +766,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
       W = r.width; H = r.height
       cv.width = Math.max(1, Math.round(W*dpr)); cv.height = Math.max(1, Math.round(H*dpr))
       ctx.setTransform(dpr,0,0,dpr,0,0)
-      var target = Math.round(Math.min(72, W/20))
+      var target = Math.round(Math.min(46, W/30))
       while(parts.length < target) parts.push(spawn())
       parts.length = target
     }
@@ -778,17 +774,14 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
       ctx.clearRect(0,0,W,H)
       for(var i=0;i<parts.length;i++){
         var p = parts[i]
-        p.vx += (Math.random()-0.5)*0.05
-        p.vy += (Math.random()-0.5)*0.05
-        var sp = Math.sqrt(p.vx*p.vx + p.vy*p.vy)
-        if(sp > MAXV){ p.vx = p.vx/sp*MAXV; p.vy = p.vy/sp*MAXV }
-        p.x += p.vx; p.y += p.vy
-        if(p.x < -8) p.x = W+8; else if(p.x > W+8) p.x = -8
+        p.x += p.v
+        p.y += Math.sin(p.x*0.011 + p.ph) * p.amp * 0.11
+        if(p.x > W+10){ p.x = -10; p.y = Math.random()*H; p.a = 0 }
         if(p.y < -8) p.y = H+8; else if(p.y > H+8) p.y = -8
-        if(p.a < p.amax) p.a += 0.006
+        if(p.a < p.amax) p.a += 0.004
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, 6.283)
-        ctx.fillStyle = p.coral ? 'rgba(216,180,120,'+p.a.toFixed(3)+')' : 'rgba(255,255,255,'+p.a.toFixed(3)+')'
+        ctx.fillStyle = p.acc ? 'rgba(216,180,120,'+p.a.toFixed(3)+')' : 'rgba(214,232,224,'+p.a.toFixed(3)+')'
         ctx.fill()
       }
       requestAnimationFrame(step)
@@ -799,7 +792,6 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
     requestAnimationFrame(step)
   }
   initField('hero-particles')
-  initField('price-particles')
 })()
 </script>
 
