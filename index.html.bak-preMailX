@@ -1,0 +1,846 @@
+<!-- ============================================================
+     RÈGLE IMPÉRATIVE — À RESPECTER À CHAQUE RENDU
+     INTERDIT : tirets cadratins (—) dans tout le contenu.
+     Remplacements autorisés selon le contexte :
+       · (point médian) → séparateurs de labels / niveaux
+       : (deux-points)  → avant une explication ou un résultat
+       , (virgule)      → coordination de clauses
+       . (point)        → séparation de phrases
+       ; (point-virgule)→ deux propositions liées
+     Ne jamais utiliser — ni --.
+============================================================ -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HICKS Advisory : Automatisation IA pour PME</title>
+<meta name="description" content="Xavier Bottex installe chez les PME des automatisations IA qui tiennent en production. 22 ans d'infrastructure, ex-CTO du cloud souverain monégasque.">
+<link rel="canonical" href="https://hicks-advisory.fr">
+<link rel="icon" type="image/svg+xml" href="/HICKS_Icone.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hicks-advisory.fr">
+<meta property="og:title" content="HICKS Advisory : Automatisation IA pour PME">
+<meta property="og:description" content="Des automatisations IA qui tiennent en production, pas des démos. Par Xavier Bottex, ex-CTO du cloud souverain monégasque.">
+<meta property="og:image" content="https://hicks-advisory.fr/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========== TOKENS ========== */
+:root {
+  --navy:       #0F1E3D;
+  --navy-light: #1B2A4E;
+  --navy-dark:  #0A1428;
+  --coral:      #FF6B47;
+  --coral-light:#FF8A6B;
+  --coral-dark: #E85A37;
+  --white:      #FFFFFF;
+  --offwhite:   #F5F6FA;
+  --mid:        #8892A4;
+  --ink-80:     rgba(255,255,255,0.82);
+  --hair:       rgba(255,255,255,0.08);
+  --hair-strong:rgba(255,255,255,0.12);
+  --radius-card: 14px;
+  --radius-btn:  10px;
+  --z-nav: 100;
+  --z-content: 10;
+  --display: 'Schibsted Grotesk', system-ui, sans-serif;
+  --body:    'Hanken Grotesk', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 96px; }
+body {
+  font-family: var(--body);
+  background: var(--navy-dark);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  line-height: 1.08;
+  text-wrap: balance;
+  color: var(--offwhite);
+}
+h1 { font-size: clamp(2.5rem, 5.4vw, 4.2rem); font-weight: 800; letter-spacing: -0.04em; }
+h2 { font-size: clamp(1.85rem, 3.4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; }
+h3 { font-size: clamp(1.05rem, 1.8vw, 1.2rem); font-weight: 600; letter-spacing: -0.01em; }
+p  { line-height: 1.72; color: var(--mid); text-wrap: pretty; }
+.coral { color: var(--coral); }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.eyebrow {
+  font-family: var(--display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--coral);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 28px; border-radius: var(--radius-btn);
+  font-family: var(--display); font-size: 0.98rem; font-weight: 600;
+  cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  border: none; touch-action: manipulation; min-height: 48px;
+}
+.btn:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--coral); color: var(--white); box-shadow: 0 4px 20px rgba(255,107,71,0.32); }
+.btn-primary:hover { background: var(--coral-light); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(255,107,71,0.42); }
+.btn-ghost { background: transparent; color: var(--offwhite); border: 1px solid var(--hair-strong); }
+.btn-ghost:hover { border-color: var(--coral); color: var(--coral); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-nav);
+  padding: 0; transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+nav.scrolled {
+  background: rgba(10, 20, 40, 0.86); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--hair); box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; gap: 32px; }
+.logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.logo-mark { width: 40px; height: 40px; flex-shrink: 0; }
+.logo-text { display: flex; flex-direction: column; gap: 1px; }
+.logo-name { font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.06em; color: var(--white); line-height: 1; }
+.logo-sub { font-family: var(--body); font-size: 0.6rem; letter-spacing: 0.16em; color: var(--coral); text-transform: uppercase; font-weight: 600; }
+.nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+.nav-links a { font-family: var(--display); font-size: 0.92rem; font-weight: 500; color: var(--mid); transition: color 0.2s ease; }
+.nav-links a:hover { color: var(--white); }
+.nav-cta { margin-left: 4px; padding: 11px 22px; min-height: 44px; font-size: 0.92rem; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.25s ease; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,20,40,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--white); transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--coral); }
+
+/* ── HERO ── */
+.hero { min-height: 100dvh; display: flex; align-items: center; position: relative; padding: 120px 0 88px; overflow: hidden; }
+.hero-glow {
+  position: absolute; top: -10%; right: -8%; width: 60vw; height: 60vw; max-width: 760px; max-height: 760px;
+  background: radial-gradient(circle, rgba(255,107,71,0.10) 0%, rgba(255,107,71,0.03) 35%, transparent 65%);
+  pointer-events: none; z-index: 1;
+}
+.hero-inner {
+  position: relative; z-index: var(--z-content);
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center; width: 100%;
+}
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; color: var(--coral); margin-bottom: 26px; }
+.hero-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--coral); }
+.hero h1 { margin-bottom: 22px; font-size: clamp(2rem, 3.6vw, 3.05rem); }
+.hero-line-1 { color: var(--offwhite); display: block; }
+.hero-line-2 { color: var(--coral); display: block; }
+.hero-sub { font-size: 1.1rem; line-height: 1.7; color: var(--mid); max-width: 36ch; margin-bottom: 34px; }
+.hero-sub strong { color: var(--ink-80); font-weight: 600; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 38px; }
+.hero-cred { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--hair); padding-top: 22px; }
+.hero-cred-item { font-family: var(--display); font-size: 0.8rem; font-weight: 500; color: var(--mid); padding: 4px 18px 4px 0; white-space: nowrap; }
+.hero-cred-item + .hero-cred-item { padding-left: 18px; border-left: 1px solid var(--hair-strong); }
+/* hero visual */
+.hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+.hero-mark-frame {
+  position: relative; width: 100%; max-width: 400px; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-mark-frame::before {
+  content: ''; position: absolute; inset: -6%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,107,71,0.12), transparent 62%);
+  pointer-events: none;
+}
+.hero-mark-svg { position: relative; width: 88%; height: auto; }
+
+/* ── SECTION BASE ── */
+section { position: relative; z-index: var(--z-content); }
+.section-header { display: flex; flex-direction: column; gap: 14px; max-width: 760px; }
+.section-header.centered { align-items: center; text-align: center; margin: 0 auto; }
+.section-header p { max-width: 56ch; font-size: 1.02rem; }
+.section-header.centered p { margin: 0 auto; }
+
+/* ── MÉTHODE ── */
+.methode { padding: 104px 0; }
+.methode-flow { margin-top: 52px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--hair); border: 1px solid var(--hair); border-radius: var(--radius-card); overflow: hidden; }
+.methode-step { background: var(--navy-dark); padding: 34px 30px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s ease; }
+.methode-step:hover { background: rgba(15,30,61,0.6); }
+.methode-figure { font-family: var(--display); font-size: 2.2rem; font-weight: 800; line-height: 1; color: var(--navy-light); letter-spacing: -0.04em; }
+.methode-step:hover .methode-figure { color: rgba(255,107,71,0.55); }
+.methode-step h3 { color: var(--offwhite); }
+.methode-step p { font-size: 0.96rem; line-height: 1.7; max-width: 46ch; }
+.methode-cadence { margin-top: auto; padding-top: 10px; font-family: var(--display); font-size: 0.82rem; font-weight: 500; color: var(--mid); }
+
+/* ── PREUVE ── */
+.preuve { padding: 28px 0; }
+.preuve-inner {
+  border-top: 1px solid rgba(255,107,71,0.22);
+  border-bottom: 1px solid rgba(255,107,71,0.22);
+  background: rgba(255,107,71,0.035);
+  padding: 52px 36px;
+  display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center;
+}
+.preuve-stat { display: flex; flex-direction: column; gap: 4px; border-right: 1px solid var(--hair-strong); padding-right: 40px; }
+.preuve-num { font-family: var(--display); font-size: clamp(2.6rem, 5vw, 3.6rem); font-weight: 800; color: var(--coral); line-height: 1; letter-spacing: -0.04em; }
+.preuve-unit { font-family: var(--display); font-size: 0.86rem; font-weight: 500; color: var(--mid); }
+.preuve-text { font-size: 1.06rem; line-height: 1.7; color: var(--mid); max-width: 62ch; }
+.preuve-text strong { color: var(--ink-80); font-weight: 600; }
+.preuve-tag { display: block; margin-top: 14px; font-family: var(--display); font-size: 0.82rem; font-weight: 600; color: var(--coral); }
+
+/* ── SOLUTIONS ── */
+.solutions { padding: 104px 0; }
+.solutions-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 48px;
+  background: var(--hair); border: 1px solid var(--hair); border-radius: var(--radius-card); overflow: hidden;
+}
+.sol-item { background: var(--navy-dark); padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; transition: background 0.2s ease; }
+.sol-item:hover { background: rgba(15,30,61,0.95); }
+.sol-item.sol-cta { background: rgba(255,107,71,0.045); justify-content: center; align-items: flex-start; gap: 8px; }
+.sol-name { font-family: var(--display); font-size: 1.22rem; font-weight: 700; color: var(--offwhite); letter-spacing: -0.03em; line-height: 1; }
+.sol-name .x { color: var(--coral); }
+.sol-desc { font-size: 0.84rem; line-height: 1.5; color: var(--mid); margin-top: 2px; }
+.sol-tag { font-family: var(--body); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.01em; color: rgba(255,107,71,0.85); margin-top: 8px; }
+.sol-cta-text { font-family: var(--display); font-size: 0.98rem; font-weight: 600; color: var(--offwhite); }
+.sol-cta-sub { font-size: 0.82rem; color: var(--coral); font-weight: 500; }
+
+/* ── OFFRES ── */
+.offres { padding: 104px 0; }
+.offres-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 52px; background: var(--hair); border: 1px solid var(--hair); border-radius: var(--radius-card); overflow: hidden; }
+.offre-card { padding: 34px 28px; display: flex; flex-direction: column; gap: 18px; position: relative; overflow: hidden; background: var(--navy-dark); transition: background 0.2s ease; }
+.offre-card:hover { background: rgba(15,30,61,0.95); }
+.offre-card.featured { background: rgba(255,107,71,0.05); }
+.offre-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--coral-dark), var(--coral), var(--coral-light)); }
+.offre-head h3 { color: var(--offwhite); font-size: 1.22rem; font-weight: 700; }
+.offre-format { font-size: 0.86rem; color: var(--coral); font-family: var(--display); font-weight: 500; margin-top: 6px; }
+.offre-divider { height: 1px; background: var(--hair); }
+.offre-features { display: flex; flex-direction: column; gap: 12px; list-style: none; }
+.offre-features li { font-size: 0.9rem; color: rgba(255,255,255,0.72); line-height: 1.55; padding-left: 18px; position: relative; }
+.offre-features li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 1px; background: var(--coral); }
+.offre-cta { margin-top: auto; }
+.offres-footnote { text-align: center; margin-top: 26px; font-size: 0.86rem; color: var(--mid); }
+
+/* ── PROFIL + CONTACT ── */
+.profil-contact { padding: 104px 0 84px; position: relative; }
+.profil-contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; margin-top: 56px; align-items: start; }
+.profil-col { display: flex; flex-direction: column; gap: 26px; }
+.profil-photo-wrap { width: 100%; max-width: 300px; aspect-ratio: 4/5; border-radius: var(--radius-card); overflow: hidden; border: 1px solid rgba(255,107,71,0.18); background: rgba(27,42,78,0.5); display: flex; align-items: center; justify-content: center; }
+.profil-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profil-photo-fallback { font-family: var(--display); font-size: 1.4rem; font-weight: 700; color: rgba(136,146,164,0.4); letter-spacing: 0.1em; text-align: center; padding: 24px; }
+.profil-text { font-size: 1rem; line-height: 1.78; color: rgba(136,146,164,0.92); }
+.profil-text strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+.profil-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { padding: 7px 14px; background: rgba(27,42,78,0.8); border: 1px solid rgba(255,255,255,0.09); border-radius: 100px; font-family: var(--display); font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); transition: border-color 0.2s, color 0.2s; }
+.badge:hover { border-color: var(--coral); color: var(--coral); }
+
+/* Contact col */
+.contact-col { display: flex; flex-direction: column; gap: 22px; }
+.contact-col h3 { color: var(--offwhite); font-size: 1.35rem; }
+.contact-col > p { font-size: 1.02rem; max-width: 46ch; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-family: var(--display); font-size: 0.82rem; font-weight: 500; color: rgba(255,255,255,0.6); }
+.field input,
+.field textarea {
+  padding: 14px 18px; border-radius: var(--radius-btn);
+  border: 1px solid var(--hair-strong); background: rgba(255,255,255,0.06);
+  color: var(--white); font-size: 1rem; font-family: var(--body);
+  transition: border-color 0.2s ease, background 0.2s ease; outline: none;
+}
+.field input:focus,
+.field textarea:focus { border-color: rgba(255,107,71,0.55); background: rgba(255,255,255,0.09); }
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(136,146,164,0.5); }
+.field textarea { resize: vertical; min-height: 120px; }
+.contact-info-strip { display: flex; flex-wrap: wrap; gap: 14px 28px; padding-top: 4px; }
+.contact-info-item { display: flex; align-items: center; gap: 8px; font-size: 0.86rem; color: var(--mid); }
+.contact-info-item svg { width: 15px; height: 15px; stroke: var(--coral); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.contact-info-item a { transition: color 0.2s; }
+.contact-info-item a:hover { color: var(--coral); }
+#form-success { display:none; color: #4ade80; text-align: center; padding: 14px; font-size: 0.92rem; font-family: var(--display); }
+#form-error { display:none; color: #fca5a5; text-align: center; padding: 14px; font-size: 0.92rem; font-family: var(--display); line-height: 1.6; }
+#form-error a { color: var(--coral); text-decoration: underline; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 26px 0; background: rgba(10,20,40,0.8); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.footer-left { display: flex; align-items: center; gap: 12px; }
+.footer-logo { opacity: 0.6; display: flex; align-items: center; gap: 8px; }
+.footer-logo-name { font-family: var(--display); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; }
+.footer-copy { font-size: 0.78rem; color: var(--mid); }
+.footer-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.footer-link { font-size: 0.78rem; color: var(--mid); transition: color 0.2s; }
+.footer-link:hover { color: var(--offwhite); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { order: -1; }
+  .hero-mark-frame { max-width: 260px; }
+  .hero-sub { max-width: 52ch; }
+  .solutions-strip { grid-template-columns: repeat(2, 1fr); }
+  .offres-grid { grid-template-columns: 1fr; }
+  .profil-contact-grid { grid-template-columns: 1fr; gap: 56px; }
+  .profil-photo-wrap { max-width: 220px; }
+}
+@media (max-width: 768px) {
+  h1 { font-size: clamp(2.2rem, 8vw, 2.9rem); }
+  .hero h1 { font-size: clamp(1.75rem, 6.8vw, 2.3rem); }
+  h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
+  .nav-links { display: none; }
+  .nav-inner { gap: 12px; }
+  .nav-cta { padding: 9px 16px; min-height: 40px; font-size: 0.85rem; margin-left: auto; }
+  .hamburger { display: flex; }
+  .hero { padding: 100px 0 64px; }
+  .hero-cred { gap: 10px; flex-direction: column; align-items: flex-start; }
+  .hero-cred-item + .hero-cred-item { padding-left: 0; border-left: none; padding-top: 10px; border-top: 1px solid var(--hair); }
+  .methode { padding: 76px 0; }
+  .methode-flow { grid-template-columns: 1fr; }
+  .preuve-inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px; }
+  .preuve-stat { border-right: none; border-bottom: 1px solid var(--hair-strong); padding-right: 0; padding-bottom: 20px; flex-direction: row; align-items: baseline; gap: 12px; }
+  .solutions { padding: 76px 0; }
+  .offres { padding: 76px 0; }
+  .profil-contact { padding: 76px 0 60px; }
+  .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
+  .footer-right { justify-content: center; }
+}
+@media (max-width: 480px) {
+  .container { padding: 0 16px; }
+  .solutions-strip { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" style="position:absolute;left:-9999px;top:4px;padding:8px 16px;background:var(--coral);color:#fff;border-radius:6px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;z-index:9999" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Passer au contenu principal</a>
+
+<!-- ── NAV ── -->
+<nav id="nav" role="navigation" aria-label="Navigation principale">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="HICKS Advisory, Accueil">
+        <svg class="logo-mark" width="40" height="40" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="130" height="130" rx="26" fill="#0F1E3D"/>
+          <circle cx="65" cy="65" r="44" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+          <circle cx="94.4" cy="32.3" r="3.6" fill="#FFFFFF"/>
+          <line x1="44" y1="44" x2="86" y2="86" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+          <line x1="86" y1="44" x2="44" y2="86" stroke="#FF6B47" stroke-width="9" stroke-linecap="round"/>
+          <circle cx="65" cy="65" r="7" fill="#0F1E3D" stroke="#FFFFFF" stroke-width="2"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-name">HICKS</span>
+          <span class="logo-sub">Advisory</span>
+        </div>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#methode">Méthode</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#offres">Offres</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta" aria-label="Prendre contact avec HICKS">Prendre contact</a>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu de navigation" aria-modal="true">
+  <a href="#methode" onclick="closeMobile()">Méthode</a>
+  <a href="#solutions" onclick="closeMobile()">Solutions</a>
+  <a href="#offres" onclick="closeMobile()">Offres</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="#contact" class="btn btn-primary" onclick="closeMobile()">Prendre contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner reveal">
+
+      <div class="hero-copy">
+        <span class="hero-eyebrow">Disponible · Côte d'Azur et distanciel</span>
+
+        <h1 id="hero-title">
+          <span class="hero-line-1">L'IA reprend le travail répétitif qui ralentit vos journées.</span>
+          <span class="hero-line-2">Vous reprenez le temps pour votre métier.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Après 22 ans en infrastructure, dont 3 comme CTO du cloud souverain monégasque, j'installe chez les PME des automatisations qui <strong>tiennent en production</strong>, pas des démos.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Prenons contact</a>
+          <a href="#methode" class="btn btn-ghost">Voir la méthode</a>
+        </div>
+
+        <div class="hero-cred" aria-label="Expérience">
+          <span class="hero-cred-item">Ex-CTO, Cloud Souverain Monaco</span>
+          <span class="hero-cred-item">22 ans sur le terrain</span>
+          <span class="hero-cred-item">Enseignant depuis 2001</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-mark-frame">
+          <svg class="hero-mark-svg" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="65" cy="65" r="56" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+            <circle cx="102.5" cy="23.4" r="4.5" fill="#FFFFFF"/>
+            <line x1="36" y1="36" x2="94" y2="94" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+            <line x1="94" y1="36" x2="36" y2="94" stroke="#FF6B47" stroke-width="12" stroke-linecap="round"/>
+            <circle cx="65" cy="65" r="9" fill="#0A1428" stroke="#FFFFFF" stroke-width="2.5"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PREUVE ── -->
+<section class="preuve" aria-label="Déploiement récent">
+  <div class="container">
+    <div class="preuve-inner reveal">
+      <div class="preuve-stat">
+        <span class="preuve-num">~100</span>
+        <span class="preuve-unit">emails / jour triés par l'IA</span>
+      </div>
+      <div>
+        <p class="preuve-text">
+          Le mois dernier, pour un cabinet de formalités juridiques à Paris : une centaine d'emails par jour lus, classés et routés vers la bonne personne de l'équipe, avec alerte immédiate sur les urgences et les clients mécontents. <strong>Installé sur leur Microsoft 365 en quelques jours, sans rien changer à leurs outils.</strong>
+        </p>
+        <span class="preuve-tag">Cas réel, déployé en production.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MÉTHODE ── -->
+<section class="methode" id="methode" aria-labelledby="methode-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 id="methode-title">Quatre étapes, un seul objectif :<br>vous faire <span class="coral">regagner du temps.</span></h2>
+      <p>Pas de big bang ni de refonte de vos outils. On avance par chantiers courts, mesurables, et vous gardez la main à chaque étape.</p>
+    </div>
+    <div class="methode-flow" role="list">
+
+      <div class="methode-step reveal" role="listitem">
+        <span class="methode-figure" aria-hidden="true">1</span>
+        <h3>Audit</h3>
+        <p>Cartographie de vos processus, identification des blocages, sélection des chantiers rentables. Vous repartez avec un plan d'action concret et priorisé.</p>
+        <span class="methode-cadence">Une demi-journée, livrable garanti</span>
+      </div>
+
+      <div class="methode-step reveal reveal-delay-1" role="listitem">
+        <span class="methode-figure" aria-hidden="true">2</span>
+        <h3>Déploiement</h3>
+        <p>Intégration de la solution directement dans votre environnement de travail. Opérationnel en quelques jours, sans compétences techniques côté équipe.</p>
+        <span class="methode-cadence">Clé en main, 5 à 10 jours</span>
+      </div>
+
+      <div class="methode-step reveal reveal-delay-2" role="listitem">
+        <span class="methode-figure" aria-hidden="true">3</span>
+        <h3>Ajustement</h3>
+        <p>On affine sur vos vrais cas métier : règles de gestion, cas particuliers, besoins spécifiques. Votre équipe est formée et impliquée à chaque étape.</p>
+        <span class="methode-cadence">Sur mesure, avec votre équipe</span>
+      </div>
+
+      <div class="methode-step reveal reveal-delay-3" role="listitem">
+        <span class="methode-figure" aria-hidden="true">4</span>
+        <h3>Supervision</h3>
+        <p>Vos automatisations tournent, je veille dessus. Incidents détectés et traités avant que vous les remarquiez, évolutions au fil de vos besoins.</p>
+        <span class="methode-cadence">Mensuel, sans engagement</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ── -->
+<section class="solutions" id="solutions" aria-labelledby="solutions-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="eyebrow">Solutions clé en main</p>
+      <h2 id="solutions-title">Un problème précis.<br>Une solution <span class="coral">déployée en quelques jours.</span></h2>
+    </div>
+    <div class="solutions-strip" role="list">
+
+      <div class="sol-item reveal" role="listitem">
+        <p class="sol-name">Relance<span class="x">X</span></p>
+        <p class="sol-desc">Ne plus perdre un devis ou une facture dans le silence</p>
+        <span class="sol-tag">Email, SMS, devis et factures</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-1" role="listitem">
+        <p class="sol-name">Saisie<span class="x">X</span></p>
+        <p class="sol-desc">Arrêter de ressaisir ce qui peut être lu automatiquement</p>
+        <span class="sol-tag">OCR IA, extraction, zéro ressaisie</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-2" role="listitem">
+        <p class="sol-name">Recept<span class="x">X</span></p>
+        <p class="sol-desc">Ne plus rater un appel entrant, même hors bureau</p>
+        <span class="sol-tag">Vocal IA, 24h/24, agenda automatique</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-3" role="listitem">
+        <p class="sol-name">Mail<span class="x">X</span></p>
+        <p class="sol-desc">Reprendre le contrôle de sa boîte email</p>
+        <span class="sol-tag">O365, Gmail, classification IA</span>
+      </div>
+
+      <div class="sol-item reveal" role="listitem">
+        <p class="sol-name">Contact<span class="x">X</span></p>
+        <p class="sol-desc">Ne plus rater un prospect entrant</p>
+        <span class="sol-tag">Formulaire, DM, notification temps réel</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-1" role="listitem">
+        <p class="sol-name">Reput<span class="x">X</span></p>
+        <p class="sol-desc">Surveiller et soigner sa réputation en ligne</p>
+        <span class="sol-tag">Google, alerte, réponse IA validée</span>
+      </div>
+
+      <div class="sol-item reveal reveal-delay-2" role="listitem">
+        <p class="sol-name">Audit<span class="x">X</span></p>
+        <p class="sol-desc">Identifier où votre temps part vraiment</p>
+        <span class="sol-tag">Diagnostic, roadmap, 48h</span>
+      </div>
+
+      <a href="#contact" class="sol-item sol-cta reveal reveal-delay-3" role="listitem" aria-label="Discuter d'une solution sur mesure">
+        <p class="sol-cta-text">Votre cas n'est pas dans la liste ?</p>
+        <p class="sol-cta-sub">Discutons-en</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFRES ── -->
+<section class="offres" id="offres" aria-labelledby="offres-title">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <h2 id="offres-title">Une solution déployée.<br>Un service qui <span class="coral">veille dessus.</span></h2>
+      <p>On démarre par un audit ou directement par un pack. Chaque automatisation livrée peut ensuite être supervisée en continu.</p>
+    </div>
+    <div class="offres-grid">
+
+      <div class="offre-card reveal">
+        <div class="offre-head">
+          <h3>Audit IA</h3>
+          <p class="offre-format">Forfait, une demi-journée</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li>On identifie ce qui vous fera vraiment gagner du temps, avant d'investir</li>
+          <li>Livrable : rapport priorisé avec 3 à 5 actions concrètes</li>
+          <li>Résultat sous 48h</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="Démarrer avec un audit">Démarrer par un audit</a>
+      </div>
+
+      <div class="offre-card featured reveal reveal-delay-1">
+        <div class="offre-head">
+          <h3>Pack clé en main</h3>
+          <p class="offre-format">Prix fixe, déployé en 5 à 10 jours</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li>Solution déployée sur votre infrastructure, sans changer vos outils</li>
+          <li>Scope défini, livrable garanti, formation incluse</li>
+          <li>Extensions sur mesure en packs d'heures, selon vos besoins</li>
+          <li>30 jours de support post-livraison</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary offre-cta" aria-label="Choisir une solution">Choisir une solution</a>
+      </div>
+
+      <div class="offre-card reveal reveal-delay-2">
+        <div class="offre-head">
+          <h3>Supervision HICKS</h3>
+          <p class="offre-format">Mensuel, sans engagement</p>
+        </div>
+        <div class="offre-divider"></div>
+        <ul class="offre-features" role="list">
+          <li>Vos automatisations surveillées en continu, incidents détectés avant vous</li>
+          <li>Maintenance, ajustements et petites évolutions inclus</li>
+          <li>Un interlocuteur unique qui connaît votre système</li>
+          <li>Renouvelable mois par mois, arrêt quand vous voulez</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost offre-cta" aria-label="En savoir plus sur la supervision">En discuter</a>
+      </div>
+
+    </div>
+    <p class="offres-footnote">Chaque offre commence par un appel découverte de 30 min, gratuit, sans engagement. TVA non applicable, art. 293B du CGI.</p>
+  </div>
+</section>
+
+<!-- ── PROFIL + CONTACT ── -->
+<section class="profil-contact" id="profil" aria-labelledby="contact-title">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <h2 id="contact-title">Il y a du temps à regagner<br>dans votre activité.</h2>
+    </div>
+
+    <div class="profil-contact-grid">
+
+      <!-- Profil -->
+      <div class="profil-col reveal">
+        <div class="profil-photo-wrap" aria-label="Photo de Xavier Bottex">
+          <img
+            src="xavier.jpg"
+            alt="Xavier Bottex, fondateur de HICKS Advisory"
+            class="profil-photo"
+            width="600"
+            height="900"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <p class="profil-photo-fallback" style="display:none;">XB</p>
+        </div>
+
+        <p class="profil-text">
+          J'ai passé 22 ans à accompagner des organisations dans leurs transformations numériques. Pas en livrant des solutions clé en main, mais en <strong>embarquant les équipes</strong>, en levant les résistances, en transmettant.
+        </p>
+        <p class="profil-text">
+          Ex-CTO du Cloud Souverain de la Principauté de Monaco, j'ai appris ce que les consultants techniques oublient souvent : <strong>le vrai obstacle, c'est rarement la technologie.</strong> C'est la confiance, la pédagogie, et la compréhension des enjeux métier.
+        </p>
+
+        <div class="profil-badges" role="list" aria-label="Domaines d'expertise">
+          <span class="badge" role="listitem">Automatisation IA</span>
+          <span class="badge" role="listitem">Transformation digitale</span>
+          <span class="badge" role="listitem">Cloud souverain</span>
+          <span class="badge" role="listitem">Conduite du changement</span>
+          <span class="badge" role="listitem">Pédagogie et formation</span>
+          <span class="badge" role="listitem">Architecture SI</span>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="contact-col reveal reveal-delay-1" id="contact">
+        <h3>Écrivez-moi, je réponds sous 24h</h3>
+        <p>Un appel de 30 minutes suffit pour savoir si on peut travailler ensemble. Pas de pitch, juste une conversation directe sur vos vrais enjeux.</p>
+
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <input type="hidden" name="access_key" value="677010c2-ceb8-4f9b-b43d-287a6fb13ee2">
+          <input type="hidden" name="subject" value="Nouveau contact HICKS Advisory">
+          <input type="hidden" name="from_name" value="HICKS Advisory">
+          <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
+
+          <div class="field">
+            <label for="contact-name">Nom</label>
+            <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email" placeholder="votre@email.fr" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" placeholder="Décrivez votre activité et ce que vous aimeriez automatiser." rows="4" required></textarea>
+          </div>
+
+          <button id="contact-submit" type="submit" class="btn btn-primary" style="width:100%;">
+            Envoyer
+          </button>
+          <div id="form-success" role="status">
+            Message envoyé. Je vous réponds sous 24h.
+          </div>
+          <div id="form-error" role="alert">
+            L'envoi a échoué. Réessayez, ou écrivez-moi directement : <a href="mailto:xavier.bottex@hicks-advisory.fr">xavier.bottex@hicks-advisory.fr</a>
+          </div>
+        </form>
+
+        <div class="contact-info-strip">
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:xavier.bottex@hicks-advisory.fr">xavier.bottex@hicks-advisory.fr</a>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+33620398990">06 20 39 89 90</a>
+          </div>
+          <div class="contact-info-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Saint-Cézaire (06), déplacement et distanciel</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-logo" aria-label="HICKS Advisory">
+          <svg width="24" height="24" viewBox="0 0 130 130" aria-hidden="true">
+            <rect width="130" height="130" fill="#0F1E3D" rx="16"/>
+            <line x1="32" y1="32" x2="98" y2="98" stroke="#FF6B47" stroke-width="11" stroke-linecap="round"/>
+            <line x1="98" y1="32" x2="32" y2="98" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+          </svg>
+          <span class="footer-logo-name">HICKS</span>
+        </div>
+        <span class="footer-copy">&copy; 2026 HICKS Advisory, Xavier Bottex</span>
+      </div>
+      <div class="footer-right">
+        <a href="mailto:xavier.bottex@hicks-advisory.fr" class="footer-link">Contact</a>
+        <a href="#offres" class="footer-link">Offres</a>
+        <a href="#profil" class="footer-link">Profil</a>
+        <a href="/mentions-legales" class="footer-link">Mentions légales</a>
+        <a href="/politique-de-confidentialite" class="footer-link">Confidentialité</a>
+        <a href="/cgv" class="footer-link">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV scroll ── */
+const nav = document.getElementById('nav')
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40)
+}, { passive: true })
+
+/* ── Hamburger ── */
+const hamburger = document.getElementById('hamburger')
+const mobileMenu = document.getElementById('mobile-menu')
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open')
+  hamburger.classList.toggle('open', open)
+  hamburger.setAttribute('aria-expanded', open)
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+function closeMobile() {
+  mobileMenu.classList.remove('open')
+  hamburger.classList.remove('open')
+  hamburger.setAttribute('aria-expanded', 'false')
+  document.body.style.overflow = ''
+}
+
+/* ── Scroll reveal ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target) } })
+}, { threshold: 0.1 })
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el))
+
+/* ── Contact form ── */
+;(function() {
+  var form = document.getElementById('contact-form')
+  if (!form) return
+  form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    if (!form.reportValidity()) return
+    var btn = document.getElementById('contact-submit')
+    var successEl = document.getElementById('form-success')
+    var errorEl = document.getElementById('form-error')
+    successEl.style.display = 'none'
+    errorEl.style.display = 'none'
+    btn.disabled = true
+    btn.textContent = 'Envoi…'
+    var data = new FormData(form)
+    var leadPayload = JSON.stringify({
+      name: data.get('name'),
+      email: data.get('email'),
+      message: data.get('message')
+    })
+    function showError() {
+      btn.disabled = false
+      btn.textContent = 'Envoyer'
+      errorEl.style.display = 'block'
+    }
+    fetch('https://n8n.hicks-advisory.fr/webhook/hicks-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Webhook-Secret': '528ed6e7f04af48d12753947e6d109fc48db8ab332645a5703f5f505789d48e7' },
+      body: leadPayload
+    }).catch(function() {})
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      .then(function(r) { return r.json() })
+      .then(function(res) {
+        if (res.success) {
+          successEl.style.display = 'block'
+          btn.style.display = 'none'
+          form.reset()
+        } else {
+          showError()
+        }
+      })
+      .catch(showError)
+  })
+})()
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+  data-cf-beacon='{"token": "80d78cbbc0cd4c5aab11f20a18d6142c"}'></script>
+
+<!-- Crisp Chat -->
+<script type="text/javascript">
+  window.$crisp = [];
+  window.CRISP_WEBSITE_ID = "c94780d0-33ab-49a0-85a1-78d9fc47f0cd";
+  window.$crisp.push(["config", "color:theme", ["#FF6B47"]]);
+  window.$crisp.push(["config", "message:text", ["Bonjour, une question sur l'automatisation IA pour votre activité ? Je suis là."]]);
+  (function () {
+    var d = document;
+    var s = d.createElement("script");
+    s.src = "https://client.crisp.chat/l.js";
+    s.async = 1;
+    d.getElementsByTagName("head")[0].appendChild(s);
+  })();
+</script>
+
+<!-- ── BANDEAU COOKIES ── -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:999; background:rgba(10,20,40,0.97); border-top:1px solid rgba(255,107,71,0.25); backdrop-filter:blur(12px); padding:16px 24px;">
+  <div style="max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+    <p style="font-size:0.85rem; color:#8892A4; line-height:1.6; margin:0; flex:1; min-width:260px;">
+      Ce site utilise des cookies techniques nécessaires à son fonctionnement (Cloudflare, Crisp Chat, protection du formulaire) et des analytics anonymes (Cloudflare Web Analytics).
+      <a href="/politique-de-confidentialite" style="color:#FF6B47; text-decoration:underline;">En savoir plus</a>
+    </p>
+    <div style="display:flex; gap:10px; flex-shrink:0;">
+      <button onclick="cookieConsent('accept')" style="background:#FF6B47; color:#fff; border:none; border-radius:8px; padding:9px 20px; font-family:'Schibsted Grotesk',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer;">Accepter</button>
+      <button onclick="cookieConsent('decline')" style="background:transparent; color:#8892A4; border:1px solid rgba(255,255,255,0.15); border-radius:8px; padding:9px 20px; font-family:'Schibsted Grotesk',sans-serif; font-size:0.85rem; cursor:pointer;">Refuser</button>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  var consent = localStorage.getItem('hicks_cookie_consent');
+  if (!consent) { document.getElementById('cookie-banner').style.display = 'block'; }
+})();
+function cookieConsent(choice) {
+  localStorage.setItem('hicks_cookie_consent', choice);
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+</script>
+</body>
+</html>

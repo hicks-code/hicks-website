@@ -62,8 +62,8 @@
   .btn-ghost:hover{border-color:rgba(255,255,255,.6)}
 
   /* nav */
-  header.nav{position:sticky; top:0; z-index:40; background:rgba(248,249,252,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); transition:box-shadow .25s var(--ease-out-quart), background .25s ease}
-  header.nav.scrolled{background:rgba(248,249,252,.94); box-shadow:0 8px 30px -22px rgba(6,78,59,.5)}
+  header.nav{position:sticky; top:0; z-index:40; background:rgba(252,247,238,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); transition:box-shadow .25s var(--ease-out-quart), background .25s ease}
+  header.nav.scrolled{background:rgba(252,247,238,.94); box-shadow:0 8px 30px -22px rgba(6,78,59,.5)}
   .nav-in{display:flex; align-items:center; justify-content:space-between; height:66px}
   .brand{display:flex; align-items:center; gap:11px; font-family:var(--display); font-weight:700; font-size:18px; color:var(--deep)}
   .brand svg{width:32px; height:32px; flex:0 0 auto; display:block}
@@ -158,7 +158,8 @@
   .tile.lead p{color:#BFD8CD; font-size:16.5px}
   .tile .spacer{flex:1}
   .tile .ex{margin-top:22px; font-size:14.5px; color:#fff; font-weight:600}
-  .tile .ex a{color:var(--acc); border-bottom:1px solid rgba(216,180,120,.5); padding-bottom:1px}
+  .tile.lead .ex a{color:var(--acc); border-bottom-color:rgba(248,231,201,.5)}
+  .tile .ex a{color:var(--acc-dark); border-bottom:1px solid rgba(168,130,60,.45); padding-bottom:1px}
   @media(max-width:820px){
     .bento{grid-template-columns:1fr}
     .tile.lead,.tile.a,.tile.b,.tile.wide{grid-column:auto; grid-row:auto}
@@ -180,7 +181,7 @@
   .ck-syn .c2{color:#1E9E5A; font-weight:700}
   .ck-syn .c3{color:var(--deep); font-weight:700}
   .ck-sec{margin:16px 22px 0; font-family:var(--display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding-left:9px}
-  .ck-sec.coral{color:var(--acc-dark); border-left:3px solid var(--acc)}
+  .ck-sec.coral{color:var(--acc-dark); border-left:3px solid var(--acc-dark)}
   .ck-sec.green{color:#1E9E5A; border-left:3px solid #1E9E5A}
   .ck-list{padding:4px 22px}
   .ck-list.last{padding-bottom:20px}
@@ -265,7 +266,7 @@
   .fl-sub{font-family:var(--body); font-size:12.5px; fill:var(--muted)}
   .fl-sub-inv{fill:#BFD8CD}
   .fl-link{stroke:#BBD2C7; stroke-width:2; fill:none}
-  .fl-dash{stroke:var(--acc); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-dasharray:9 13; animation:flowdash 1.4s linear infinite}
+  .fl-dash{stroke:var(--acc-dark); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-dasharray:9 13; animation:flowdash 1.4s linear infinite}
   @keyframes flowdash{to{stroke-dashoffset:-44}}
   .fl-badge{fill:rgba(216,180,120,.10); stroke:rgba(216,180,120,.34); stroke-width:1}
   .fl-badge-t{font-family:var(--display); font-size:11.5px; font-weight:600; fill:var(--acc-dark); letter-spacing:.04em}
@@ -443,6 +444,29 @@
         <div class="ck-row g"><span class="ck-delai">aujourd'hui</span><span class="ck-who">Camille</span><div class="ck-obj">Boulangerie Prat, contrat de maintenance<span class="ck-q">« Le contrat court-il bien jusqu'en décembre ? »</span></div></div>
         <div class="ck-row g"><span class="ck-delai">hier</span><span class="ck-who">Léa</span><div class="ck-obj">Studio Fontaine, clôture des dossiers d'avril<span class="ck-q">« Pouvons-nous clôturer les dossiers d'avril ? »</span></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Second bloc de preuve : OpenFacturX.
+     Meme langage visuel que le bloc MailX ci-dessus, aucun style nouveau.
+     ATTENTION A LA FORMULATION : Open Consulting est l'EDITEUR, HICKS
+     conçoit et developpe AVEC. C'est exactement ce que dit le site
+     openfacturx.fr, et aucun contrat ne dit autre chose. Ecrire « notre
+     logiciel » creerait une contradiction entre les deux sites. -->
+<section id="facture" class="tex glow-l">
+  <div class="wrap show-grid">
+    <div class="reveal">
+      <div class="eyebrow">Facture électronique</div>
+      <h2 style="margin-top:14px">L'échéance de septembre arrive. Vous êtes prêt ?</h2>
+      <p>Au 1<sup>er</sup> septembre 2026, toutes les entreprises doivent pouvoir recevoir une facture électronique. <strong>Et la vôtre ?</strong> HICKS Advisory conçoit et développe <strong>OpenFacturX</strong> aux côtés d'Open Consulting, qui l'édite.</p>
+    </div>
+    <div class="tile reveal">
+      <div class="kx">OpenFacturX</div>
+      <h3 style="font-size:44px; line-height:1">2026</h3>
+      <p>Réception obligatoire au 1<sup>er</sup> septembre.</p>
+      <div class="spacer"></div>
+      <div class="ex"><a href="https://openfacturx.fr" target="_blank" rel="noopener">Testez par vous-même, sans inscription</a></div>
     </div>
   </div>
 </section>
