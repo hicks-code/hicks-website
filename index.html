@@ -65,9 +65,8 @@
   header.nav{position:sticky; top:0; z-index:40; background:rgba(248,249,252,.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); transition:box-shadow .25s var(--ease-out-quart), background .25s ease}
   header.nav.scrolled{background:rgba(248,249,252,.94); box-shadow:0 8px 30px -22px rgba(15,30,61,.5)}
   .nav-in{display:flex; align-items:center; justify-content:space-between; height:66px}
-  .brand{display:flex; align-items:center; gap:10px; font-family:var(--display); font-weight:700; font-size:18px}
-  .brand .dot{width:26px;height:26px;border-radius:50%;background:var(--navy);position:relative;flex:0 0 auto}
-  .brand .dot::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--coral);transform:scale(1.35);opacity:.9}
+  .brand{display:flex; align-items:center; gap:11px; font-family:var(--display); font-weight:700; font-size:18px; color:var(--navy)}
+  .brand svg{width:32px; height:32px; flex:0 0 auto; display:block}
   .nav-links{display:flex; gap:28px; font-family:var(--display); font-size:15px; color:var(--muted); font-weight:500}
   .nav-links a:hover{color:var(--navy)}
   .nav-cta{display:flex; align-items:center; gap:14px}
@@ -274,7 +273,15 @@
 
 <header class="nav" id="nav">
   <div class="wrap nav-in">
-    <div class="brand"><span class="dot"></span> HICKS Advisory</div>
+    <a class="brand" href="#" aria-label="HICKS Advisory, accueil">
+      <svg viewBox="0 0 130 130" role="img" aria-hidden="true">
+        <rect width="130" height="130" fill="#0F1E3D" rx="20"/>
+        <line x1="32" y1="32" x2="98" y2="98" stroke="#FF6B47" stroke-width="11" stroke-linecap="round"/>
+        <line x1="98" y1="32" x2="32" y2="98" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+        <circle cx="65" cy="65" r="7" fill="#0F1E3D" stroke="#FF6B47" stroke-width="2.5"/>
+      </svg>
+      HICKS Advisory
+    </a>
     <nav class="nav-links">
       <a href="#domaines">Domaines</a>
       <a href="#preuve">Preuve</a>
@@ -306,10 +313,11 @@
   </svg>
   <div class="hero-mark" aria-hidden="true">
     <svg viewBox="0 0 130 130">
-      <circle cx="65" cy="65" r="58" fill="none" stroke="#FF6B47" stroke-width="2"/>
-      <circle cx="112" cy="40" r="6" fill="#FF6B47"/>
-      <line x1="38" y1="38" x2="92" y2="92" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
-      <line x1="92" y1="38" x2="38" y2="92" stroke="#FF6B47" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="65" cy="65" r="44" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="94.4" cy="32.3" r="3.6" fill="#FFFFFF"/>
+      <line x1="44" y1="44" x2="86" y2="86" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+      <line x1="86" y1="44" x2="44" y2="86" stroke="#FF6B47" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="65" cy="65" r="7" fill="#0F1E3D" stroke="#FFFFFF" stroke-width="2"/>
     </svg>
   </div>
   <div class="wrap hero-grid">
