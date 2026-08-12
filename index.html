@@ -90,8 +90,18 @@
     -webkit-mask-image:radial-gradient(circle at 72% 44%, #000, transparent 72%);
     mask-image:radial-gradient(circle at 72% 44%, #000, transparent 72%)}
   .hero::after{content:"";position:absolute;right:-140px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,107,71,.22), transparent 62%); pointer-events:none; z-index:0}
-  .hero-mark{position:absolute; left:-70px; bottom:-90px; width:340px; height:340px; opacity:.05; pointer-events:none; z-index:0}
+  .hero-mark{position:absolute; left:-70px; bottom:-90px; width:340px; height:340px; opacity:.09; pointer-events:none; z-index:0}
   .hero-mark svg{width:100%; height:100%}
+  .hero-mark .sat{transform-box:view-box; transform-origin:65px 65px; animation:orbit 18s linear infinite}
+  @keyframes orbit{to{transform:rotate(360deg)}}
+  /* impulsions de données qui traversent la grille du hero */
+  .hero-pulse{position:absolute; width:6px; height:6px; border-radius:50%; background:var(--coral); box-shadow:0 0 12px 2px rgba(255,107,71,.6); z-index:0; pointer-events:none; opacity:.85}
+  .hp1{top:22%; left:-2%; animation:pulseX 7s var(--ease-out-quart) infinite}
+  .hp2{top:78%; left:-2%; animation:pulseX 9s var(--ease-out-quart) 2s infinite}
+  .hp3{left:76%; top:-2%; width:5px; height:5px; animation:pulseY 8s var(--ease-out-quart) 1s infinite}
+  @keyframes pulseX{0%{left:-2%; opacity:0} 8%{opacity:.85} 92%{opacity:.85} 100%{left:102%; opacity:0}}
+  @keyframes pulseY{0%{top:-2%; opacity:0} 8%{opacity:.7} 92%{opacity:.7} 100%{top:102%; opacity:0}}
+  @media(prefers-reduced-motion:reduce){ .hero-mark .sat{animation:none} .hero-pulse{display:none} }
   .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; padding:88px 0 92px; position:relative; z-index:1}
   .hero h1{font-size:52px; font-weight:700; animation:rise .7s var(--ease-out-expo) both}
   .hero .sub{color:#C7D0E4; font-size:19px; margin-top:22px; max-width:34ch; animation:rise .7s var(--ease-out-expo) .12s both}
@@ -334,10 +344,13 @@
     <line class="grid-line" x1="24%" y1="0" x2="24%" y2="100%" style="animation-delay:1.2s"/>
     <line class="grid-line" x1="76%" y1="0" x2="76%" y2="100%" style="animation-delay:1.6s"/>
   </svg>
+  <span class="hero-pulse hp1" aria-hidden="true"></span>
+  <span class="hero-pulse hp2" aria-hidden="true"></span>
+  <span class="hero-pulse hp3" aria-hidden="true"></span>
   <div class="hero-mark" aria-hidden="true">
     <svg viewBox="0 0 130 130">
       <circle cx="65" cy="65" r="44" fill="none" stroke="#FFFFFF" stroke-width="2"/>
-      <circle cx="94.4" cy="32.3" r="3.6" fill="#FFFFFF"/>
+      <g class="sat"><circle cx="94.4" cy="32.3" r="3.6" fill="#FFFFFF"/></g>
       <line x1="44" y1="44" x2="86" y2="86" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
       <line x1="86" y1="44" x2="44" y2="86" stroke="#FF6B47" stroke-width="9" stroke-linecap="round"/>
       <circle cx="65" cy="65" r="7" fill="#0F1E3D" stroke="#FFFFFF" stroke-width="2"/>
@@ -354,7 +367,7 @@
     </div>
     <div class="proofcard">
       <div class="tag">Cas réel, en production</div>
-      <div class="big">~285</div>
+      <div class="big">~<span data-count="285">285</span></div>
       <div class="lab">mails par jour lus, classés et routés vers la bonne personne.</div>
       <div class="fine">Cabinet de formalités juridiques, installé sur leur Microsoft 365, sans changer leurs outils.</div>
     </div>
@@ -663,6 +676,17 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
     es.forEach(function(e){ if(e.isIntersecting){ run(); io.disconnect() } })
   }, { threshold:0.4 })
   io.observe(cockpit)
+})()
+
+/* Compteur de la carte preuve (au chargement) */
+;(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  var el = document.querySelector('.proofcard [data-count]')
+  if(!el || reduce) return
+  var target = parseInt(el.getAttribute('data-count'),10)||0, start=null, dur=1100
+  el.textContent='0'
+  function tick(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); el.textContent=Math.round((1-Math.pow(1-p,3))*target); if(p<1)requestAnimationFrame(tick) }
+  setTimeout(function(){ requestAnimationFrame(tick) }, 500)
 })()
 
 /* Contact form: dual send (n8n lead pipeline + Web3Forms email) */
