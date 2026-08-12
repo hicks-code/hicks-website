@@ -1,0 +1,13 @@
+# Documents internes : jamais servis, jamais mis en cache.
+# Le cache periferique de Cloudflare avait continue a servir DESIGN.md et
+# PRODUCT.md pendant des heures apres leur retrait du depot, avec un
+# s-maxage de 7 jours. no-store empeche toute remise en cache future.
+/*.md
+  Cache-Control: no-store, max-age=0
+  X-Robots-Tag: noindex, nofollow
+
+# La page elle-meme ne doit pas etre indexee comme un document
+/DESIGN.md
+  Cache-Control: no-store, max-age=0
+/PRODUCT.md
+  Cache-Control: no-store, max-age=0
