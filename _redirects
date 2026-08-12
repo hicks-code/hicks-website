@@ -1,0 +1,5 @@
+# Ceinture et bretelles : aucun document interne ne doit etre servi.
+# Les fichiers vivent desormais dans .docs/, que Pages ignore (dossier en point).
+/DESIGN.md    /  404
+/PRODUCT.md   /  404
+/README.md    /  404

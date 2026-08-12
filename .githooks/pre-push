@@ -1,0 +1,62 @@
+#!/bin/sh
+# Garde-fou de publication.
+#
+# Ce depot est servi integralement par Cloudflare Pages : tout fichier suivi
+# par git devient une URL publique. Un secret ecrit dans le HTML est donc
+# lisible par n'importe quel visiteur, quel que soit le nom de la variable.
+#
+# Motif reel : un en-tete X-Webhook-Secret est reste en clair dans index.html
+# du 2026-05-11 au 2026-08-12, soit trois mois, sans que rien ne le detecte.
+#
+# Activation (une fois) :  git config core.hooksPath .githooks
+
+echec=0
+
+# Identifiants publics par conception, a ne pas confondre avec des secrets :
+#   - data-cf-beacon      : jeton Cloudflare Web Analytics, identifie le site
+#   - access_key          : cle de formulaire Web3Forms, publique par design
+TOLERES='data-cf-beacon|cloudflareinsights|access_key'
+
+for f in $(git ls-files | grep -Ev '^\.'); do
+  case "$f" in
+    *.png|*.jpg|*.jpeg|*.gif|*.webp|*.ico|*.svg) continue ;;
+    functions/*) continue ;;   # code serveur : le secret y vient de l'environnement
+  esac
+
+  nettoye=$(grep -Ev "$TOLERES" "$f" 2>/dev/null)
+
+  if printf '%s' "$nettoye" | grep -Eq "(secret|token|api[_-]?key|password|passwd|bearer)[\"']?[[:space:]]*[:=][[:space:]]*[\"'][A-Za-z0-9_-]{16,}"; then
+    echo "REFUS  $f : une valeur ressemblant a un secret est affectee en clair"
+    echec=1
+  fi
+
+  if printf '%s' "$nettoye" | grep -Eq "[\"'][a-f0-9]{40,}[\"']"; then
+    echo "REFUS  $f : chaine hexadecimale de 40 caracteres ou plus, probable cle"
+    echec=1
+  fi
+
+  # un en-tete d'authentification pose depuis le navigateur fuit par construction
+  if printf '%s' "$nettoye" | grep -Eiq "headers[[:space:]]*:.*(x-[a-z-]*secret|authorization)"; then
+    echo "REFUS  $f : en-tete d'authentification envoye depuis le navigateur"
+    echec=1
+  fi
+done
+
+# documents internes qui deviendraient des URL publiques
+for f in $(git ls-files | grep -Ev '^\.' | grep -E '\.md$'); do
+  echo "REFUS  $f : document interne a la racine, il serait servi publiquement"
+  echo "       le deplacer dans .docs/ , que Cloudflare Pages ignore"
+  echec=1
+done
+
+if [ "$echec" -ne 0 ]; then
+  echo ""
+  echo "Publication interrompue. Un secret cote navigateur est public par"
+  echo "construction : le placer dans une variable d'environnement et le"
+  echo "relayer via functions/api/ . Si l'alerte est un faux positif,"
+  echo "ajouter le motif a la liste TOLERES de ce fichier plutot que de"
+  echo "prendre l'habitude de  git push --no-verify ."
+  exit 1
+fi
+
+exit 0
