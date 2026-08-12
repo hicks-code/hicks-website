@@ -224,6 +224,29 @@
   .footer-right{display:flex; flex-wrap:wrap; gap:18px}
   .footer-link:hover{color:#fff}
 
+  /* schéma de flux signature */
+  .flow{background:var(--paper)}
+  .flow-canvas{margin-top:40px; background:var(--white); border:1px solid var(--border); border-radius:16px; padding:26px 20px; overflow-x:auto}
+  .flow-canvas svg{display:block; min-width:760px; width:100%; height:auto}
+  .fl-node{fill:var(--white); stroke:var(--border); stroke-width:1.5}
+  .fl-node-accent{fill:#0F1E3D; stroke:#0F1E3D}
+  .fl-title{font-family:var(--display); font-size:15px; font-weight:600; fill:var(--navy)}
+  .fl-title-inv{fill:#fff}
+  .fl-sub{font-family:var(--body); font-size:12.5px; fill:var(--muted)}
+  .fl-sub-inv{fill:#C7D0E4}
+  .fl-link{stroke:#C3CCDF; stroke-width:2; fill:none}
+  .fl-dash{stroke:var(--coral); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-dasharray:9 13; animation:flowdash 1.4s linear infinite}
+  @keyframes flowdash{to{stroke-dashoffset:-44}}
+  .fl-badge{fill:rgba(255,107,71,.10); stroke:rgba(255,107,71,.34); stroke-width:1}
+  .fl-badge-t{font-family:var(--display); font-size:11.5px; font-weight:600; fill:var(--coral-ink); letter-spacing:.04em}
+  .fl-note{font-family:var(--body); font-size:12.5px; fill:var(--muted-2)}
+  @media(prefers-reduced-motion:reduce){ .fl-dash{animation:none} }
+
+  /* grille animée du hero (technique empruntée : tracé progressif) */
+  .grid-line{stroke:rgba(255,255,255,.14); stroke-width:1; stroke-dasharray:1400; stroke-dashoffset:1400; animation:gridraw 2.4s ease-out forwards}
+  @media(prefers-reduced-motion:reduce){ .grid-line{animation:none; stroke-dashoffset:0; opacity:.5} }
+  @keyframes gridraw{to{stroke-dashoffset:0; opacity:.6}}
+
   /* domain icons */
   .tile .ic{width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(255,107,71,.10); border:1px solid rgba(255,107,71,.24); margin-bottom:4px}
   .tile.lead .ic{background:rgba(255,107,71,.16); border-color:rgba(255,107,71,.32)}
@@ -275,6 +298,12 @@
 <main>
 <!-- HERO -->
 <section class="hero">
+  <svg class="hero-lines" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none">
+    <line class="grid-line" x1="0" y1="22%" x2="100%" y2="22%" style="animation-delay:.4s"/>
+    <line class="grid-line" x1="0" y1="78%" x2="100%" y2="78%" style="animation-delay:.8s"/>
+    <line class="grid-line" x1="24%" y1="0" x2="24%" y2="100%" style="animation-delay:1.2s"/>
+    <line class="grid-line" x1="76%" y1="0" x2="76%" y2="100%" style="animation-delay:1.6s"/>
+  </svg>
   <div class="hero-mark" aria-hidden="true">
     <svg viewBox="0 0 130 130">
       <circle cx="65" cy="65" r="58" fill="none" stroke="#FF6B47" stroke-width="2"/>
@@ -369,6 +398,56 @@
         <div class="row"><span class="pill">Urgent</span> Client mécontent, dossier 2041 <span class="who">à Camille</span></div>
         <div class="row"><span class="pill">Urgent</span> Devis à valider avant 17h <span class="who">à Xavier</span></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHÉMA DE FLUX -->
+<section class="flow">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Sous le capot</div>
+      <h2>Ce qui se passe entre le mail et vous.</h2>
+      <p class="lead">Aucune boîte noire. Voici le chemin exact que suit chaque message, et où vivent vos données.</p>
+    </div>
+    <div class="flow-canvas reveal">
+      <svg viewBox="0 0 880 250" role="img" aria-label="Schéma : un mail entrant est trié par une IA hébergée en France, puis routé vers le cockpit et la bonne personne de l'équipe, avec relance automatique des impayés.">
+        <!-- liens -->
+        <path class="fl-link" d="M172 96 H236"/><path class="fl-dash" d="M172 96 H236"/>
+        <path class="fl-link" d="M404 96 H468"/><path class="fl-dash" d="M404 96 H468"/>
+        <path class="fl-link" d="M636 96 H700"/><path class="fl-dash" d="M636 96 H700"/>
+        <path class="fl-link" d="M552 132 V186 H700"/><path class="fl-dash" d="M552 132 V186 H700"/>
+
+        <!-- 1. Mails entrants -->
+        <rect class="fl-node" x="16" y="60" width="156" height="72" rx="12"/>
+        <text class="fl-title" x="34" y="90">Mails entrants</text>
+        <text class="fl-sub" x="34" y="112">Votre boîte, inchangée</text>
+
+        <!-- 2. Tri IA -->
+        <rect class="fl-node fl-node-accent" x="236" y="52" width="168" height="88" rx="12"/>
+        <text class="fl-title fl-title-inv" x="256" y="82">Lecture et tri</text>
+        <text class="fl-sub fl-sub-inv" x="256" y="104">Dossier, priorité,</text>
+        <text class="fl-sub fl-sub-inv" x="256" y="122">destinataire</text>
+        <rect class="fl-badge" x="236" y="152" width="168" height="26" rx="13"/>
+        <text class="fl-badge-t" x="256" y="169">IA hébergée en France</text>
+
+        <!-- 3. Cockpit -->
+        <rect class="fl-node" x="468" y="60" width="168" height="72" rx="12"/>
+        <text class="fl-title" x="488" y="90">Cockpit</text>
+        <text class="fl-sub" x="488" y="112">Ce qui attend, ce qui bloque</text>
+
+        <!-- 4. Équipe -->
+        <rect class="fl-node" x="700" y="60" width="164" height="72" rx="12"/>
+        <text class="fl-title" x="720" y="90">La bonne personne</text>
+        <text class="fl-sub" x="720" y="112">Alerte si c'est urgent</text>
+
+        <!-- 5. Relances -->
+        <rect class="fl-node" x="700" y="162" width="164" height="60" rx="12"/>
+        <text class="fl-title" x="720" y="188">Relances</text>
+        <text class="fl-sub" x="720" y="208">Impayés, aux échéances</text>
+
+        <text class="fl-note" x="16" y="228">Vos outils ne changent pas. Vos données ne sortent pas de France.</text>
+      </svg>
     </div>
   </div>
 </section>
