@@ -46,7 +46,9 @@
       var(--paper);
     background-attachment:fixed;
     color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased}
-  h1,h2,h3{font-family:var(--display); letter-spacing:-.02em; line-height:1.05; margin:0}
+  h1,h2,h3{font-family:var(--display); letter-spacing:-.02em; line-height:1.05; margin:0; overflow-wrap:break-word}
+  p,li,td,dd{overflow-wrap:break-word}
+  .tile,.field,.contact-info-item,.ck-obj{min-width:0}
   p{margin:0}
   a{color:inherit; text-decoration:none}
   img{max-width:100%; display:block}
@@ -58,6 +60,9 @@
   .btn-primary{background:var(--acc); color:#053B2C}
   .btn-primary:hover{transform:translateY(-1px); background:var(--acc-hover)}
   .btn:active{transform:translateY(0) scale(.97)}
+  /* focus clavier : visible sur les deux fonds, jamais sur clic souris */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--acc-dark); outline-offset:3px; border-radius:4px}
+  .hero a:focus-visible, footer a:focus-visible, .btn-ghost:focus-visible{outline-color:var(--acc)}
   .btn-ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.28)}
   .btn-ghost:hover{border-color:rgba(255,255,255,.6)}
 
@@ -232,7 +237,8 @@
   .field label{font-family:var(--display); font-size:13.5px; font-weight:600; color:var(--deep)}
   .field input,.field textarea{font-family:var(--body); font-size:15.5px; color:var(--ink); background:var(--white); border:1px solid var(--border); border-radius:10px; padding:12px 14px; width:100%}
   .field input::placeholder,.field textarea::placeholder{color:var(--muted-2)}
-  .field input:focus,.field textarea:focus{outline:2px solid var(--acc); outline-offset:1px; border-color:var(--acc)}
+  .field input:focus-visible,.field textarea:focus-visible{outline:2px solid var(--acc-dark); outline-offset:2px; border-color:var(--acc-dark)}
+  .field input:focus,.field textarea:focus{border-color:var(--acc-dark)}
   #form-success,#form-error{display:none; font-size:14.5px; padding:12px 14px; border-radius:10px}
   #form-success{background:#E9F7EF; color:#166534; border:1px solid #BBE7CC}
   #form-error{background:#FDECE7; color:#B23214; border:1px solid #F6C7B8}
@@ -604,15 +610,15 @@
       <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
       <div class="field">
         <label for="contact-name">Nom</label>
-        <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="name">
+        <input type="text" id="contact-name" name="name" placeholder="Votre nom" required autocomplete="name" maxlength="80">
       </div>
       <div class="field">
         <label for="contact-email">Email</label>
-        <input type="email" id="contact-email" name="email" placeholder="votre@email.fr" required autocomplete="email">
+        <input type="email" id="contact-email" name="email" placeholder="votre@email.fr" required autocomplete="email" maxlength="120">
       </div>
       <div class="field">
         <label for="contact-message">Message</label>
-        <textarea id="contact-message" name="message" placeholder="Décrivez votre activité et ce que vous aimeriez automatiser." rows="4" required></textarea>
+        <textarea id="contact-message" name="message" placeholder="Décrivez votre activité et ce que vous aimeriez automatiser." rows="4" required maxlength="4000"></textarea>
       </div>
       <button id="contact-submit" type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Envoyer</button>
       <div id="form-success" role="status">Message envoyé. Je vous réponds sous 24h.</div>
@@ -725,16 +731,21 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
     btn.disabled = true; btn.textContent = 'Envoi…'
     var data = new FormData(form)
     var leadPayload = JSON.stringify({ name:data.get('name'), email:data.get('email'), message:data.get('message') })
-    function showError(){ btn.disabled=false; btn.textContent='Envoyer'; errorEl.style.display='block' }
+    var done = false
+    function showError(){ if(done) return; done = true; btn.disabled=false; btn.textContent='Envoyer'; errorEl.style.display='block' }
+    function showSuccess(){ if(done) return; done = true; successEl.style.display='block'; btn.style.display='none'; form.reset() }
+    // borne dure : au-dela, on rend la main au visiteur avec le recours par mail
+    var ctrl = ('AbortController' in window) ? new AbortController() : null
+    var timer = setTimeout(function(){ if(ctrl) ctrl.abort(); showError() }, 15000)
     fetch('https://n8n.hicks-advisory.fr/webhook/hicks-lead', {
       method:'POST',
       headers:{ 'Content-Type':'application/json', 'X-Webhook-Secret':'528ed6e7f04af48d12753947e6d109fc48db8ab332645a5703f5f505789d48e7' },
       body: leadPayload
     }).catch(function(){})
-    fetch('https://api.web3forms.com/submit', { method:'POST', body:data })
+    fetch('https://api.web3forms.com/submit', { method:'POST', body:data, signal: ctrl ? ctrl.signal : undefined })
       .then(function(r){ return r.json() })
-      .then(function(res){ if(res.success){ successEl.style.display='block'; btn.style.display='none'; form.reset() } else { showError() } })
-      .catch(showError)
+      .then(function(res){ clearTimeout(timer); if(res && res.success){ showSuccess() } else { showError() } })
+      .catch(function(){ clearTimeout(timer); showError() })
   })
 })()
 </script>
