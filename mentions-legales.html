@@ -11,13 +11,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #0F1E3D; --navy-light: #1B2A4E; --navy-dark: #0A1428;
-  --coral: #FF6B47; --white: #FFFFFF; --mid: #8892A4;
+  --deep: #064E3B; --deep-soft: #0A5B45; --deep-2: #04382A;
+  --acc: #F8E7C9; --white: #FFFFFF; --mid: #93A29B;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--navy-dark); color: var(--white); -webkit-font-smoothing: antialiased; min-height: 100vh; }
-a { color: var(--coral); text-decoration: none; }
+body { font-family: 'Inter', sans-serif; background: var(--deep-2); color: var(--white); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+a { color: var(--acc); text-decoration: none; }
 a:hover { text-decoration: underline; }
 h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
 .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
@@ -26,27 +26,27 @@ header { padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; }
 .logo { display: flex; align-items: center; gap: 10px; color: var(--white); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em; }
 .back { font-size: 0.85rem; color: var(--mid); display: flex; align-items: center; gap: 6px; }
-.back:hover { color: var(--coral); text-decoration: none; }
+.back:hover { color: var(--acc); text-decoration: none; }
 
 main { padding: 64px 0 80px; }
-.page-label { font-family: 'Space Grotesk', monospace; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+.page-label { font-family: 'Space Grotesk', monospace; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--acc); margin-bottom: 12px; }
 h1 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
 .updated { font-size: 0.82rem; color: var(--mid); margin-bottom: 48px; }
 
 section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.06); }
 section:last-child { border-bottom: none; }
-h2 { font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: 16px; padding-left: 12px; border-left: 3px solid var(--coral); }
+h2 { font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: 16px; padding-left: 12px; border-left: 3px solid var(--acc); }
 p { line-height: 1.75; color: var(--mid); margin-bottom: 12px; }
 p:last-child { margin-bottom: 0; }
 strong { color: var(--white); font-weight: 500; }
-.placeholder { color: var(--coral); font-style: italic; }
+.placeholder { color: var(--acc); font-style: italic; }
 
 footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 24px 0; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
 .footer-copy { font-size: 0.8rem; color: var(--mid); }
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { font-size: 0.8rem; color: var(--mid); }
-.footer-links a:hover { color: var(--coral); text-decoration: none; }
+.footer-links a:hover { color: var(--acc); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -54,7 +54,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 24px 0; }
   <div class="container">
     <div class="header-inner">
       <a href="/" class="logo">
-        <svg width="28" height="28" viewBox="0 0 130 130" aria-hidden="true"><rect width="130" height="130" fill="#0F1E3D" rx="12"/><line x1="32" y1="32" x2="98" y2="98" stroke="#FF6B47" stroke-width="11" stroke-linecap="round"/><line x1="98" y1="32" x2="32" y2="98" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/></svg>
+        <svg width="28" height="28" viewBox="0 0 130 130" aria-hidden="true"><rect width="130" height="130" fill="#04382A" rx="12"/><line x1="30" y1="30" x2="100" y2="100" stroke="#F8E7C9" stroke-width="13" stroke-linecap="round"/><line x1="100" y1="30" x2="80" y2="50" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/><line x1="50" y1="80" x2="30" y2="100" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/><circle cx="65" cy="65" r="8.5" fill="#04382A" stroke="#FFFFFF" stroke-width="3.5"/></svg>
         HICKS
       </a>
       <a href="/" class="back">← Retour au site</a>
