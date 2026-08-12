@@ -26,7 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0F1E3D; --navy-2:#16294f; --coral:#FF6B47; --coral-ink:#E4502B;
+    --navy:#0F1E3D; --navy-dark:#0A1428; --navy-light:#1B2A4E; --navy-2:#16294f; --coral:#FF6B47; --coral-ink:#E4502B;
     --paper:#F8F9FC; --white:#ffffff; --border:#DDE2EF; --ink:#0F1E3D;
     --muted:#5A6884; --muted-2:#8A93A8;
     --r:14px; --wrap:1180px;
@@ -83,7 +83,7 @@
   }
 
   /* hero */
-  .hero{background:var(--navy); color:#fff; position:relative; overflow:hidden}
+  .hero{background:var(--navy-dark); color:#fff; position:relative; overflow:hidden}
   .hero::after{content:"";position:absolute;right:-140px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,107,71,.22), transparent 62%); pointer-events:none; z-index:0}
   .hero-mark{position:absolute; left:-70px; bottom:-90px; width:340px; height:340px; opacity:.09; pointer-events:none; z-index:0}
   .hero-mark svg{width:100%; height:100%}
@@ -94,7 +94,8 @@
   @media(prefers-reduced-motion:reduce){ .hero-mark .sat{animation:none} #hero-particles{display:none} }
   .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; padding:88px 0 92px; position:relative; z-index:1}
   .hero-eyebrow{font-family:var(--display); font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); margin-bottom:16px; animation:rise .7s var(--ease-out-expo) both}
-  .hero h1{font-size:52px; font-weight:700; animation:rise .7s var(--ease-out-expo) .1s both}
+  .hero h1{font-size:50px; font-weight:700; animation:rise .7s var(--ease-out-expo) .1s both}
+  .hero h1 .hl{color:var(--coral)}
   @media(prefers-reduced-motion:reduce){ .hero-eyebrow{animation:none} }
   .hero .sub{color:#C7D0E4; font-size:19px; margin-top:22px; max-width:34ch; animation:rise .7s var(--ease-out-expo) .12s both}
   .hero .cta-row{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; animation:rise .7s var(--ease-out-expo) .24s both}
@@ -194,7 +195,7 @@
   @media(max-width:820px){ .steps{grid-template-columns:1fr} }
 
   /* prix */
-  .price-sec{background:var(--navy); color:#fff; position:relative; overflow:hidden}
+  .price-sec{background:var(--navy-dark); color:#fff; position:relative; overflow:hidden}
   .price-sec::before{content:""; position:absolute; inset:0; pointer-events:none;
     background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
     background-size:52px 52px;
@@ -239,7 +240,7 @@
   @media(max-width:820px){ .contact-grid{grid-template-columns:1fr; gap:32px} }
 
   /* footer */
-  footer{background:var(--navy); color:#9FADC9; padding:44px 0}
+  footer{background:var(--navy-dark); color:#9FADC9; padding:44px 0}
   .footer-inner{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; font-size:14px}
   .footer-left{display:flex; align-items:center; gap:12px}
   .footer-logo{display:flex; align-items:center; gap:9px}
@@ -343,8 +344,8 @@
   <div class="wrap hero-grid">
     <div>
       <div class="hero-eyebrow">Automatisation IA souveraine pour PME</div>
-      <h1>L'IA reprend le travail répétitif.<br>Vous reprenez votre temps.</h1>
-      <p class="sub">Mails, devis, relances, facturation, traités tout seuls. Rien ne passe à la trappe, et vous payez un résultat, pas des jours de régie.</p>
+      <h1>L'IA reprend le travail répétitif.<br><span class="hl">Vous reprenez votre temps.</span></h1>
+      <p class="sub">Mails, devis, relances, facturation : traités tout seuls. Vous payez un résultat, pas des jours de régie.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://cal.com/xavier-bottex-dxhdpl/decouverte-20-min">Réserver 20 minutes</a>
         <a class="btn btn-ghost" href="#preuve">Voir un exemple</a>
