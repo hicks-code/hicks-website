@@ -42,8 +42,12 @@ for f in $(git ls-files | grep -Ev '^\.'); do
   fi
 done
 
-# documents internes qui deviendraient des URL publiques
-for f in $(git ls-files | grep -Ev '^\.' | grep -E '\.md$'); do
+# Deux exceptions volontaires : DESIGN.md et PRODUCT.md a la racine sont des
+# LEURRES d'une ligne. Le cache d'assets de Cloudflare Pages continuait a servir
+# leur ancienne version apres leur retrait, et la purge de zone ne l'atteint pas.
+# Les republier neutres est le seul moyen d'ecraser le contenu sensible.
+# Les vrais documents vivent dans .docs/ . Ne pas y remettre de contenu.
+for f in $(git ls-files | grep -Ev '^\.' | grep -E '\.md$' | grep -Ev '^(DESIGN|PRODUCT)\.md$'); do
   echo "REFUS  $f : document interne a la racine, il serait servi publiquement"
   echo "       le deplacer dans .docs/ , que Cloudflare Pages ignore"
   echec=1
