@@ -152,7 +152,7 @@
   @media(max-width:900px){ section{padding:60px 0} }
 
   /* domaines bento (4) */
-  .bento{display:grid; grid-template-columns:1.3fr 1fr; grid-template-rows:auto auto auto; gap:20px; margin-top:44px}
+  .bento{display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:auto auto; gap:20px; margin-top:44px; align-items:stretch}
   .tile{background:var(--white); border:1px solid var(--border); border-radius:var(--r); padding:30px; transition:border-color .15s ease, transform .15s ease}
   .tile{transition:border-color .25s var(--ease-out-quart), transform .25s var(--ease-out-quart), box-shadow .25s var(--ease-out-quart)}
   .tile:hover{border-color:var(--on-deep-4); transform:translateY(-3px); box-shadow:0 18px 40px -30px rgba(6,78,59,.55)}
@@ -162,14 +162,14 @@
   .step:hover{border-color:var(--on-deep-4); transform:translateY(-2px)}
   .kpi{transition:transform .25s var(--ease-out-quart)}
   .cockpit:hover .kpi{transform:translateY(-1px)}
-  .tile.lead{grid-column:1; grid-row:1 / span 2; background:radial-gradient(300px 220px at 88% 4%, rgba(216,180,120,.16), transparent 58%), var(--deep); color:#fff; border-color:var(--deep); display:flex; flex-direction:column}
-  .tile.a{grid-column:2; grid-row:1}
-  .tile.b{grid-column:2; grid-row:2}
-  .tile.wide{grid-column:1 / -1; grid-row:3}
+  .tile.lead{grid-column:2; grid-row:1; background:radial-gradient(300px 220px at 88% 4%, rgba(216,180,120,.16), transparent 58%), var(--deep); color:#fff; border-color:var(--deep); display:flex; flex-direction:column}
+  .tile.a{grid-column:1; grid-row:1}
+  .tile.b{grid-column:3; grid-row:1}
+  .tile.wide{grid-column:1 / -1; grid-row:2}
   .tile.wide .wtxt{max-width:64ch}
-  .tile .kx{font-family:var(--display); font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--acc-dark); display:flex; align-items:center; gap:8px}
-  .tile .kx .step{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; flex:0 0 auto; border-radius:50%; border:1px solid currentColor; font-size:11.5px}
-  .tile .kx em{font-style:normal; font-weight:500; color:var(--muted)}
+  .tile .kx{font-family:var(--display); font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--acc-dark)}
+  .tile .stepline{font-family:var(--display); font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:6px}
+  .tile.lead .stepline{color:var(--on-deep-3)}
   .tile.apart{border-style:dashed}
   .tile .apart-kx{color:var(--muted)}
   .tile.lead .kx{color:var(--acc)}
@@ -431,25 +431,28 @@
     </div>
     <div class="rule reveal" style="margin-top:26px"></div>
     <div class="bento">
-      <div class="tile lead reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="12" r="2.6"/><line x1="8.6" y1="12" x2="15.4" y2="12"/></svg></div>
-        <div class="kx"><span class="step">2</span>IntégrationX</div>
-        <h3>L'IA entre dans vos outils, pas à côté.</h3>
-        <p>Je branche l'IA sur ce qui fait tourner votre activité, la messagerie, les devis, les relances, le suivi. Vous pilotez depuis un cockpit unique où rien ne passe à la trappe, et le temps que vous récupérez se voit noir sur blanc.</p>
-        <div class="pl">À partir de 990&nbsp;€, puis 39&nbsp;€/mois<span>Le montant dépend du nombre de personnes à servir.</span></div>
-        <div class="spacer"></div>
-        <div class="ex">Voir <a href="#preuve">IntégrationX en clair</a>, puis <a href="#sous-le-capot">sous le capot</a></div>
-      </div>
       <div class="tile a reveal">
         <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><line x1="15.6" y1="15.6" x2="21" y2="21"/></svg></div>
-        <div class="kx"><span class="step">1</span>AuditX &middot; IA</div>
+        <div class="stepline">Étape 1</div>
+        <div class="kx">AuditX &middot; IA</div>
         <h3>Voir où part votre temps.</h3>
-        <p>Diagnostic de vos processus. On repère les tâches répétitives et les chantiers d'automatisation rentables, chiffrés et priorisés. C'est par là qu'on commence.</p>
-        <div class="pl">490&nbsp;€<span>Déduits de l'intégration si elle suit sous 30 jours.</span></div>
+        <p>Diagnostic de vos processus. On repère les tâches répétitives et les chantiers d'automatisation rentables, chiffrés et priorisés. C'est par là qu'on commence quand rien n'existe encore.</p>
+        <div class="pl">490&nbsp;€<span>Déduits de l'intégration sur mesure si elle suit sous 30 jours.</span></div>
+      </div>
+      <div class="tile lead reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="12" r="2.6"/><line x1="8.6" y1="12" x2="15.4" y2="12"/></svg></div>
+        <div class="stepline">Étape 2</div>
+        <div class="kx">IntégrationX</div>
+        <h3>On construit ce qui n'existe pas encore.</h3>
+        <p>Sur mesure, à partir de votre processus et pas d'un produit sur étagère. Je conçois, j'implémente, et vous pilotez depuis un cockpit unique où rien ne passe à la trappe.</p>
+        <div class="pl">À partir de 990&nbsp;€, puis 39&nbsp;€/mois<span>Conception comprise.</span></div>
+        <div class="spacer"></div>
+        <div class="ex">Votre sujet, c'est le mail ? <a href="#preuve">C'est déjà construit</a>, et voici <a href="#sous-le-capot">sous le capot</a></div>
       </div>
       <div class="tile b reveal">
         <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2 2-6.5z"/></svg></div>
-        <div class="kx"><span class="step">3</span>FormX <em>en option</em></div>
+        <div class="stepline">Étape 3, en option</div>
+        <div class="kx">FormX</div>
         <h3>Vos équipes autonomes sur l'IA.</h3>
         <p>Formation concrète au poste de travail. Vos collaborateurs montent en compétence sur vos vrais cas, pas sur des exemples génériques.</p>
         <div class="pl">Selon l'organisme et le format</div>
@@ -458,7 +461,8 @@
       <div class="tile wide apart reveal">
         <div class="wtxt">
           <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.4-7 8.9C8 17.4 5 14.4 5 10.9V6l7-3z"/></svg></div>
-          <div class="kx apart-kx">Offre à part &middot; Audit Cyber</div>
+          <div class="stepline">Offre à part</div>
+          <div class="kx">Audit Cyber</div>
           <h3>Voir où sont vos risques.</h3>
           <p>Ce n'est pas de l'automatisation, c'est un autre métier. Test d'intrusion sur vos applications en fonctionnement, examen de vos données sensibles et de l'endroit où elles vivent, revue de vos pratiques de développement assisté par IA. Vous savez ce qui est exposé et par quoi commencer.</p>
           <div class="pl">À partir de 1 200&nbsp;€</div>
@@ -473,12 +477,12 @@
 <section id="preuve" class="show tex glow-r">
   <div class="wrap show-grid">
     <div class="reveal">
-      <div class="eyebrow">IntégrationX en clair</div>
+      <div class="eyebrow">Déjà construit, déjà en production</div>
       <h2 style="margin-top:14px">MailX, le cockpit de suivi de votre activité.</h2>
       <p>Vous ouvrez votre boîte et vous savez immédiatement ce qui attend, ce qui bloque, et qui s'en occupe. Vous pilotez, vous ne subissez plus votre messagerie.</p>
       <div class="offer-price">
-        <div class="op-line">À partir de <span class="op-num">39&nbsp;€ par mois</span>. Mise en service <span class="op-num">entre 990 et 2 400&nbsp;€</span>.</div>
-        <div class="op-fine">Ce tarif est celui de MailX. Le montant dépend du nombre de personnes à servir. Il est arrêté avant qu'on démarre, et il ne bouge plus ensuite.</div>
+        <div class="op-line">Mise en service à partir de <span class="op-num">350&nbsp;€</span>, puis <span class="op-num">39&nbsp;€ par mois</span>.</div>
+        <div class="op-fine">MailX existe déjà et tourne en production : vous ne payez pas sa conception, c'est pourquoi il coûte trois fois moins qu'un développement sur mesure. Le montant dépend du nombre de personnes à servir, et il est arrêté avant qu'on démarre.</div>
       </div>
     </div>
     <div class="cockpit reveal" aria-label="Aperçu du cockpit MailX, données fictives">
