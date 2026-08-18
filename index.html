@@ -210,6 +210,10 @@
   .ck-sec.coral{color:var(--acc-dark); background:rgba(168,130,60,.10)}
   .ck-sec.green{color:#146B42; background:rgba(20,107,66,.09)}
   .ck-list{padding:4px 22px}
+  .guarantees{display:grid; grid-template-columns:repeat(2,1fr); gap:18px 34px; margin-top:34px; max-width:960px}
+  .guarantees .g{font-size:15px; color:var(--muted); line-height:1.55; padding-left:16px; border-left:2px solid var(--acc-dark)}
+  .guarantees .g b{display:block; font-family:var(--display); font-size:15.5px; color:var(--deep); margin-bottom:3px}
+  @media(max-width:760px){ .guarantees{grid-template-columns:1fr; gap:16px} }
   .ck-quote{margin-top:14px; padding:14px 22px 0; font-family:var(--display); font-size:15.5px; font-weight:600; color:var(--deep); line-height:1.45}
   .ck-quote span{display:block; margin-top:6px; font-family:var(--body); font-size:13px; font-weight:400; color:var(--muted)}
   .ck-note{margin-top:10px; padding:12px 22px 16px; border-top:1px solid var(--border); background:rgba(6,78,59,.03); font-size:12.5px; line-height:1.5; color:var(--muted)}
@@ -482,7 +486,7 @@
       <p>Vous ouvrez votre boîte et vous savez immédiatement ce qui attend, ce qui bloque, et qui s'en occupe. Vous pilotez, vous ne subissez plus votre messagerie.</p>
       <div class="offer-price">
         <div class="op-line">Mise en service à partir de <span class="op-num">350&nbsp;€</span>, puis <span class="op-num">39&nbsp;€ par mois</span>.</div>
-        <div class="op-fine">MailX existe déjà et tourne en production : vous ne payez pas sa conception, c'est pourquoi il coûte trois fois moins qu'un développement sur mesure. Le montant dépend du nombre de personnes à servir, et il est arrêté avant qu'on démarre.</div>
+        <div class="op-fine">Le prix de l'implémentation dépend de votre processus, définition du filtrage, nettoyage de la boîte, classification, règles métier. Il est arrêté avant la mise en place et il démarre à 350&nbsp;€.</div>
       </div>
     </div>
     <div class="cockpit reveal" aria-label="Aperçu du cockpit MailX, données fictives">
@@ -519,9 +523,9 @@
 <section id="sous-le-capot" class="flow tex glow-l">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">Sous le capot</div>
-      <h2>Ce qui se passe entre le mail et vous.</h2>
-      <p class="lead">Aucune boîte noire. Voici le chemin exact que suit chaque message, et où vivent vos données.</p>
+      <div class="eyebrow">Ce que l'IA fait, et ce qu'elle ne fait pas</div>
+      <h2>Vos mails restent vos mails.</h2>
+      <p class="lead">L'IA lit chaque message pour le comprendre, le classer et repérer ce qui presse. Elle ne supprime rien, et elle n'envoie rien sans que vous l'ayez décidé. Voici le chemin exact que suit un message.</p>
     </div>
     <div class="rule reveal" style="margin-top:22px"></div>
     <div class="flow-canvas reveal">
@@ -562,6 +566,12 @@
 
         <text class="fl-note" x="16" y="228">Vos outils ne changent pas. Vos données ne sortent pas de France.</text>
       </svg>
+    </div>
+    <div class="guarantees reveal">
+      <div class="g"><b>Rien n'est supprimé.</b>MailX déplace, étiquette et signale. Aucun message ne quitte votre boîte, et vous gardez Outlook ou Gmail tel quel.</div>
+      <div class="g"><b>Rien ne part aux États-Unis.</b>La lecture et la classification tournent sur une IA hébergée en France.</div>
+      <div class="g"><b>On démarre en observation.</b>Les premiers jours, MailX classe dans son coin et vous comparez avec ce que vous auriez fait. On ajuste, et on n'active qu'ensuite.</div>
+      <div class="g"><b>Vous pouvez tout arrêter.</b>Les étiquettes et les dossiers sont retirés, votre boîte revient à son état d'origine.</div>
     </div>
   </div>
 </section>
