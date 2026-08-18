@@ -202,7 +202,9 @@
   .ck-sec.coral{color:var(--acc-dark); background:rgba(168,130,60,.10)}
   .ck-sec.green{color:#146B42; background:rgba(20,107,66,.09)}
   .ck-list{padding:4px 22px}
-  .ck-note{margin-top:14px; padding:12px 22px 16px; border-top:1px solid var(--border); background:rgba(6,78,59,.03); font-size:12.5px; line-height:1.5; color:var(--muted)}
+  .ck-quote{margin-top:14px; padding:14px 22px 0; font-family:var(--display); font-size:15.5px; font-weight:600; color:var(--deep); line-height:1.45}
+  .ck-quote span{display:block; margin-top:6px; font-family:var(--body); font-size:13px; font-weight:400; color:var(--muted)}
+  .ck-note{margin-top:10px; padding:12px 22px 16px; border-top:1px solid var(--border); background:rgba(6,78,59,.03); font-size:12.5px; line-height:1.5; color:var(--muted)}
   .ck-list.last{padding-bottom:20px}
   .ck-row{display:flex; gap:11px; padding:8px 0; font-size:13px; align-items:flex-start}
   .ck-row + .ck-row{border-top:1px solid var(--border)}
@@ -380,7 +382,7 @@
     <div>
       <div class="hero-eyebrow">Automatisation IA pour PME</div>
       <h1>L'IA s'occupe du répétitif.<br><span class="hl">Vous retrouvez du temps.</span></h1>
-      <p class="sub">Mails, devis, relances, facturation : traités tout seuls. Vous payez un résultat, pas des jours de régie.</p>
+      <p class="sub">Mails, devis, relances, facturation : traités tout seuls. Vous payez un résultat, pas des journées de travail.</p>
       <div class="sig">
         <img src="xavier-avatar.jpg" alt="Portrait de Xavier Bottex" width="44" height="44" decoding="async">
         <div class="sig-txt"><b>Xavier Bottex</b>, ex-CTO du cloud souverain monégasque.<br>Vingt-deux ans à faire tenir des infrastructures en production.</div>
@@ -463,8 +465,8 @@
       <h2 style="margin-top:14px">MailX, le cockpit de suivi de votre activité.</h2>
       <p>Vous ouvrez votre boîte et vous savez immédiatement ce qui attend, ce qui bloque, et qui s'en occupe. Vous pilotez, vous ne subissez plus votre messagerie.</p>
       <div class="offer-price">
-        <div class="op-line">À partir de <span class="op-num">39&nbsp;€ par mois</span>. Mise en service à partir de <span class="op-num">350&nbsp;€</span>.</div>
-        <div class="op-fine">Ce tarif est celui de MailX. Le plancher vaut pour une boîte et une personne. Au-delà c'est davantage, et vous le savez avant qu'on démarre.</div>
+        <div class="op-line">À partir de <span class="op-num">39&nbsp;€ par mois</span>. Mise en service <span class="op-num">entre 350 et 1 500&nbsp;€</span>.</div>
+        <div class="op-fine">Ce tarif est celui de MailX. Le montant dépend du nombre de personnes à servir. Il est arrêté avant qu'on démarre, et il ne bouge plus ensuite.</div>
       </div>
     </div>
     <div class="cockpit reveal" aria-label="Aperçu du cockpit MailX, données fictives">
@@ -491,6 +493,7 @@
         <div class="ck-row g"><span class="ck-delai">aujourd'hui</span><span class="ck-who">Camille</span><div class="ck-obj">Boulangerie Prat, contrat de maintenance<span class="ck-q">« Le contrat court-il bien jusqu'en décembre ? »</span></div></div>
         <div class="ck-row g"><span class="ck-delai">hier</span><span class="ck-who">Léa</span><div class="ck-obj">Studio Fontaine, clôture des dossiers d'avril<span class="ck-q">« Pouvons-nous clôturer les dossiers d'avril ? »</span></div></div>
       </div>
+      <div class="ck-quote">« C'est un bon pilotage, plus précis. »<span>L'utilisateur principal du cabinet, août 2026, après six semaines d'exploitation quotidienne.</span></div>
       <div class="ck-note">Le gabarit est exactement celui qu'un client reçoit chaque matin. Les noms et les chiffres sont inventés, parce que ce qui passe dans un vrai cockpit ne sort jamais d'ici.</div>
     </div>
   </div>
@@ -604,8 +607,8 @@
 <!-- PRIX -->
 <section class="price-sec">
   <div class="wrap reveal">
-    <h2>Un prix fixe, pas un compteur qui tourne.</h2>
-    <p>La régie facture des journées. Ici, <span class="accent">le prix est arrêté avant de commencer</span> et attaché à un résultat défini avec vous. Si le résultat n'est pas au rendez-vous, on ne passe pas à la suite. <span class="accent">C'est moi qui porte le risque de livraison, pas vous.</span></p>
+    <h2>Un prix arrêté d'avance, pas un compteur qui tourne.</h2>
+    <p>D'autres facturent à la journée, et le compteur tourne tant que ça dure. Ici, <span class="accent">le prix est arrêté avant de commencer</span> et attaché à un résultat défini avec vous. Si le résultat n'est pas au rendez-vous, on ne passe pas à la suite. <span class="accent">C'est moi qui porte le risque de livraison, pas vous.</span></p>
     <p>Ce prix, je le fixe après vous avoir écouté, pas en ouvrant un catalogue. Et vous n'avez qu'un interlocuteur : <span class="accent">celui qui vous devise est celui qui installe</span>, et celui qui vous répondra dans six mois. Chaque domaine a son propre forfait.</p>
   </div>
 </section>
