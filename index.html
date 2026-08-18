@@ -100,9 +100,13 @@
   .hero h1 .hl{color:var(--acc)}
   @media(prefers-reduced-motion:reduce){ .hero-eyebrow{animation:none} }
   .hero .sub{color:var(--on-deep-2); font-size:19px; margin-top:22px; max-width:34ch; animation:rise .7s var(--ease-out-expo) .12s both}
-  .hero .cta-row{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; animation:rise .7s var(--ease-out-expo) .24s both}
+  .hero .sig{display:flex; align-items:center; gap:13px; margin-top:26px; animation:rise .7s var(--ease-out-expo) .18s both}
+  .hero .sig img{width:44px; height:44px; border-radius:50%; flex:0 0 auto; border:1px solid rgba(255,255,255,.24)}
+  .hero .sig-txt{font-size:14.5px; color:var(--on-deep-2); line-height:1.45; max-width:44ch}
+  .hero .sig-txt b{color:#fff; font-weight:600}
+  .hero .cta-row{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; animation:rise .7s var(--ease-out-expo) .24s both}
   .hero .proofcard{animation:rise .8s var(--ease-out-expo) .36s both}
-  @media(prefers-reduced-motion:reduce){ .hero h1,.hero .sub,.hero .cta-row,.hero .proofcard{animation:none} }
+  @media(prefers-reduced-motion:reduce){ .hero h1,.hero .sub,.hero .sig,.hero .cta-row,.hero .proofcard{animation:none} }
   .proofcard{background:linear-gradient(180deg,#0A5B45,var(--deep)); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:26px}
   .proofcard .tag{font-family:var(--display); font-size:12.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--acc)}
   .proofcard .big{font-family:var(--display); font-weight:700; font-size:38px; line-height:1.05; margin:14px 0 4px; color:#fff; letter-spacing:-.02em}
@@ -377,6 +381,10 @@
       <div class="hero-eyebrow">Automatisation IA souveraine pour PME</div>
       <h1>L'IA s'occupe du répétitif.<br><span class="hl">Vous retrouvez du temps.</span></h1>
       <p class="sub">Mails, devis, relances, facturation : traités tout seuls. Vous payez un résultat, pas des jours de régie.</p>
+      <div class="sig">
+        <img src="xavier-avatar.jpg" alt="Portrait de Xavier Bottex" width="44" height="44" decoding="async">
+        <div class="sig-txt"><b>Xavier Bottex</b>, ex-CTO du cloud souverain monégasque.<br>Vingt-deux ans à faire tenir des infrastructures en production.</div>
+      </div>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://cal.com/xavier-bottex-dxhdpl/decouverte-20-min">Réserver 20 minutes</a>
         <a class="btn btn-ghost" href="#preuve">Voir un exemple</a>
