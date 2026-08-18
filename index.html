@@ -222,11 +222,12 @@
   .price-sec h2{font-size:clamp(1.8125rem, 1.3rem + 1.2vw, 2.5rem); font-weight:700}
   .price-sec p{color:var(--on-deep-2); font-size:19px; margin-top:22px; max-width:60ch; margin-inline:auto}
   .price-sec .accent{color:#fff; font-weight:600}
-  .price-tag{margin-top:36px; display:inline-block; border:1px solid rgba(255,255,255,.18); border-radius:14px; padding:22px 28px; background:rgba(255,255,255,.045)}
-  .price-tag .pt-line{font-family:var(--display); font-size:21px; font-weight:600; color:#fff; line-height:1.35}
-  .price-tag .pt-num{color:var(--acc)}
-  .price-tag .pt-fine{margin-top:11px; font-size:15px; color:var(--on-deep-3); max-width:46ch; margin-inline:auto}
-  @media(max-width:900px){ .price-sec .wrap{padding:64px 24px} .price-tag{padding:18px 20px} .price-tag .pt-line{font-size:19px} }
+  .pt-fine-solo{margin-top:26px; font-size:15.5px; color:var(--on-deep-3)}
+  .offer-price{margin-top:26px; display:inline-block; border:1px solid var(--border); border-radius:14px; padding:18px 22px; background:var(--white)}
+  .offer-price .op-line{font-family:var(--display); font-size:19px; font-weight:600; color:var(--deep); line-height:1.35}
+  .offer-price .op-num{color:var(--acc-dark)}
+  .offer-price .op-fine{margin-top:9px; font-size:14.5px; color:var(--muted); max-width:42ch}
+  @media(max-width:900px){ .price-sec .wrap{padding:64px 24px} .offer-price{padding:16px 18px} .offer-price .op-line{font-size:17.5px} }
 
   /* profil */
   .profil-grid{display:grid; grid-template-columns:.5fr 1fr; gap:44px; align-items:center}
@@ -450,6 +451,10 @@
       <div class="eyebrow">IntégrationX en clair</div>
       <h2 style="margin-top:14px">MailX, le cockpit de suivi de votre activité.</h2>
       <p>Vous ouvrez votre boîte et vous savez immédiatement ce qui attend, ce qui bloque, et qui s'en occupe. Vous pilotez, vous ne subissez plus votre messagerie.</p>
+      <div class="offer-price">
+        <div class="op-line">À partir de <span class="op-num">39&nbsp;€ par mois</span>. Mise en service à partir de <span class="op-num">350&nbsp;€</span>.</div>
+        <div class="op-fine">Tarif de cette intégration. Le périmètre fixe le montant exact, arrêté avant de commencer.</div>
+      </div>
     </div>
     <div class="cockpit reveal" aria-label="Aperçu du cockpit MailX, données d'exemple anonymisées">
       <div class="ck-head">
@@ -589,10 +594,7 @@
   <div class="wrap reveal">
     <h2>Un prix fixe, pas un compteur qui tourne.</h2>
     <p>La régie facture des journées. Ici, <span class="accent">vous connaissez le prix d'avance</span>, et il est attaché à un résultat défini avec vous. Si le résultat n'est pas au rendez-vous, on ne passe pas à la suite. <span class="accent">C'est moi qui porte le risque de livraison, pas vous.</span></p>
-    <div class="price-tag">
-      <div class="pt-line">À partir de <span class="pt-num">39&nbsp;€ par mois</span>. Mise en service à partir de <span class="pt-num">350&nbsp;€</span>.</div>
-      <div class="pt-fine">Le périmètre fixe le montant exact. Il est arrêté avant de commencer, et il ne bouge plus ensuite.</div>
-    </div>
+    <div class="pt-fine-solo">Chaque domaine a son propre forfait, arrêté avant de commencer.</div>
   </div>
 </section>
 
