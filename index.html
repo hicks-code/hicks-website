@@ -167,7 +167,11 @@
   .tile.b{grid-column:2; grid-row:2}
   .tile.wide{grid-column:1 / -1; grid-row:3}
   .tile.wide .wtxt{max-width:64ch}
-  .tile .kx{font-family:var(--display); font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--acc-dark)}
+  .tile .kx{font-family:var(--display); font-weight:700; font-size:14px; letter-spacing:.02em; color:var(--acc-dark); display:flex; align-items:center; gap:8px}
+  .tile .kx .step{display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; flex:0 0 auto; border-radius:50%; border:1px solid currentColor; font-size:11.5px}
+  .tile .kx em{font-style:normal; font-weight:500; color:var(--muted)}
+  .tile.apart{border-style:dashed}
+  .tile .apart-kx{color:var(--muted)}
   .tile.lead .kx{color:var(--acc)}
   .tile h3{font-size:clamp(1.25rem, 1.12rem + .35vw, 1.375rem); font-weight:600; margin:12px 0 10px}
   .tile.lead h3{font-size:clamp(1.5rem, 1.3rem + .6vw, 1.75rem)}
@@ -417,15 +421,15 @@
 <section id="domaines" class="tex glow-l">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">Quatre domaines</div>
+      <div class="eyebrow">Trois étapes, et une offre à part</div>
       <h2>Ce que je fais entrer chez vous.</h2>
-      <p class="lead">Quatre domaines qui se répondent, du diagnostic à l'intégration qui tourne dans la durée. On commence par un seul, celui qui vous coûte le plus cher aujourd'hui.</p>
+      <p class="lead">On regarde d'abord où part votre temps, on installe ensuite, et on rend vos équipes autonomes si vous le voulez. La sécurité est un autre métier, elle se traite à part.</p>
     </div>
     <div class="rule reveal" style="margin-top:26px"></div>
     <div class="bento">
       <div class="tile lead reveal">
         <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="12" r="2.6"/><line x1="8.6" y1="12" x2="15.4" y2="12"/></svg></div>
-        <div class="kx">IntégrationX</div>
+        <div class="kx"><span class="step">2</span>IntégrationX</div>
         <h3>L'IA entre dans vos outils, pas à côté.</h3>
         <p>Je branche l'IA sur ce qui fait tourner votre activité, la messagerie, les devis, les relances, le suivi. Vous pilotez depuis un cockpit unique où rien ne passe à la trappe, et le temps que vous récupérez se voit noir sur blanc.</p>
         <div class="spacer"></div>
@@ -433,24 +437,24 @@
       </div>
       <div class="tile a reveal">
         <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><line x1="15.6" y1="15.6" x2="21" y2="21"/></svg></div>
-        <div class="kx">AuditX &middot; IA</div>
+        <div class="kx"><span class="step">1</span>AuditX &middot; IA</div>
         <h3>Voir où part votre temps.</h3>
-        <p>Diagnostic de vos processus. On repère les tâches répétitives et les chantiers d'automatisation rentables, chiffrés et priorisés.</p>
+        <p>Diagnostic de vos processus. On repère les tâches répétitives et les chantiers d'automatisation rentables, chiffrés et priorisés. C'est par là qu'on commence.</p>
       </div>
       <div class="tile b reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.4-7 8.9C8 17.4 5 14.4 5 10.9V6l7-3z"/></svg></div>
-        <div class="kx">Audit Cyber</div>
-        <h3>Voir où sont vos risques.</h3>
-        <p>Revue de votre sécurité et de vos données, exposition, RGPD, souveraineté. Vous savez ce qui est exposé et par quoi commencer.</p>
-        <div class="cred">Système, réseaux et sécurité depuis vingt-deux ans, dont trois à la direction technique d'un cloud d'État.</div>
+        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2 2-6.5z"/></svg></div>
+        <div class="kx"><span class="step">3</span>FormX <em>en option</em></div>
+        <h3>Vos équipes autonomes sur l'IA.</h3>
+        <p>Formation concrète au poste de travail. Vos collaborateurs montent en compétence sur vos vrais cas, pas sur des exemples génériques.</p>
+        <div class="cred">J'enseigne en Bachelor et en école d'ingénieur depuis 2001.</div>
       </div>
-      <div class="tile wide reveal">
+      <div class="tile wide apart reveal">
         <div class="wtxt">
-          <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2 2-6.5z"/></svg></div>
-          <div class="kx">FormX</div>
-          <h3>Vos équipes autonomes sur l'IA.</h3>
-          <p>Formation concrète au poste de travail. Vos collaborateurs montent en compétence sur vos vrais cas, pas sur des exemples génériques.</p>
-          <div class="cred">J'enseigne en Bachelor et en école d'ingénieur depuis 2001.</div>
+          <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.4-7 8.9C8 17.4 5 14.4 5 10.9V6l7-3z"/></svg></div>
+          <div class="kx apart-kx">Offre à part &middot; Audit Cyber</div>
+          <h3>Voir où sont vos risques.</h3>
+          <p>Ce n'est pas de l'automatisation, c'est un autre métier. Revue de votre sécurité et de vos données, exposition, RGPD, souveraineté. Vous savez ce qui est exposé et par quoi commencer.</p>
+          <div class="cred">Système, réseaux et sécurité depuis vingt-deux ans, dont trois à la direction technique d'un cloud d'État.</div>
         </div>
       </div>
     </div>
