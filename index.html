@@ -808,7 +808,11 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
     var leadPayload = JSON.stringify({ name:data.get('name'), email:data.get('email'), message:data.get('message') })
     var done = false
     function showError(){ if(done) return; done = true; btn.disabled=false; btn.textContent='Envoyer'; errorEl.style.display='block' }
-    function showSuccess(){ if(done) return; done = true; successEl.style.display='block'; btn.style.display='none'; form.reset() }
+    // L'envoi abouti est le seul evenement qui prouve un contact. La mesure de
+    // parcours l'ecoute ici, et non l'appui sur le bouton : les trois champs
+    // etant obligatoires, un formulaire incomplet est bloque par reportValidity()
+    // sans que rien ne parte, alors que le clic, lui, a bien eu lieu.
+    function showSuccess(){ if(done) return; done = true; successEl.style.display='block'; btn.style.display='none'; form.reset(); try{ document.dispatchEvent(new CustomEvent('hx:envoi')) }catch(e){} }
     // borne dure : au-dela, on rend la main au visiteur avec le recours par mail
     var ctrl = ('AbortController' in window) ? new AbortController() : null
     var timer = setTimeout(function(){ if(ctrl) ctrl.abort(); showError() }, 15000)
@@ -989,7 +993,12 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
         entrees.forEach(function (e) {
           if (e.isIntersecting && vues.indexOf(e.target.id) === -1) vues.push(e.target.id);
         });
-      }, { threshold: 0.4 });
+      // Position, pas proportion de surface : un seuil du type 0.4 exige que 40 %
+      // de la section tienne a l'ecran d'un coup, ce qu'une section plus haute que
+      // le viewport n'atteint jamais. La section #domaines etait ainsi invisible a
+      // la mesure sur mobile, ou se font 3 visites sur 4. On compte desormais une
+      // section des qu'elle traverse la bande centrale de l'ecran.
+      }, { threshold: 0, rootMargin: '-35% 0px -35% 0px' });
       document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
     }
 
@@ -1011,9 +1020,14 @@ document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observ
       else if (url.indexOf('openfacturx') > -1) quoi = 'openfacturx';
       else if (url.indexOf('mailto:') === 0) quoi = 'email';
       else if (url.indexOf('tel:') === 0) quoi = 'telephone';
-      else if (el.type === 'submit') quoi = 'formulaire';
       if (quoi && clics.indexOf(quoi) === -1) clics.push(quoi);
     }, true);
+
+    // Le formulaire n'est compte qu'une fois le message reellement parti,
+    // sur l'evenement emis par showSuccess(). Un appui sur le bouton ne suffit pas.
+    document.addEventListener('hx:envoi', function () {
+      if (clics.indexOf('formulaire') === -1) clics.push('formulaire');
+    });
 
     function envoyer() {
       if (envoye) return;
